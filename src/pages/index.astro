@@ -185,7 +185,7 @@ const heroVideoLoopEnd = 6.8;
         <div class="process-col">
           {processSteps.slice(0, 4).map((step, i) => (
             <article class="process-step" style={`--step-opacity: ${(1 - i * 0.18).toFixed(2)}`}>
-              <div class="process-node">{String(processSteps.indexOf(step) + 1).padStart(2, "0")}</div>
+              <div class="process-node">{String(i + 1).padStart(2, "0")}</div>
               <div class="process-card">
                 <strong>{step.title}</strong>
                 <p>{step.text}</p>
@@ -195,7 +195,7 @@ const heroVideoLoopEnd = 6.8;
         </div>
         <div class="process-col" style="--col-start-opacity: 0.18;">
           {processSteps.slice(4).map((step, i) => (
-            <article class="process-step" style={`--step-opacity: ${(0.55 - i * 0.08).toFixed(2)}`}>
+            <article class="process-step" style={`--step-opacity: ${Math.max(0.1, 0.55 - i * 0.08).toFixed(2)}`}>
               <div class="process-node">{String(4 + i + 1).padStart(2, "0")}</div>
               <div class="process-card">
                 <strong>{step.title}</strong>
@@ -422,6 +422,7 @@ const heroVideoLoopEnd = 6.8;
   }
 
   .hero-media-stack {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -440,7 +441,6 @@ const heroVideoLoopEnd = 6.8;
   }
 
   .hero-shot {
-    position: absolute;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 18px;
