@@ -1,0 +1,66 @@
+---
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import "@styles/global.css";
+import { company } from "@data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  image = "/images/hero2.jpg",
+  canonical,
+  jsonLd = []
+} = Astro.props;
+
+const pageTitle = title.includes(company.name) ? title : `${title} | ${company.name}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+const imageUrl = new URL(image, Astro.site).toString();
+const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="Schreck Kunststofftechnik GmbH" />
+    <!-- GEO-Targeting -->
+    <meta name="geo.region" content="DE-HE" />
+    <meta name="geo.placename" content="Burgwald-Bottendorf" />
+    <meta name="geo.position" content="51.017;8.832" />
+    <meta name="ICBM" content="51.017, 8.832" />
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="/images/logoschreck%20(1).png" />
+    {
+      schemas.map((schema) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

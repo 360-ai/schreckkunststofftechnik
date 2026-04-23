@@ -1,0 +1,127 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import { company, stats } from "@data/site";
+---
+
+<BaseLayout
+  title="Schreck Kunststofftechnik – Unternehmen, Geschichte und Standort"
+  description="Schreck Kunststofftechnik GmbH ist ein Formenbau-Unternehmen aus Burgwald-Bottendorf mit Erfahrung seit 1984."
+>
+  <PageHero eyebrow="Über uns" title="Im Herzen Hessens. Seit 1984." text="Schreck Kunststofftechnik steht für präzisen Werkzeug- und Formenbau, produktionsnahe Entwicklung und ein erfahrenes Team in Burgwald-Bottendorf." image="/images/hero1.jpg" />
+  <section class="section">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Unternehmen</p>
+        <h2>Ein spezialisierter Partner für anspruchsvolle Kunststoffprodukte.</h2>
+        <p class="lead">Seit der Gründung wurden mehr als 1000 Formen gebaut und zur Serienreife gebracht. Hunderte Problemlösungen und Entwicklungen wurden für Kunden umgesetzt.</p>
+      </div>
+      <div class="image-panel">
+        <img src="/images/team.jpg" alt="Team der Schreck Kunststofftechnik GmbH" loading="lazy" />
+      </div>
+    </div>
+  </section>
+  <section class="section dark">
+    <div class="container">
+      <p class="eyebrow">Kennzahlen</p>
+      <h2>Erfahrung, die in jedem Projekt mitarbeitet.</h2>
+      <div class="stat-grid">
+        {stats.map((stat) => <div class="stat"><strong>{stat.value}</strong><span>{stat.label}</span></div>)}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Firmengeschichte</p>
+      <h2>Seit 1984 im Formenbau verwurzelt.</h2>
+      <div class="history-timeline">
+        <article class="history-entry">
+          <span class="history-date">01.01.1984</span>
+          <div>
+            <h3>Gründung</h3>
+            <p>Schreck Kunststofftechnik wird gegründet und richtet den Fokus früh auf Formenbau für die Kunststoffverarbeitung.</p>
+          </div>
+        </article>
+        <article class="history-entry">
+          <span class="history-date">Frühe Jahre</span>
+          <div>
+            <h3>Abmusterung auf eigener Maschine</h3>
+            <p>Eine der ersten erworbenen Maschinen ist eine Spritzgießmaschine. Dadurch können Formen mit Abmusterungsprotokoll und serienreifer Auslegung ausgeliefert werden.</p>
+          </div>
+        </article>
+        <article class="history-entry">
+          <span class="history-date">Bis heute</span>
+          <div>
+            <h3>Mehr als 1000 Formen</h3>
+            <p>Seit der Gründung wurden mehr als 1000 Formen gebaut und zur Serienreife gebracht. Mehr als 30 Lehrlinge wurden ausgebildet.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">Standort</p>
+      <h2>{company.location}</h2>
+      <p class="lead">{company.street}, {company.postalCity}</p>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps?q=Wolkersdorfer+Stra%C3%9Fe+28,+35099+Burgwald-Bottendorf&output=embed"
+          width="100%"
+          height="360"
+          style="border:0; border-radius:8px; display:block;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Schreck Kunststofftechnik GmbH – Standort Burgwald-Bottendorf"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .history-timeline {
+    margin-top: 40px;
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .history-entry {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 28px 32px;
+    background: #fff;
+    align-items: start;
+  }
+
+  .history-date {
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 0.9rem;
+    padding-top: 4px;
+  }
+
+  .history-entry h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+  }
+
+  .history-entry p {
+    color: var(--muted);
+    line-height: 1.68;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .history-entry {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 20px 20px;
+    }
+  }
+</style>

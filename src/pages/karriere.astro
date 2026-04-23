@@ -1,0 +1,135 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import JobList from "@components/JobList.astro";
+import { company } from "@data/site";
+import { getCollection } from "astro:content";
+
+const activeJobs = (await getCollection("jobs")).filter((job) => job.data.active);
+const jobSchemas = activeJobs.map((job) => ({
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  title: job.data.title,
+  employmentType: job.data.type === "Ausbildung" ? "INTERN" : "FULL_TIME",
+  hiringOrganization: {
+    "@type": "Organization",
+    name: company.name,
+    sameAs: "https://www.schreck-kunststofftechnik.de/"
+  },
+  jobLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.street,
+      postalCode: "35099",
+      addressLocality: "Burgwald-Bottendorf",
+      addressCountry: "DE"
+    }
+  },
+  description: job.body,
+  directApply: true
+}));
+---
+
+<BaseLayout
+  title="Karriere und Stellenanzeigen"
+  description="Karriere bei Schreck Kunststofftechnik: aktuelle Stellenanzeigen und Ausbildung zum Werkzeugmechaniker in Burgwald-Bottendorf."
+  jsonLd={jobSchemas}
+>
+  <PageHero eyebrow="Karriere" title="Zukunft im Werkzeugbau" text="Wer Technik, Präzision und praktische Arbeit mag, findet bei Schreck ein modernes Umfeld mit Erfahrung, Teamgeist und Entwicklungsmöglichkeiten." image="/images/team.jpg" />
+
+  <section class="section soft compact">
+    <div class="container">
+      <div class="why-grid">
+        <article class="why-card">
+          <p class="eyebrow">Team</p>
+          <h3>Familiäre Zusammenarbeit</h3>
+          <p>Kurze Wege, direkte Abstimmung und ein Umfeld, in dem Erfahrung wirklich weitergegeben wird.</p>
+        </article>
+        <article class="why-card">
+          <p class="eyebrow">Ausbildung</p>
+          <h3>Mehr als 30 Lehrlinge ausgebildet</h3>
+          <p>Schreck ist Ausbildungsbetrieb mit Substanz. Neue Kolleginnen und Kollegen lernen hier direkt an echten Projekten.</p>
+        </article>
+        <article class="why-card">
+          <p class="eyebrow">Technik</p>
+          <h3>Präzision mit modernem Maschinenpark</h3>
+          <p>Werkzeugbau, Vermessung und Fertigung greifen im Alltag sauber ineinander.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Offene Stellen</p>
+      <h2>Aktuelle Möglichkeiten</h2>
+      <p class="lead">Schreck sucht Werkzeugmechaniker und Auszubildende, die Technik verstehen und in einem erfahrenen Team weiterkommen wollen.</p>
+      <div class="jobs">
+        <JobList />
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Bewerbung</p>
+        <h2>Direkt bewerben oder initiativ anfragen</h2>
+        <p class="lead">Bewerbungen können per E-Mail oder per Post an {company.name}, {company.street}, {company.postalCity} gesendet werden. Wenn gerade keine passende Stelle offen ist, sind Initiativbewerbungen ausdrücklich willkommen.</p>
+      </div>
+      <div class="apply-panel">
+        <a class="button" href={`mailto:${company.email}?subject=Bewerbung`}>Jetzt bewerben</a>
+        <a class="button light" href={`mailto:${company.email}?subject=Initiativbewerbung`}>Initiativbewerbung</a>
+        <a class="apply-mail" href={`mailto:${company.email}`}>{company.email}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .jobs {
+    margin-top: 34px;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .why-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 26px 24px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 14px 32px rgba(12, 18, 32, 0.06);
+  }
+
+  .why-card h3 {
+    margin: 6px 0 10px;
+  }
+
+  .why-card p:not(.eyebrow) {
+    color: var(--muted);
+    line-height: 1.68;
+  }
+
+  .apply-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .apply-mail {
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

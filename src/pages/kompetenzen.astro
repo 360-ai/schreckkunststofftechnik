@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+
+const competencies = [
+  { title: "Konzeptionierung", text: "Anforderungen klären, Machbarkeit prüfen und eine tragfähige Werkzeugstrategie definieren — bevor der erste Span fällt." },
+  { title: "Konstruktion", text: "Formen und Bauteile fertigungsgerecht und prozesssicher auslegen. CAD-gestützt, materialspezifisch und mit Blick auf die spätere Produktion." },
+  { title: "Entwicklung", text: "Werkzeuglösung, Material und Spritzgießprozess werden gemeinsam gedacht — von der Auslegung bis zum ersten Muster." },
+  { title: "Abmusterung", text: "Erstmuster systematisch prüfen, Abweichungen dokumentieren und Werkzeug oder Prozess gezielt anpassen." },
+  { title: "Vermessung", text: "Maße, Toleranzen und Funktionsflächen mit modernem Messequipment absichern — für reproduzierbare Serienqualität." },
+  { title: "Optimierung", text: "Werkzeug und Prozess Schritt für Schritt verfeinern, bis die Serienreife stabil und dokumentiert erreicht ist." },
+  { title: "Dokumentation", text: "Alle Ergebnisse nachvollziehbar festhalten: für reibungslose Übergabe, Qualitätssicherung und spätere Wartung." },
+  { title: "Reparatur und Wartung", text: "Auch nach Auslieferung bleibt das Werkzeug betreut — Reparaturen, Einweisung und vorbeugende Wartung inklusive." }
+];
+---
+
+<BaseLayout
+  title="Kompetenzen im Werkzeug- und Formenbau"
+  description="Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation bei Schreck Kunststofftechnik."
+>
+  <PageHero eyebrow="Kompetenzen" title="Vom Konzept bis zum serienreifen Werkzeug" text="Schreck begleitet Projekte über alle entscheidenden Schritte des Formenbaus hinweg: technisch, nachvollziehbar und mit Blick auf die spätere Produktion." />
+  <section class="section">
+    <div class="container grid four">
+      {competencies.map((item, index) => (
+        <article class="card">
+          <div class="card-body">
+            <p class="eyebrow">{String(index + 1).padStart(2, "0")}</p>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container split">
+      <div class="image-panel">
+        <img src="/images/MS-Kunststoffbearbeitung-GmbH-99.jpg1_.jpg" alt="Maschinenpark in der Kunststofftechnik" loading="lazy" />
+      </div>
+      <div>
+        <p class="eyebrow">After-Sales</p>
+        <h2>Auch nach der Auslieferung bleibt das Werkzeug betreut.</h2>
+        <p class="lead">Schulungen vor Ort, Reparaturen und vorbeugende Wartung sichern einen reibungslosen Serienanlauf und halten Werkzeuge dauerhaft in gutem Zustand.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
