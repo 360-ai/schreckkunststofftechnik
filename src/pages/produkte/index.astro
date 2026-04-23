@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import ProductCard from "@components/ProductCard.astro";
+import { products } from "@data/site";
+---
+
+<BaseLayout
+  title="Produkte und Werkzeugbau"
+  description="Produktbereiche von Schreck Kunststofftechnik: Medizintechnik, Labortechnik, Verpackung, Innenanspritzung, Mehrkomponentenwerkzeuge und Kleinstteile."
+>
+  <PageHero eyebrow="Produkte" title="Formtechnologie für hohe Wertschöpfung" text="Schreck entwickelt und fertigt Formen für Kunststoff-, Aluminium- und Zink-Druckgussverarbeitung. Die Umsetzung erfolgt nach Kundenvorgaben von der Idee bis zur Serienreife." />
+  <section class="section">
+    <div class="container">
+      <div class="grid three">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

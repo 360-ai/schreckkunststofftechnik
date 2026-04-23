@@ -1,0 +1,149 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+  job: CollectionEntry<"jobs">;
+}
+
+const { job } = Astro.props;
+const { Content } = await render(job);
+const excerpt = job.body.split("##")[0].trim();
+---
+
+<article class="card job-card">
+  <div class="card-body">
+    <div class="job-meta">
+      <p class="eyebrow">{job.data.type}</p>
+      <div class="job-pills">
+        <span>{job.data.start}</span>
+        <span>{job.data.location}</span>
+      </div>
+    </div>
+    <h3>{job.data.title}</h3>
+    <p class="job-excerpt">{excerpt}</p>
+    <div class="content job-content">
+      <Content />
+    </div>
+    <div class="job-actions">
+      <a class="button" href={`mailto:${job.data.applyEmail}?subject=Bewerbung: ${job.data.title}`}>Jetzt bewerben</a>
+      <a class="button light" href={`mailto:${job.data.applyEmail}?subject=Frage zur Stelle: ${job.data.title}`}>Frage senden</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .job-card {
+    position: relative;
+    border-color: rgba(30, 58, 95, 0.12);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 251, 0.98));
+  }
+
+  .job-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 6px;
+    content: "";
+    background: linear-gradient(180deg, var(--accent), rgba(30, 58, 95, 0.82));
+  }
+
+  .job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .job-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .job-pills span {
+    border: 1px solid rgba(8, 145, 178, 0.24);
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: rgba(8, 145, 178, 0.08);
+    color: var(--primary-deep);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  h3 {
+    margin-top: 8px;
+    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    line-height: 1.12;
+  }
+
+  .job-excerpt {
+    margin-top: 16px;
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .job-content {
+    margin-top: 24px;
+    border-top: 1px solid rgba(15, 31, 53, 0.08);
+    padding-top: 20px;
+  }
+
+  .job-content :global(h2) {
+    margin: 18px 0 10px;
+    color: var(--primary);
+    font-size: 0.84rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .job-content :global(ul) {
+    display: grid;
+    gap: 10px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .job-content :global(li) {
+    position: relative;
+    padding-left: 20px;
+    color: var(--ink-soft);
+    line-height: 1.62;
+  }
+
+  .job-content :global(li)::before {
+    position: absolute;
+    left: 0;
+    top: 0.66em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    content: "";
+    background: var(--accent);
+    transform: translateY(-50%);
+  }
+
+  .job-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+  }
+
+  .job-actions .button {
+    margin-top: 0;
+  }
+
+  @media (max-width: 700px) {
+    .job-meta {
+      align-items: flex-start;
+    }
+
+    .job-actions .button {
+      width: 100%;
+    }
+  }
+</style>

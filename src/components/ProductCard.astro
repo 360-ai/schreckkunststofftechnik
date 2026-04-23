@@ -1,0 +1,70 @@
+---
+interface Props {
+  product: {
+    title: string;
+    slug: string;
+    eyebrow: string;
+    intro: string;
+    image: string;
+  };
+}
+
+const { product } = Astro.props;
+---
+
+<a class="card media-card" href={`/produkte/${product.slug}/`}>
+  <div class="media">
+    <img src={product.image} alt={`${product.title} bei Schreck Kunststofftechnik`} loading="lazy" />
+  </div>
+  <div class="card-body">
+    <p class="eyebrow">{product.eyebrow}</p>
+    <h3>{product.title}</h3>
+    <p>{product.intro}</p>
+    <span class="card-link">Mehr erfahren</span>
+  </div>
+</a>
+
+<style>
+  .media-card {
+    position: relative;
+    background: linear-gradient(180deg, #fff, #f8fbff);
+  }
+
+  .media {
+    position: relative;
+  }
+
+  .media::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background:
+      linear-gradient(180deg, transparent 42%, rgba(15, 31, 53, 0.42)),
+      linear-gradient(90deg, rgba(8, 145, 178, 0.14), transparent);
+  }
+
+  h3 {
+    margin-bottom: 12px;
+  }
+
+  p:not(.eyebrow) {
+    line-height: 1.62;
+  }
+
+  .card-link {
+    display: inline-flex;
+    margin-top: 18px;
+    color: var(--accent);
+    font-weight: 900;
+  }
+
+  .card-link::after {
+    content: "\2192";
+    margin-left: 8px;
+    transition: transform 160ms ease;
+  }
+
+  .media-card:hover .card-link::after {
+    transform: translateX(4px);
+  }
+</style>

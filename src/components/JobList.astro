@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import JobCard from "@components/JobCard.astro";
+
+const jobs = (await getCollection("jobs"))
+  .filter((job) => job.data.active)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+{
+  jobs.length > 0 ? (
+    <div class:list={["grid", jobs.length === 1 ? "single" : "two"]}>
+      {
+        jobs.map((job) => (
+          <JobCard job={job} />
+        ))
+      }
+    </div>
+  ) : (
+    <article class="card empty">
+      <div class="card-body">
+        <p class="eyebrow">Karriere</p>
+        <h3>Aktuell sind keine offenen Stellen ausgeschrieben.</h3>
+        <p>Initiativbewerbungen sind weiterhin willkommen. Senden Sie Ihre Unterlagen gerne per E-Mail an Schreck Kunststofftechnik.</p>
+        <a class="button" href="mailto:info@schreck-kunststofftechnik.com?subject=Initiativbewerbung">Initiativ bewerben</a>
+      </div>
+    </article>
+  )
+}
+
+<style>
+  .grid {
+    gap: 24px;
+  }
+
+  .single {
+    max-width: 820px;
+  }
+
+  .empty .button {
+    margin-top: 22px;
+  }
+
+  .empty {
+    max-width: 820px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 247, 251, 0.98));
+  }
+</style>

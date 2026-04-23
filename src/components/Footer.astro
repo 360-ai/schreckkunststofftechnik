@@ -1,0 +1,99 @@
+---
+import { company, navItems } from "@data/site";
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="/images/logoschreck.png" alt={company.name} />
+      <p>{company.claim}</p>
+    </div>
+    <div>
+      <h2>Navigation</h2>
+      {
+        navItems.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))
+      }
+      <a href="/downloads/">Downloads</a>
+    </div>
+    <div>
+      <h2>Kontakt</h2>
+      <p>{company.street}<br />{company.postalCity}</p>
+      <a href={`tel:${company.phone.replaceAll(" ", "")}`}>{company.phone}</a>
+      <a href={`mailto:${company.email}`}>{company.email}</a>
+    </div>
+  </div>
+  <div class="container legal">
+    <span>(c) 2026 {company.name}</span>
+    <span><a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    color: #fff;
+    background: #08111f;
+    padding: 56px 0 24px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 1fr;
+    gap: 34px;
+  }
+
+  img {
+    width: 220px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    margin: 0 0 16px;
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+  }
+
+  p,
+  a,
+  span {
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  .legal {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 42px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.9rem;
+  }
+
+  .legal a {
+    display: inline;
+  }
+
+  @media (max-width: 840px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .legal {
+      flex-direction: column;
+    }
+  }
+</style>

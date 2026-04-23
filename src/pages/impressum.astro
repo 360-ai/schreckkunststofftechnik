@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { company } from "@data/site";
+---
+
+<BaseLayout title="Impressum" description="Impressum der Schreck Kunststofftechnik GmbH.">
+  <section class="page-hero">
+    <div class="container"><p class="eyebrow">Rechtliches</p><h1>Impressum</h1></div>
+  </section>
+  <section class="section">
+    <div class="container content">
+      <h2>{company.name}</h2>
+      <p>{company.street}<br />{company.postalCity}</p>
+      <h3>Kontakt</h3>
+      <p>Telefon: {company.phone}<br />Telefax: {company.fax}<br />E-Mail: {company.email}</p>
+      <h3>Gesellschafter und Geschäftsführer</h3>
+      <p>Maximilian Grebe<br />Roman Manz</p>
+      <h3>Registerangaben</h3>
+      <p>Amtsgericht Marburg/Lahn<br />Handelsregister HRB 3981<br />USt.-Id.-Nr.: DE 113086891</p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Downloads"
+  description="Downloads von Schreck Kunststofftechnik: Flyer, ISO-Zertifikat und Allgemeine Geschäftsbedingungen."
+>
+  <PageHero eyebrow="Downloads" title="Unterlagen und Zertifikate" text="Zentrale Dokumente werden hier gesammelt und können bei Bedarf erweitert oder ausgetauscht werden." />
+  <section class="section">
+    <div class="container grid three">
+      <a class="card" href="/iso/" aria-label="ISO Zertifikat"><div class="card-body"><p class="eyebrow">Zertifizierung</p><h3>ISO-Zertifikat</h3><p>Aktuelle Zertifikatsunterlagen im ISO-Ordner.</p></div></a>
+      <a class="card" href="/downloads/"><div class="card-body"><p class="eyebrow">Produktflyer</p><h3>Flyer</h3><p>Flyer für Innenanspritzung, Labor, Medizin, Verpackung, Mehrkomponenten und Miniaturteile.</p></div></a>
+      <a class="card" href="/downloads/"><div class="card-body"><p class="eyebrow">Rechtliches</p><h3>AGB</h3><p>Allgemeine Geschäftsbedingungen als Downloadbereich.</p></div></a>
+    </div>
+  </section>
+</BaseLayout>

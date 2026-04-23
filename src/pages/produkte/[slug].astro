@@ -1,0 +1,97 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import { products, company } from "@data/site";
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product }
+  }));
+}
+
+const { product } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: `${product.title} - ${company.name}`,
+  provider: { "@type": "Organization", name: company.name },
+  areaServed: "Deutschland",
+  serviceType: product.keywords.join(", "),
+  description: product.intro
+};
+---
+
+<BaseLayout
+  title={`${product.title} im Formenbau`}
+  description={product.intro}
+  image={product.image}
+  jsonLd={schema}
+>
+  <PageHero eyebrow="Produktbereich" title={product.title} text={product.intro} image={product.image} />
+  <section class="section">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">{product.eyebrow}</p>
+        <h2>Werkzeuge mit klaren Anforderungen an Prozess und Qualität.</h2>
+        <p class="lead">Die Produktbereiche werden bei Schreck nicht isoliert betrachtet. Konstruktion, Fertigung, Abmusterung und Optimierung greifen ineinander, damit das Werkzeug im späteren Serienbetrieb zuverlässig arbeitet.</p>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Formansprüche</h3>
+          <div class="pill-list">
+            {product.requirements.map((item) => <span class="pill">{item}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container grid two">
+      <div class="card">
+        <div class="card-body">
+          <h3>Typische Produkte</h3>
+          <ul class="feature-list">
+            {product.examples.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3>Relevante Suchbegriffe</h3>
+          <p>Diese Seite ist auf die Begriffe ausgerichtet, nach denen B2B-Kunden bei spezialisierten Formenbau-Projekten suchen.</p>
+          <div class="pill-list">
+            {product.keywords.map((item) => <span class="pill">{item}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section compact dark">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Projektanfrage</p>
+        <h2>Passendes Werkzeugkonzept für Ihre Anwendung prüfen lassen.</h2>
+      </div>
+      <div>
+        <p class="lead">Senden Sie Zeichnungen, Muster oder Lastenhefte an Schreck. Das Team meldet sich mit einer fachlichen Einschätzung zu Machbarkeit und nächsten Schritten.</p>
+        <a class="button" href="/kontakt/">Projekt anfragen</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .feature-list {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .feature-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-weight: 800;
+  }
+</style>

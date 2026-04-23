@@ -103,13 +103,6 @@ const heroVideoLoopEnd = 6.8;
         <a class="button" href="/kontakt/">Projekt anfragen</a>
         <a class="button secondary" href="/produkte/">Produkte ansehen</a>
       </div>
-        <div class="hero-tags">
-          <span>Medizintechnik</span>
-          <span>Labortechnik</span>
-          <span>Verpackung</span>
-          <span>Automotive</span>
-          <span>Luftfahrt</span>
-        </div>
       </div>
       <div class="hero-visual">
         <div class="hero-media-stack">
@@ -419,13 +412,12 @@ const heroVideoLoopEnd = 6.8;
 
   .hero-visual {
     position: relative;
+    min-height: 520px;
   }
 
   .hero-media-stack {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    min-height: 520px;
     width: 100%;
   }
 
@@ -474,19 +466,24 @@ const heroVideoLoopEnd = 6.8;
   }
 
   .hero-shot-main {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    transform: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 74%;
+    height: 72%;
+    transform: rotate(-2deg);
+    z-index: 2;
   }
 
   .hero-shot-accent {
-    position: relative;
-    width: 82%;
-    aspect-ratio: 4 / 3;
-    align-self: flex-end;
-    transform: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 54%;
+    height: 48%;
+    transform: rotate(2.5deg);
     border-color: rgba(34, 211, 238, 0.42);
+    z-index: 3;
   }
 
   .hero-media-stack:hover .hero-shot img,
@@ -680,14 +677,19 @@ const heroVideoLoopEnd = 6.8;
       grid-template-columns: 1fr;
     }
 
-    .hero-shot-accent {
-      display: none;
+    .hero-visual,
+    .hero-media-stack {
+      min-height: 360px;
     }
-  }
 
-  @media (max-width: 640px) {
-    .hero-tags {
-      width: 100%;
+    .hero-shot-main {
+      width: 76%;
+      height: 72%;
+    }
+
+    .hero-shot-accent {
+      width: 60%;
+      height: 52%;
     }
   }
 </style>
