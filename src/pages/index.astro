@@ -1,0 +1,693 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ProductCard from "@components/ProductCard.astro";
+import { industries, company, products, stats } from "@data/site";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: company.name,
+  url: "https://www.schreck-kunststofftechnik.de/",
+  email: company.email,
+  telephone: company.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: company.street,
+    postalCode: "35099",
+    addressLocality: "Burgwald-Bottendorf",
+    addressCountry: "DE"
+  },
+  foundingDate: "1984-01-01"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Welche Leistungen bietet Schreck Kunststofftechnik?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Schreck Kunststofftechnik bietet Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung, Dokumentation sowie Reparatur und Wartung von Formen und Spritzgusswerkzeugen."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Für welche Branchen fertigt Schreck Werkzeuge?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Schreck fertigt unter anderem für Medizintechnik, Labortechnik, Verpackung, Kosmetik, Automobilindustrie, Elektronik und technische Kunststoffprodukte."
+      }
+    }
+  ]
+};
+
+const processSteps = [
+  {
+    title: "Konzept",
+    text: "Anforderungen, Machbarkeit und Werkzeugstrategie klären."
+  },
+  {
+    title: "Konstruktion",
+    text: "Formen und Bauteile fertigungsgerecht auslegen."
+  },
+  {
+    title: "Entwicklung",
+    text: "Werkzeuglösung, Material und Prozess zusammendenken."
+  },
+  {
+    title: "Abmusterung",
+    text: "Erste Muster prüfen, dokumentieren und bewerten."
+  },
+  {
+    title: "Vermessung",
+    text: "Maße, Toleranzen und Funktionsflächen absichern."
+  },
+  {
+    title: "Optimierung",
+    text: "Werkzeug und Prozess bis zur Serienreife verfeinern."
+  },
+  {
+    title: "Dokumentation",
+    text: "Ergebnisse nachvollziehbar für Übergabe und Qualität festhalten."
+  },
+  {
+    title: "Service",
+    text: "Wartung, Reparatur und Einweisung nach Auslieferung."
+  }
+];
+
+const splitStatValue = (value: string) => ({
+  target: value.replace(/\D/g, ""),
+  suffix: value.includes("+") ? "+" : ""
+});
+
+const heroVideoSrc = "/downloads/Maschinenvideo.mp4";
+const heroVideoLoopEnd = 6.8;
+---
+
+<BaseLayout
+  title="Schreck Kunststofftechnik GmbH - Formenbau seit 1984"
+  description="Schreck Kunststofftechnik entwickelt und fertigt Spritzgusswerkzeuge von der Produktidee bis zur serienreifen Produktionslösung in Burgwald-Bottendorf."
+  jsonLd={[schema, faqSchema]}
+>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+      <p class="eyebrow">Präzision im Formenbau seit 1984</p>
+      <h1>Produktentwicklung <span>mit System</span></h1>
+      <p class="lead">Von der Idee bis zum marktreifen Produkt: Schreck Kunststofftechnik entwickelt und fertigt anspruchsvolle Formen für Kunststoffverarbeitung, Aluminium- und Zink-Druckguss.</p>
+      <div class="button-row">
+        <a class="button" href="/kontakt/">Projekt anfragen</a>
+        <a class="button secondary" href="/produkte/">Produkte ansehen</a>
+      </div>
+        <div class="hero-tags">
+          <span>Medizintechnik</span>
+          <span>Labortechnik</span>
+          <span>Verpackung</span>
+          <span>Automotive</span>
+          <span>Luftfahrt</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-media-stack">
+          <div class="hero-shot hero-shot-main">
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              playsinline
+              preload="metadata"
+              data-loop-end={heroVideoLoopEnd}
+              aria-label="Maschine in der Fertigung bei Schreck Kunststofftechnik"
+            >
+              <source src={heroVideoSrc} type="video/mp4" />
+            </video>
+          </div>
+          <div class="hero-shot hero-shot-accent">
+            <img src="/images/grafik_medizin_4.png" alt="Medizintechnik-Komponenten aus Kunststoff" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="section-mark">01</div>
+    <div class="container process-layout">
+      <div class="process-intro">
+        <p class="eyebrow">B2B-Partner für Serienreife</p>
+        <h2>Werkzeuge, die vom ersten Muster bis zur Produktion mitgedacht sind.</h2>
+      </div>
+      <div>
+        <p class="lead">Schreck Kunststofftechnik ist der B2B-Partner für anspruchsvolle Kunststoffprojekte — von der ersten Idee bis zur dokumentierten Serienfreigabe. Eigene Spritzgießmaschine für Abmusterung vor Ort, vollständige Qualitätsdokumentation und Werkzeugbetreuung auch nach Auslieferung.</p>
+        <div class="pill-list">
+          {industries.map((item) => <span class="pill">{item}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-mark">02</div>
+    <div class="container">
+      <p class="eyebrow">Produktbereiche</p>
+      <h2>Formenbau für anspruchsvolle Kunststoffteile</h2>
+      <p class="lead product-lead">Sechs Schwerpunkte, ein Anspruch: technische Kunststoffteile so zu entwickeln, dass Werkzeug, Prozess und Serienqualität zusammenpassen.</p>
+      <div class="grid three product-grid">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="section-mark">03</div>
+    <div class="container process-layout">
+      <div class="process-intro">
+        <p class="eyebrow">Prozess</p>
+        <h2>Von der Produktidee bis zur effizienten Produktionslösung.</h2>
+        <p class="lead">Eine der ersten Maschinen war bereits eine Spritzgießmaschine, um Formen mit Abmusterungsprotokoll serienreif ausliefern zu können. Dieser Anspruch prägt Schreck bis heute.</p>
+      </div>
+      <div class="stat-grid process-stats">
+      {stats.map((stat) => {
+        const value = splitStatValue(stat.value);
+        return (
+          <div class="stat">
+            <strong class="count" data-count={value.target} data-suffix={value.suffix}>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </div>
+        );
+      })}
+      </div>
+      <div class="process-two-col">
+        <div class="process-col">
+          {processSteps.slice(0, 4).map((step, i) => (
+            <article class="process-step" style={`--step-opacity: ${(1 - i * 0.18).toFixed(2)}`}>
+              <div class="process-node">{String(processSteps.indexOf(step) + 1).padStart(2, "0")}</div>
+              <div class="process-card">
+                <strong>{step.title}</strong>
+                <p>{step.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="process-col" style="--col-start-opacity: 0.18;">
+          {processSteps.slice(4).map((step, i) => (
+            <article class="process-step" style={`--step-opacity: ${(0.55 - i * 0.08).toFixed(2)}`}>
+              <div class="process-node">{String(4 + i + 1).padStart(2, "0")}</div>
+              <div class="process-card">
+                <strong>{step.title}</strong>
+                <p>{step.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-mark">04</div>
+    <div class="container split">
+      <div class="image-panel">
+        <img src="/images/team.jpg" alt="Team von Schreck Kunststofftechnik in der Fertigung" loading="lazy" />
+      </div>
+      <div>
+        <p class="eyebrow">Arbeitgeber & Ausbildung</p>
+        <h2>Technik, Erfahrung und ein Team, das Wissen weitergibt.</h2>
+        <p class="lead">Mehr als 30 Lehrlinge wurden seit der Gründung ausgebildet. Die neue Website stellt Schreck deshalb nicht nur als Lieferanten dar, sondern auch als attraktiven Ausbildungs- und Arbeitsplatz in Burgwald-Bottendorf.</p>
+        <div class="button-row">
+          <a class="button" href="/karriere/">Karriere ansehen</a>
+          <a class="button light" href="/ueber-uns/">Über uns</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact cta">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Projektstart</p>
+        <h2>Sie planen ein neues Werkzeug oder wollen ein Produkt zur Serienreife bringen?</h2>
+      </div>
+      <div>
+        <p class="lead">Senden Sie Zeichnungen, Muster oder Anforderungen direkt an Schreck. Das Team prüft Machbarkeit, Fertigungskonzept und nächste Schritte.</p>
+        <a class="button" href="/kontakt/">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>(".count[data-count]");
+  const heroVideos = document.querySelectorAll<HTMLVideoElement>(".hero-video[data-loop-end]");
+
+  const formatNumber = new Intl.NumberFormat("de-DE");
+  const easeInOut = (progress: number) =>
+    progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+  const animateCounter = (element: HTMLElement) => {
+    if (element.dataset.done === "true") return;
+
+    const target = Number(element.dataset.count || 0);
+    const suffix = element.dataset.suffix || "";
+    const duration = 2200;
+    const start = performance.now();
+    element.dataset.done = "true";
+    element.textContent = `0${suffix}`;
+
+    const frame = (time: number) => {
+      const progress = Math.min((time - start) / duration, 1);
+      const value = Math.round(target * easeInOut(progress));
+      element.textContent = `${formatNumber.format(value)}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    requestAnimationFrame(frame);
+  };
+
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target as HTMLElement);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  counters.forEach((counter) => counterObserver.observe(counter));
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  heroVideos.forEach((video) => {
+    const loopEnd = Number(video.dataset.loopEnd || 0);
+
+    if (!loopEnd) return;
+
+    if (prefersReducedMotion.matches) {
+      video.removeAttribute("autoplay");
+      video.pause();
+      return;
+    }
+
+    const restartSegment = () => {
+      video.currentTime = 0;
+      void video.play().catch(() => {});
+    };
+
+    video.addEventListener("loadedmetadata", () => {
+      if (video.currentTime >= loopEnd) {
+        restartSegment();
+      }
+    });
+
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= loopEnd) {
+        restartSegment();
+      }
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(880px, 100svh);
+    display: flex;
+    align-items: stretch;
+    color: #fff;
+    padding: 128px 0 74px;
+    background: var(--primary-deep);
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(112deg, rgba(9, 19, 34, 0.94) 0%, rgba(30, 58, 95, 0.72) 44%, rgba(12, 24, 42, 0.92) 100%),
+      radial-gradient(ellipse 84% 64% at 74% 18%, rgba(34, 211, 238, 0.24), transparent 56%),
+      radial-gradient(ellipse 76% 62% at 16% 82%, rgba(8, 145, 178, 0.18), transparent 62%);
+  }
+
+  .hero::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
+    background:
+      linear-gradient(90deg, rgba(34, 211, 238, 0.12) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(34, 211, 238, 0.08) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(90deg, #000 0%, transparent 72%);
+    opacity: 0.55;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+    gap: clamp(32px, 4.5vw, 64px);
+    align-items: center;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+  }
+
+  .hero h1 {
+    max-width: 760px;
+    font-size: clamp(3.15rem, 6vw, 5.4rem);
+    font-weight: 860;
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+    text-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+    overflow-wrap: normal;
+    word-break: normal;
+    text-transform: none;
+  }
+
+  .hero h1 span {
+    display: block;
+    color: var(--accent-light);
+  }
+
+  .hero .lead {
+    max-width: 660px;
+    margin: 26px 0 30px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 26px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .hero-tags::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-tags span {
+    border: 1px solid rgba(34, 211, 238, 0.38);
+    border-radius: 999px;
+    padding: 7px 12px;
+    background: rgba(8, 145, 178, 0.18);
+    color: #e2f8ff;
+    font-size: 0.84rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-media-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-media-stack::before {
+    content: "";
+    position: absolute;
+    inset: -10% -10% -8% -8%;
+    background:
+      radial-gradient(ellipse at 76% 28%, rgba(34, 211, 238, 0.34), transparent 58%),
+      radial-gradient(ellipse at 18% 78%, rgba(8, 145, 178, 0.28), transparent 64%);
+    filter: blur(18px);
+    pointer-events: none;
+  }
+
+  .hero-shot {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 28px 58px rgba(0, 0, 0, 0.38);
+  }
+
+  .hero-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 260ms ease;
+  }
+
+  .hero-shot-main::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(12, 18, 32, 0.06), rgba(12, 18, 32, 0.16)),
+      linear-gradient(110deg, rgba(8, 145, 178, 0.14), transparent 55%);
+    pointer-events: none;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #091322;
+    transition: transform 260ms ease;
+  }
+
+  .hero-shot-main {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    transform: none;
+  }
+
+  .hero-shot-accent {
+    position: relative;
+    width: 82%;
+    aspect-ratio: 4 / 3;
+    align-self: flex-end;
+    transform: none;
+    border-color: rgba(34, 211, 238, 0.42);
+  }
+
+  .hero-media-stack:hover .hero-shot img,
+  .hero-media-stack:hover .hero-video {
+    transform: scale(1.05);
+  }
+
+  .section-mark {
+    position: absolute;
+    right: max(20px, calc((100vw - 1180px) / 2));
+    top: 20px;
+    color: rgba(15, 31, 53, 0.08);
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 6vw, 6.2rem);
+    font-weight: 850;
+    line-height: 0.8;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .dark .section-mark,
+  .cta .section-mark {
+    color: rgba(255, 255, 255, 0.08);
+  }
+
+  .product-lead {
+    margin-top: 18px;
+  }
+
+  .product-grid {
+    margin-top: 40px;
+  }
+
+  .process-layout {
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-intro {
+    max-width: 760px;
+  }
+
+  .process-intro .lead {
+    max-width: 720px;
+  }
+
+  .process-stats {
+    margin: 28px 0 34px;
+  }
+
+  .process-timeline {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    padding-left: 18px;
+  }
+
+  .process-timeline::before {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 16px;
+    width: 1px;
+    content: "";
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.28), rgba(34, 211, 238, 0.06));
+  }
+
+  .process-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .process-node {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(8, 145, 178, 0.96), rgba(30, 58, 95, 0.92));
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .process-card {
+    min-height: 116px;
+    padding: 18px 20px;
+    border: 1px solid rgba(34, 211, 238, 0.18);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(8, 145, 178, 0.18), rgba(255, 255, 255, 0.045));
+  }
+
+  .process-card strong {
+    display: block;
+    font-size: 1.06rem;
+    line-height: 1.2;
+  }
+
+  .process-card p {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .process-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+  }
+
+  .process-col {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    padding-left: 18px;
+  }
+
+  .process-col::before {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 16px;
+    width: 1px;
+    content: "";
+    background: linear-gradient(
+      180deg,
+      rgba(34, 211, 238, var(--col-start-opacity, 0.28)),
+      rgba(34, 211, 238, 0.04)
+    );
+  }
+
+  .process-two-col .process-node {
+    opacity: var(--step-opacity, 1);
+    border-color: rgba(34, 211, 238, calc(var(--step-opacity, 1) * 0.4));
+    background: linear-gradient(135deg, rgba(8, 145, 178, calc(var(--step-opacity, 1) * 0.96)), rgba(30, 58, 95, 0.92));
+  }
+
+  .process-two-col .process-card {
+    border-color: rgba(34, 211, 238, calc(var(--step-opacity, 1) * 0.18));
+    opacity: calc(0.55 + var(--step-opacity, 1) * 0.45);
+  }
+
+  @media (max-width: 760px) {
+    .process-two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cta {
+    color: #fff;
+    background:
+      linear-gradient(110deg, rgba(15, 31, 53, 0.95), rgba(8, 145, 178, 0.75)),
+      url("/images/hero1.jpg") center / cover;
+  }
+
+  .cta .lead {
+    color: rgba(255, 255, 255, 0.74);
+    margin-bottom: 22px;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      min-height: auto;
+      padding: 112px 0 54px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.55rem, 9.4vw, 4.1rem);
+      line-height: 0.96;
+    }
+
+    .hero-copy {
+      max-width: none;
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-shot-accent {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-tags {
+      width: 100%;
+    }
+  }
+</style>
