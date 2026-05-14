@@ -1,0 +1,229 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Schreck Kunststofftechnik GmbH Startseite" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img "Schreck Kunststofftechnik GmbH" [ref=e4]
+    - navigation "Hauptnavigation" [ref=e5]:
+      - link "Produkte" [ref=e6] [cursor=pointer]:
+        - /url: /produkte/
+      - link "Kompetenzen" [ref=e7] [cursor=pointer]:
+        - /url: /kompetenzen/
+      - link "Über uns" [ref=e8] [cursor=pointer]:
+        - /url: /ueber-uns/
+      - link "Karriere" [ref=e9] [cursor=pointer]:
+        - /url: /karriere/
+      - link "Kontakt" [ref=e10] [cursor=pointer]:
+        - /url: /kontakt/
+    - generic [ref=e11]:
+      - link "Anrufen" [ref=e12] [cursor=pointer]:
+        - /url: tel:+4964515000-0
+        - img [ref=e13]
+      - link "E-Mail Anfrage senden" [ref=e15] [cursor=pointer]:
+        - /url: mailto:info@schreck-kunststofftechnik.com?subject=Projektanfrage
+        - text: Anfragen
+  - main [ref=e16]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - paragraph [ref=e21]: Präzision im Formenbau seit 1984
+        - heading "Produktentwicklung mit System" [level=1] [ref=e22]:
+          - text: Produktentwicklung
+          - generic [ref=e23]: mit System
+        - paragraph [ref=e24]: "Von der Idee bis zum marktreifen Produkt: Schreck Kunststofftechnik entwickelt und fertigt anspruchsvolle Formen für Kunststoffverarbeitung, Aluminium- und Zink-Druckguss."
+        - generic [ref=e25]:
+          - link "Projekt anfragen" [ref=e26] [cursor=pointer]:
+            - /url: /kontakt/
+          - link "Produkte ansehen" [ref=e27] [cursor=pointer]:
+            - /url: /produkte/
+      - generic [ref=e29]:
+        - generic "Maschine in der Fertigung bei Schreck Kunststofftechnik" [ref=e31]
+        - img "Medizintechnik-Komponenten aus Kunststoff" [ref=e33]
+    - generic [ref=e34]:
+      - generic: "01"
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: B2B-Partner für Serienreife
+          - heading "Werkzeuge, die vom ersten Muster bis zur Produktion mitgedacht sind." [level=2] [ref=e38]
+        - generic [ref=e39]:
+          - paragraph [ref=e40]: Schreck Kunststofftechnik ist der B2B-Partner für anspruchsvolle Kunststoffprojekte — von der ersten Idee bis zur dokumentierten Serienfreigabe. Eigene Spritzgießmaschine für Abmusterung vor Ort, vollständige Qualitätsdokumentation und Werkzeugbetreuung auch nach Auslieferung.
+          - generic [ref=e41]:
+            - generic [ref=e42]: Medizintechnik
+            - generic [ref=e43]: Labortechnik
+            - generic [ref=e44]: Verpackung & Kosmetik
+            - generic [ref=e45]: Automotive
+            - generic [ref=e46]: Luftfahrt
+            - generic [ref=e47]: Elektronik
+    - generic [ref=e48]:
+      - generic: "02"
+      - generic [ref=e49]:
+        - paragraph [ref=e50]: Produktbereiche
+        - heading "Formenbau für anspruchsvolle Kunststoffteile" [level=2] [ref=e51]
+        - paragraph [ref=e52]: "Sechs Schwerpunkte, ein Anspruch: technische Kunststoffteile so zu entwickeln, dass Werkzeug, Prozess und Serienqualität zusammenpassen."
+        - generic [ref=e53]:
+          - link "Medizintechnik bei Schreck Kunststofftechnik Präzisionsformen für regulierte Anwendungen Medizintechnik Werkzeuge für medizinische Kunststoffteile, bei denen Maßhaltigkeit, Reproduzierbarkeit und dokumentierte Qualität entscheidend sind. Mehr erfahren →" [ref=e54] [cursor=pointer]:
+            - /url: /produkte/medizintechnik/
+            - img "Medizintechnik bei Schreck Kunststofftechnik" [ref=e56]
+            - generic [ref=e57]:
+              - paragraph [ref=e58]: Präzisionsformen für regulierte Anwendungen
+              - heading "Medizintechnik" [level=3] [ref=e59]
+              - paragraph [ref=e60]: Werkzeuge für medizinische Kunststoffteile, bei denen Maßhaltigkeit, Reproduzierbarkeit und dokumentierte Qualität entscheidend sind.
+              - generic [ref=e61]: Mehr erfahren →
+          - link "Labortechnik bei Schreck Kunststofftechnik Werkzeuge für Analyse, Diagnostik und Laborprozesse Labortechnik Maßgefertigte Spritzgusswerkzeuge für Pipetten, Küvetten, PCR-Gefäße, Filtertechnik und Verbindungselemente. Mehr erfahren →" [ref=e62] [cursor=pointer]:
+            - /url: /produkte/labortechnik/
+            - img "Labortechnik bei Schreck Kunststofftechnik" [ref=e64]
+            - generic [ref=e65]:
+              - paragraph [ref=e66]: Werkzeuge für Analyse, Diagnostik und Laborprozesse
+              - heading "Labortechnik" [level=3] [ref=e67]
+              - paragraph [ref=e68]: Maßgefertigte Spritzgusswerkzeuge für Pipetten, Küvetten, PCR-Gefäße, Filtertechnik und Verbindungselemente.
+              - generic [ref=e69]: Mehr erfahren →
+          - link "Verpackung & Kosmetik bei Schreck Kunststofftechnik Schnelle Zyklen für hochwertige Serien Verpackung & Kosmetik Formenbau für Verschlüsse, Schraubkappen und anspruchsvolle Kosmetikverpackungen mit reproduzierbarer Serienqualität. Mehr erfahren →" [ref=e70] [cursor=pointer]:
+            - /url: /produkte/verpackung-kosmetik/
+            - img "Verpackung & Kosmetik bei Schreck Kunststofftechnik" [ref=e72]
+            - generic [ref=e73]:
+              - paragraph [ref=e74]: Schnelle Zyklen für hochwertige Serien
+              - heading "Verpackung & Kosmetik" [level=3] [ref=e75]
+              - paragraph [ref=e76]: Formenbau für Verschlüsse, Schraubkappen und anspruchsvolle Kosmetikverpackungen mit reproduzierbarer Serienqualität.
+              - generic [ref=e77]: Mehr erfahren →
+          - link "Innenanspritzung bei Schreck Kunststofftechnik Komplexe Konturen sauber anspritzen Innenanspritzung Werkzeugkonzepte für Innenanspritzung und Verschlusstechnik, ausgelegt auf Oberflächengüte, Maßqualität und stabile Prozesse. Mehr erfahren →" [ref=e78] [cursor=pointer]:
+            - /url: /produkte/innenanspritzung/
+            - img "Innenanspritzung bei Schreck Kunststofftechnik" [ref=e80]
+            - generic [ref=e81]:
+              - paragraph [ref=e82]: Komplexe Konturen sauber anspritzen
+              - heading "Innenanspritzung" [level=3] [ref=e83]
+              - paragraph [ref=e84]: Werkzeugkonzepte für Innenanspritzung und Verschlusstechnik, ausgelegt auf Oberflächengüte, Maßqualität und stabile Prozesse.
+              - generic [ref=e85]: Mehr erfahren →
+          - link "Mehrkomponentenwerkzeuge bei Schreck Kunststofftechnik Mehrfarb- und Mehrkomponenten-Spritzguss Mehrkomponentenwerkzeuge Werkzeuge für komplexe Bauteile mit mehreren Materialien oder Farben, entwickelt für Serienreife in einem stabilen Prozess. Mehr erfahren →" [ref=e86] [cursor=pointer]:
+            - /url: /produkte/mehrkomponentenwerkzeuge/
+            - img "Mehrkomponentenwerkzeuge bei Schreck Kunststofftechnik" [ref=e88]
+            - generic [ref=e89]:
+              - paragraph [ref=e90]: Mehrfarb- und Mehrkomponenten-Spritzguss
+              - heading "Mehrkomponentenwerkzeuge" [level=3] [ref=e91]
+              - paragraph [ref=e92]: Werkzeuge für komplexe Bauteile mit mehreren Materialien oder Farben, entwickelt für Serienreife in einem stabilen Prozess.
+              - generic [ref=e93]: Mehr erfahren →
+          - link "Kleinstteile bei Schreck Kunststofftechnik Präzision für kleine technische Kunststoffteile Kleinstteile Kleinstartikelformen für Funktionsteile, optische Gehäuse und technische Bauteile mit hohen Anforderungen an Entlüftung und Standzeit. Mehr erfahren →" [ref=e94] [cursor=pointer]:
+            - /url: /produkte/kleinstteile/
+            - img "Kleinstteile bei Schreck Kunststofftechnik" [ref=e96]
+            - generic [ref=e97]:
+              - paragraph [ref=e98]: Präzision für kleine technische Kunststoffteile
+              - heading "Kleinstteile" [level=3] [ref=e99]
+              - paragraph [ref=e100]: Kleinstartikelformen für Funktionsteile, optische Gehäuse und technische Bauteile mit hohen Anforderungen an Entlüftung und Standzeit.
+              - generic [ref=e101]: Mehr erfahren →
+    - generic [ref=e102]:
+      - generic: "03"
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - paragraph [ref=e105]: Prozess
+          - heading "Von der Produktidee bis zur effizienten Produktionslösung." [level=2] [ref=e106]
+          - paragraph [ref=e107]: Eine der ersten Maschinen war bereits eine Spritzgießmaschine, um Formen mit Abmusterungsprotokoll serienreif ausliefern zu können. Dieser Anspruch prägt Schreck bis heute.
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - strong [ref=e110]: 40+
+            - text: Jahre Erfahrung
+          - generic [ref=e111]:
+            - strong [ref=e112]: 1000+
+            - text: Formen bis zur Serienreife
+          - generic [ref=e113]:
+            - strong [ref=e114]: 30+
+            - text: ausgebildete Lehrlinge
+          - generic [ref=e115]:
+            - strong [ref=e116]: "14"
+            - text: Spezialisten im Team
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - article [ref=e119]:
+              - generic [ref=e120]: "01"
+              - generic [ref=e121]:
+                - strong [ref=e122]: Konzept
+                - paragraph [ref=e123]: Anforderungen, Machbarkeit und Werkzeugstrategie klären.
+            - article [ref=e124]:
+              - generic [ref=e125]: "02"
+              - generic [ref=e126]:
+                - strong [ref=e127]: Konstruktion
+                - paragraph [ref=e128]: Formen und Bauteile fertigungsgerecht auslegen.
+            - article [ref=e129]:
+              - generic [ref=e130]: "03"
+              - generic [ref=e131]:
+                - strong [ref=e132]: Entwicklung
+                - paragraph [ref=e133]: Werkzeuglösung, Material und Prozess zusammendenken.
+            - article [ref=e134]:
+              - generic [ref=e135]: "04"
+              - generic [ref=e136]:
+                - strong [ref=e137]: Abmusterung
+                - paragraph [ref=e138]: Erste Muster prüfen, dokumentieren und bewerten.
+          - generic [ref=e139]:
+            - article [ref=e140]:
+              - generic [ref=e141]: "05"
+              - generic [ref=e142]:
+                - strong [ref=e143]: Vermessung
+                - paragraph [ref=e144]: Maße, Toleranzen und Funktionsflächen absichern.
+            - article [ref=e145]:
+              - generic [ref=e146]: "06"
+              - generic [ref=e147]:
+                - strong [ref=e148]: Optimierung
+                - paragraph [ref=e149]: Werkzeug und Prozess bis zur Serienreife verfeinern.
+            - article [ref=e150]:
+              - generic [ref=e151]: "07"
+              - generic [ref=e152]:
+                - strong [ref=e153]: Dokumentation
+                - paragraph [ref=e154]: Ergebnisse nachvollziehbar für Übergabe und Qualität festhalten.
+            - article [ref=e155]:
+              - generic [ref=e156]: "08"
+              - generic [ref=e157]:
+                - strong [ref=e158]: Service
+                - paragraph [ref=e159]: Wartung, Reparatur und Einweisung nach Auslieferung.
+    - generic [ref=e160]:
+      - generic: "04"
+      - generic [ref=e161]:
+        - img "Team von Schreck Kunststofftechnik in der Fertigung" [ref=e163]
+        - generic [ref=e164]:
+          - paragraph [ref=e165]: Arbeitgeber & Ausbildung
+          - heading "Technik, Erfahrung und ein Team, das Wissen weitergibt." [level=2] [ref=e166]
+          - paragraph [ref=e167]: Mehr als 30 Lehrlinge wurden seit der Gründung ausgebildet. Die neue Website stellt Schreck deshalb nicht nur als Lieferanten dar, sondern auch als attraktiven Ausbildungs- und Arbeitsplatz in Burgwald-Bottendorf.
+          - generic [ref=e168]:
+            - link "Karriere ansehen" [ref=e169] [cursor=pointer]:
+              - /url: /karriere/
+            - link "Über uns" [ref=e170] [cursor=pointer]:
+              - /url: /ueber-uns/
+    - generic [ref=e172]:
+      - generic [ref=e173]:
+        - paragraph [ref=e174]: Projektstart
+        - heading "Sie planen ein neues Werkzeug oder wollen ein Produkt zur Serienreife bringen?" [level=2] [ref=e175]
+      - generic [ref=e176]:
+        - paragraph [ref=e177]: Senden Sie Zeichnungen, Muster oder Anforderungen direkt an Schreck. Das Team prüft Machbarkeit, Fertigungskonzept und nächste Schritte.
+        - link "Kontakt aufnehmen" [ref=e178] [cursor=pointer]:
+          - /url: /kontakt/
+  - contentinfo [ref=e179]:
+    - generic [ref=e180]:
+      - generic [ref=e181]:
+        - img "Schreck Kunststofftechnik GmbH" [ref=e182]
+        - paragraph [ref=e183]: Von der Produktidee bis zur serienreifen Produktionslösung
+      - generic [ref=e184]:
+        - heading "Navigation" [level=2] [ref=e185]
+        - link "Produkte" [ref=e186] [cursor=pointer]:
+          - /url: /produkte/
+        - link "Kompetenzen" [ref=e187] [cursor=pointer]:
+          - /url: /kompetenzen/
+        - link "Über uns" [ref=e188] [cursor=pointer]:
+          - /url: /ueber-uns/
+        - link "Karriere" [ref=e189] [cursor=pointer]:
+          - /url: /karriere/
+        - link "Kontakt" [ref=e190] [cursor=pointer]:
+          - /url: /kontakt/
+        - link "Downloads" [ref=e191] [cursor=pointer]:
+          - /url: /downloads/
+      - generic [ref=e192]:
+        - heading "Kontakt" [level=2] [ref=e193]
+        - paragraph [ref=e194]:
+          - text: Wolkersdorfer Strasse 28
+          - text: 35099 Burgwald-Bottendorf
+        - link "+49 6451 5000-0" [ref=e195] [cursor=pointer]:
+          - /url: tel:+4964515000-0
+        - link "info@schreck-kunststofftechnik.com" [ref=e196] [cursor=pointer]:
+          - /url: mailto:info@schreck-kunststofftechnik.com
+    - generic [ref=e197]:
+      - generic [ref=e198]: (c) 2026 Schreck Kunststofftechnik GmbH
+      - generic [ref=e199]:
+        - link "Impressum" [ref=e200] [cursor=pointer]:
+          - /url: /impressum/
+        - text: ·
+        - link "Datenschutz" [ref=e201] [cursor=pointer]:
+          - /url: /datenschutz/

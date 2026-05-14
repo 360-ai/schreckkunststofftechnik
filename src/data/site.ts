@@ -1,13 +1,23 @@
+export const siteUrl = "https://www.schreck-kunststofftechnik.de";
+
 export const company = {
   name: "Schreck Kunststofftechnik GmbH",
   claim: "Von der Produktidee bis zur serienreifen Produktionslösung",
   phone: "+49 6451 5000-0",
   fax: "+49 6451 5000-10",
   email: "info@schreck-kunststofftechnik.com",
-  street: "Wolkersdorfer Strasse 28",
+  street: "Wolkersdorfer Straße 28",
   postalCity: "35099 Burgwald-Bottendorf",
+  postalCode: "35099",
+  locality: "Burgwald-Bottendorf",
+  region: "Hessen",
+  country: "DE",
   founded: "1984",
-  location: "Burgwald-Bottendorf, Hessen"
+  location: "Burgwald-Bottendorf, Hessen",
+  geo: {
+    latitude: 51.017,
+    longitude: 8.832
+  }
 };
 
 export const navItems = [

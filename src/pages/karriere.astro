@@ -3,38 +3,11 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 import JobList from "@components/JobList.astro";
 import { company } from "@data/site";
-import { getCollection } from "astro:content";
-
-const activeJobs = (await getCollection("jobs")).filter((job) => job.data.active);
-const jobSchemas = activeJobs.map((job) => ({
-  "@context": "https://schema.org",
-  "@type": "JobPosting",
-  title: job.data.title,
-  employmentType: job.data.type === "Ausbildung" ? "INTERN" : "FULL_TIME",
-  hiringOrganization: {
-    "@type": "Organization",
-    name: company.name,
-    sameAs: "https://www.schreck-kunststofftechnik.de/"
-  },
-  jobLocation: {
-    "@type": "Place",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: company.street,
-      postalCode: "35099",
-      addressLocality: "Burgwald-Bottendorf",
-      addressCountry: "DE"
-    }
-  },
-  description: job.body,
-  directApply: true
-}));
 ---
 
 <BaseLayout
   title="Karriere und Stellenanzeigen"
   description="Karriere bei Schreck Kunststofftechnik: aktuelle Stellenanzeigen und Ausbildung zum Werkzeugmechaniker in Burgwald-Bottendorf."
-  jsonLd={jobSchemas}
 >
   <PageHero eyebrow="Karriere" title="Zukunft im Werkzeugbau" text="Wer Technik, Präzision und praktische Arbeit mag, findet bei Schreck ein modernes Umfeld mit Erfahrung, Teamgeist und Entwicklungsmöglichkeiten." image="/images/team.jpg" />
 

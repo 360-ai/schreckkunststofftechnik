@@ -1,13 +1,13 @@
 ---
-import { render, type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   job: CollectionEntry<"jobs">;
 }
 
 const { job } = Astro.props;
-const { Content } = await render(job);
 const excerpt = job.body.split("##")[0].trim();
+const jobSlug = job.id.replace(/\.mdx?$/, "");
 ---
 
 <article class="card job-card">
@@ -21,11 +21,8 @@ const excerpt = job.body.split("##")[0].trim();
     </div>
     <h3>{job.data.title}</h3>
     <p class="job-excerpt">{excerpt}</p>
-    <div class="content job-content">
-      <Content />
-    </div>
     <div class="job-actions">
-      <a class="button" href={`mailto:${job.data.applyEmail}?subject=Bewerbung: ${job.data.title}`}>Jetzt bewerben</a>
+      <a class="button" href={`/karriere/${jobSlug}/`}>Stelle ansehen</a>
       <a class="button light" href={`mailto:${job.data.applyEmail}?subject=Frage zur Stelle: ${job.data.title}`}>Frage senden</a>
     </div>
   </div>

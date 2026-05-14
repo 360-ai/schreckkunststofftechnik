@@ -1,3 +1,4 @@
 # WordPress Legacy-Redirects (query string) werden hier nicht unterstützt.
 # Cloudflare Pages ignoriert den ?parameter-Teil und würde /?page_id=... als Pfad / interpretieren.
 # Falls alte WordPress-URLs weitergeleitet werden sollen: Cloudflare Transform Rules nutzen.
+/firmengeschichte/ /ueber-uns/ 301

@@ -1,24 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ProductCard from "@components/ProductCard.astro";
-import { industries, company, products, stats } from "@data/site";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: company.name,
-  url: "https://www.schreck-kunststofftechnik.de/",
-  email: company.email,
-  telephone: company.phone,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: company.street,
-    postalCode: "35099",
-    addressLocality: "Burgwald-Bottendorf",
-    addressCountry: "DE"
-  },
-  foundingDate: "1984-01-01"
-};
+import { industries, products, stats } from "@data/site";
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -90,7 +73,7 @@ const heroVideoLoopEnd = 6.8;
 <BaseLayout
   title="Schreck Kunststofftechnik GmbH - Formenbau seit 1984"
   description="Schreck Kunststofftechnik entwickelt und fertigt Spritzgusswerkzeuge von der Produktidee bis zur serienreifen Produktionslösung in Burgwald-Bottendorf."
-  jsonLd={[schema, faqSchema]}
+  jsonLd={faqSchema}
 >
   <section class="hero">
     <div class="hero-bg"></div>
@@ -645,7 +628,7 @@ const heroVideoLoopEnd = 6.8;
     color: #fff;
     background:
       linear-gradient(110deg, rgba(15, 31, 53, 0.95), rgba(8, 145, 178, 0.75)),
-      url("/images/hero1.jpg") center / cover;
+      url("/images/skt_eingang.png") center / cover;
   }
 
   .cta .lead {

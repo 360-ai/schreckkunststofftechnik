@@ -2,28 +2,98 @@
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import "@styles/global.css";
-import { company } from "@data/site";
+import { capabilities, company, industries, products, siteUrl } from "@data/site";
 
 interface Props {
   title: string;
   description: string;
   image?: string;
   canonical?: string;
+  robots?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
   description,
-  image = "/images/hero2.jpg",
+  image = "/images/hero2-optimized.jpg",
   canonical,
+  robots = "index, follow",
   jsonLd = []
 } = Astro.props;
 
 const pageTitle = title.includes(company.name) ? title : `${title} | ${company.name}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 const imageUrl = new URL(image, Astro.site).toString();
-const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const organizationId = new URL("/#organization", Astro.site).toString();
+const websiteId = new URL("/#website", Astro.site).toString();
+const customSchemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const defaultSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LocalBusiness"],
+    "@id": organizationId,
+    name: company.name,
+    legalName: company.name,
+    url: siteUrl,
+    email: company.email,
+    telephone: company.phone,
+    faxNumber: company.fax,
+    foundingDate: "1984-01-01",
+    slogan: company.claim,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.street,
+      postalCode: company.postalCode,
+      addressLocality: company.locality,
+      addressRegion: company.region,
+      addressCountry: company.country
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: company.geo.latitude,
+      longitude: company.geo.longitude
+    },
+    areaServed: [
+      { "@type": "Country", name: "Deutschland" },
+      { "@type": "State", name: company.region }
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: company.phone,
+      email: company.email,
+      contactType: "sales",
+      areaServed: "DE",
+      availableLanguage: ["de"]
+    },
+    knowsAbout: [
+      ...industries,
+      ...capabilities,
+      ...products.flatMap((product) => product.keywords)
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": websiteId,
+    url: siteUrl,
+    name: company.name,
+    inLanguage: "de-DE",
+    publisher: { "@id": organizationId }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: pageTitle,
+    description,
+    inLanguage: "de-DE",
+    isPartOf: { "@id": websiteId },
+    about: { "@id": organizationId }
+  }
+];
+const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
 ---
 
 <!doctype html>
@@ -39,16 +109,21 @@ const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={`${company.name} - Formenbau und Kunststofftechnik`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content="Schreck Kunststofftechnik GmbH" />
+    <meta name="theme-color" content="#0f1f35" />
     <!-- GEO-Targeting -->
     <meta name="geo.region" content="DE-HE" />
     <meta name="geo.placename" content="Burgwald-Bottendorf" />
     <meta name="geo.position" content="51.017;8.832" />
     <meta name="ICBM" content="51.017, 8.832" />
     <!-- Robots -->
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
     <link rel="icon" href="/images/logoschreck%20(1).png" />
     {
       schemas.map((schema) => (

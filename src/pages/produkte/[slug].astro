@@ -11,15 +11,44 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+const canonicalUrl = new URL(`/produkte/${product.slug}/`, Astro.site).toString();
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${canonicalUrl}#service`,
   name: `${product.title} - ${company.name}`,
-  provider: { "@type": "Organization", name: company.name },
-  areaServed: "Deutschland",
+  provider: { "@id": new URL("/#organization", Astro.site).toString() },
+  areaServed: [
+    { "@type": "Country", name: "Deutschland" },
+    { "@type": "State", name: company.region }
+  ],
   serviceType: product.keywords.join(", "),
-  description: product.intro
+  description: product.intro,
+  audience: {
+    "@type": "BusinessAudience",
+    audienceType: "B2B-Kunden im Werkzeug- und Formenbau"
+  },
+  termsOfService: new URL("/kontakt/", Astro.site).toString()
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Produkte",
+      item: new URL("/produkte/", Astro.site).toString()
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: product.title,
+      item: canonicalUrl
+    }
+  ]
 };
 ---
 
@@ -27,7 +56,8 @@ const schema = {
   title={`${product.title} im Formenbau`}
   description={product.intro}
   image={product.image}
-  jsonLd={schema}
+  canonical={canonicalUrl}
+  jsonLd={[schema, breadcrumbSchema]}
 >
   <PageHero eyebrow="Produktbereich" title={product.title} text={product.intro} image={product.image} />
   <section class="section">
@@ -51,7 +81,7 @@ const schema = {
     <div class="container grid two">
       <div class="card">
         <div class="card-body">
-          <h3>Typische Produkte</h3>
+          <h3>Typische Bauteile und Anwendungen</h3>
           <ul class="feature-list">
             {product.examples.map((item) => <li>{item}</li>)}
           </ul>
@@ -59,8 +89,8 @@ const schema = {
       </div>
       <div class="card">
         <div class="card-body">
-          <h3>Relevante Suchbegriffe</h3>
-          <p>Diese Seite ist auf die Begriffe ausgerichtet, nach denen B2B-Kunden bei spezialisierten Formenbau-Projekten suchen.</p>
+          <h3>Projekt-Schwerpunkte</h3>
+          <p>Für eine belastbare Auslegung werden Bauteilfunktion, Material, Zykluszeit, Oberflächenanforderung und spätere Serienprozesse gemeinsam bewertet.</p>
           <div class="pill-list">
             {product.keywords.map((item) => <span class="pill">{item}</span>)}
           </div>

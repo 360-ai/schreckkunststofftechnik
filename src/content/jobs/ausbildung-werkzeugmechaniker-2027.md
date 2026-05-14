@@ -3,6 +3,8 @@ title: "Ausbildung zum Werkzeugmechaniker (m/w/d)"
 location: "35099 Burgwald-Bottendorf"
 start: "August 2027"
 type: "Ausbildung"
+datePosted: "2026-04-23"
+validThrough: "2027-07-31T23:59:00+02:00"
 active: true
 order: 1
 applyEmail: "info@schreck-kunststofftechnik.com"

@@ -1,18 +1,29 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
+import { company } from "@data/site";
 ---
 
 <BaseLayout
   title="Downloads"
-  description="Downloads von Schreck Kunststofftechnik: Flyer, ISO-Zertifikat und Allgemeine Geschäftsbedingungen."
+  description="Unterlagen von Schreck Kunststofftechnik: ISO-Zertifikat, Produktflyer und AGB können direkt angefragt werden."
+  robots="noindex, follow"
 >
-  <PageHero eyebrow="Downloads" title="Unterlagen und Zertifikate" text="Zentrale Dokumente werden hier gesammelt und können bei Bedarf erweitert oder ausgetauscht werden." />
+  <PageHero eyebrow="Downloads" title="Unterlagen und Zertifikate" text="Zertifikate, Produktflyer und weitere technische Unterlagen stellt Schreck auf Anfrage bereit." />
   <section class="section">
-    <div class="container grid three">
-      <a class="card" href="/iso/" aria-label="ISO Zertifikat"><div class="card-body"><p class="eyebrow">Zertifizierung</p><h3>ISO-Zertifikat</h3><p>Aktuelle Zertifikatsunterlagen im ISO-Ordner.</p></div></a>
-      <a class="card" href="/downloads/"><div class="card-body"><p class="eyebrow">Produktflyer</p><h3>Flyer</h3><p>Flyer für Innenanspritzung, Labor, Medizin, Verpackung, Mehrkomponenten und Miniaturteile.</p></div></a>
-      <a class="card" href="/downloads/"><div class="card-body"><p class="eyebrow">Rechtliches</p><h3>AGB</h3><p>Allgemeine Geschäftsbedingungen als Downloadbereich.</p></div></a>
+    <div class="container">
+      <p class="lead">Bis die final freigegebenen PDF-Dateien eingebunden sind, führt diese Seite nicht auf leere oder fehlende Downloadpfade. Für Zertifikate, AGB oder produktbezogene Unterlagen genügt eine kurze Anfrage per E-Mail.</p>
+      <div class="grid three download-grid">
+        <a class="card" href={`mailto:${company.email}?subject=Anfrage ISO-Zertifikat`} aria-label="ISO-Zertifikat anfragen"><div class="card-body"><p class="eyebrow">Zertifizierung</p><h3>ISO-Zertifikat</h3><p>Aktuelle Zertifikatsunterlagen direkt beim Team anfragen.</p></div></a>
+        <a class="card" href={`mailto:${company.email}?subject=Anfrage Produktflyer`}><div class="card-body"><p class="eyebrow">Produktflyer</p><h3>Flyer</h3><p>Informationen zu Innenanspritzung, Labor, Medizin, Verpackung, Mehrkomponenten und Kleinstteilen.</p></div></a>
+        <a class="card" href={`mailto:${company.email}?subject=Anfrage AGB`}><div class="card-body"><p class="eyebrow">Rechtliches</p><h3>AGB</h3><p>Allgemeine Geschäftsbedingungen auf Anfrage erhalten.</p></div></a>
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .download-grid {
+    margin-top: 34px;
+  }
+</style>
