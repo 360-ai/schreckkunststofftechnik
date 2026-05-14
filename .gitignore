@@ -5,3 +5,7 @@ dev.log
 preview.log
 .wrangler/
 .superpowers/
+.env
+output/
+.playwright-cli/
+public/_worker.js

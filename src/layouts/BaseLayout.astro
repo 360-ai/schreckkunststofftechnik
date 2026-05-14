@@ -104,6 +104,7 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="de" href={canonicalUrl} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -124,6 +125,17 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     <meta name="ICBM" content="51.017, 8.832" />
     <!-- Robots -->
     <meta name="robots" content={robots} />
+    {import.meta.env.PUBLIC_GA_ID && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
+        <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
     <link rel="icon" href="/images/logoschreck%20(1).png" />
     <link rel="apple-touch-icon" href="/images/logoschreck%20(1).png" />
     {
@@ -138,16 +150,5 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
       <slot />
     </main>
     <Footer />
-  {import.meta.env.PUBLIC_GA_ID && (
-    <>
-      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
-      <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', gaId);
-      </script>
-    </>
-  )}
   </body>
 </html>
