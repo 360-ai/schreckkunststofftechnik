@@ -5,6 +5,7 @@ export const GET: APIRoute = () =>
 `User-agent: *
 Allow: /
 Allow: /llms.txt
+Disallow: /cdn-cgi/
 
 Sitemap: https://www.schreck-kunststofftechnik.de/sitemap.xml
 `,

@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Seite nicht gefunden | Schreck Kunststofftechnik GmbH"
+  description="Die gesuchte Seite existiert nicht. Zur Startseite von Schreck Kunststofftechnik GmbH zurückkehren."
+  robots="noindex, follow"
+>
+  <section class="notfound">
+    <div class="container">
+      <p class="eyebrow">Fehler 404</p>
+      <h1>Seite nicht gefunden</h1>
+      <p class="lead">Die gesuchte Seite existiert nicht oder wurde verschoben.</p>
+      <div class="button-row">
+        <a class="button" href="/">Zur Startseite</a>
+        <a class="button secondary" href="/kontakt/">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+  }
+</style>

@@ -16,7 +16,7 @@ interface Props {
 const {
   title,
   description,
-  image = "/images/hero2-optimized.jpg",
+  image = "/images/hero2.jpg",
   canonical,
   robots = "index, follow",
   jsonLd = []
@@ -125,6 +125,7 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     <!-- Robots -->
     <meta name="robots" content={robots} />
     <link rel="icon" href="/images/logoschreck%20(1).png" />
+    <link rel="apple-touch-icon" href="/images/logoschreck%20(1).png" />
     {
       schemas.map((schema) => (
         <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -137,5 +138,16 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
       <slot />
     </main>
     <Footer />
+  {import.meta.env.PUBLIC_GA_ID && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
+      <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+    </>
+  )}
   </body>
 </html>

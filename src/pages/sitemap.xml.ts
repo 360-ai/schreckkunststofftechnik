@@ -2,26 +2,38 @@ import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { products } from "@data/site";
 
-const staticPages = [
-  "",
-  "produkte/",
-  "kompetenzen/",
-  "ueber-uns/",
-  "karriere/",
-  "kontakt/",
-  "impressum/"
+const staticPages: { path: string; priority: string; changefreq: string }[] = [
+  { path: "",               priority: "1.0", changefreq: "weekly" },
+  { path: "produkte/",      priority: "0.9", changefreq: "monthly" },
+  { path: "kompetenzen/",   priority: "0.8", changefreq: "monthly" },
+  { path: "ueber-uns/",     priority: "0.7", changefreq: "monthly" },
+  { path: "karriere/",      priority: "0.8", changefreq: "weekly" },
+  { path: "kontakt/",       priority: "0.8", changefreq: "monthly" },
+  { path: "downloads/",     priority: "0.6", changefreq: "monthly" },
+  { path: "datenschutz/",   priority: "0.3", changefreq: "yearly" },
+  { path: "impressum/",     priority: "0.3", changefreq: "yearly" },
 ];
 
 export const GET: APIRoute = async ({ site }) => {
-  const productPages = products.map((product) => `produkte/${product.slug}/`);
-  const jobPages = (await getCollection("jobs"))
-    .filter((job) => job.data.active)
-    .map((job) => `karriere/${job.id.replace(/\.mdx?$/, "")}/`);
-  const pages = [...staticPages, ...productPages, ...jobPages];
   const lastmod = new Date().toISOString().slice(0, 10);
+  const productEntries = products.map((product) => ({
+    path: `produkte/${product.slug}/`,
+    priority: "0.7",
+    changefreq: "monthly"
+  }));
+  const jobEntries = (await getCollection("jobs"))
+    .filter((job) => job.data.active)
+    .map((job) => ({
+      path: `karriere/${job.id.replace(/\.mdx?$/, "")}/`,
+      priority: "0.7",
+      changefreq: "weekly"
+    }));
+  const allPages = [...staticPages, ...productEntries, ...jobEntries];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map((page) => `  <url><loc>${new URL(page, site).toString()}</loc><lastmod>${lastmod}</lastmod></url>`).join("\n")}
+${allPages.map(({ path, priority, changefreq }) =>
+  `  <url><loc>${new URL(path, site).toString()}</loc><lastmod>${lastmod}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`
+).join("\n")}
 </urlset>`;
 
   return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8" } });
