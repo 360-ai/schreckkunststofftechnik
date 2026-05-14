@@ -202,6 +202,35 @@ const heroVideoLoopEnd = 6.8;
     </div>
   </section>
 
+  <section class="section soft">
+    <div class="section-mark">05</div>
+    <div class="container">
+      <p class="eyebrow">After-Sales</p>
+      <h2>Service nach der Auslieferung</h2>
+      <p class="lead after-sales-lead">Das Werkzeug ist ausgeliefert — die Betreuung nicht beendet. Schreck steht mit Einweisungen vor Ort und schneller Instandsetzung auch im laufenden Serienbetrieb zur Seite.</p>
+      <div class="after-sales-grid">
+        <div class="after-sales-card">
+          <div class="after-sales-img">
+            <img src="/images/einweisung.png" alt="Einweisung vor Ort am Werkzeug bei Schreck Kunststofftechnik" loading="lazy" />
+          </div>
+          <div class="after-sales-body">
+            <h3>Einweisung vor Ort</h3>
+            <p>Wir schulen Ihr Team direkt am Werkzeug — fachgerecht und praxisnah, damit der Serienanlauf reibungslos gelingt.</p>
+          </div>
+        </div>
+        <div class="after-sales-card">
+          <div class="after-sales-img">
+            <img src="/images/reparatur.png" alt="Reparatur und Wartung von Spritzgusswerkzeugen bei Schreck Kunststofftechnik" loading="lazy" />
+          </div>
+          <div class="after-sales-body">
+            <h3>Reparaturen &amp; Wartung</h3>
+            <p>Schnelle Instandsetzung und vorbeugende Wartung — wir halten Ihre Werkzeuge dauerhaft in einwandfreiem Zustand.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section compact cta">
     <div class="container split">
       <div>
@@ -620,6 +649,60 @@ const heroVideoLoopEnd = 6.8;
 
   @media (max-width: 760px) {
     .process-two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .after-sales-lead {
+    margin-top: 16px;
+  }
+
+  .after-sales-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    margin-top: 38px;
+  }
+
+  .after-sales-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(12, 18, 32, 0.04), 0 14px 36px rgba(12, 18, 32, 0.07);
+  }
+
+  .after-sales-img {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .after-sales-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+  }
+
+  .after-sales-card:hover .after-sales-img img {
+    transform: scale(1.04);
+  }
+
+  .after-sales-body {
+    padding: 20px 22px 24px;
+  }
+
+  .after-sales-body h3 {
+    margin-bottom: 8px;
+  }
+
+  .after-sales-body p {
+    color: var(--muted);
+    line-height: 1.68;
+  }
+
+  @media (max-width: 760px) {
+    .after-sales-grid {
       grid-template-columns: 1fr;
     }
   }
