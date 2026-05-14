@@ -9,6 +9,7 @@ import { company } from "@data/site";
   description="Kontakt zu Schreck Kunststofftechnik GmbH in Burgwald-Bottendorf: Telefon, E-Mail, Adresse und Projektanfrage."
 >
   <PageHero eyebrow="Kontakt" title="Projekt anfragen" text="Senden Sie Zeichnungen, Muster oder Anforderungen. Schreck prüft Ihr Vorhaben und meldet sich mit einer fachlichen Einschätzung." />
+
   <section class="section">
     <div class="container grid three">
       <article class="card"><div class="card-body"><p class="eyebrow">Telefon</p><h3><a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a></h3><p>Fax: {company.fax}</p></div></article>
@@ -16,6 +17,53 @@ import { company } from "@data/site";
       <article class="card"><div class="card-body"><p class="eyebrow">Adresse</p><h3>{company.street}</h3><p>{company.postalCity}</p></div></article>
     </div>
   </section>
+
+  <section class="section soft">
+    <div class="container form-layout">
+      <div class="form-intro">
+        <p class="eyebrow">Projektanfrage</p>
+        <h2>Schreiben Sie uns direkt</h2>
+        <p class="lead">Füllen Sie das Formular aus — Ihr E-Mail-Programm öffnet sich mit allen Angaben vorausgefüllt. So können Sie Zeichnungen, CAD-Daten oder Muster direkt anhängen.</p>
+        <ul class="hint-list">
+          <li>Zeichnungen, Muster oder CAD-Daten</li>
+          <li>Material, Stückzahlen und Zielbranche</li>
+          <li>Anforderungen an Oberfläche, Zykluszeit und Qualität</li>
+          <li>Geplanter Serienstart oder Zeitrahmen</li>
+        </ul>
+      </div>
+      <div class="form-card card">
+        <div class="card-body">
+          <form id="contact-form" novalidate>
+            <div class="field">
+              <label for="cf-name">Ihr Name / Unternehmen</label>
+              <input id="cf-name" name="name" type="text" placeholder="Max Mustermann, Musterfirma GmbH" required />
+            </div>
+            <div class="field">
+              <label for="cf-email">Ihre E-Mail-Adresse</label>
+              <input id="cf-email" name="email" type="email" placeholder="anfrage@unternehmen.de" required />
+            </div>
+            <div class="field">
+              <label for="cf-subject">Betreff</label>
+              <select id="cf-subject" name="subject">
+                <option value="Projektanfrage">Projektanfrage</option>
+                <option value="Angebotsanfrage">Angebotsanfrage</option>
+                <option value="Reparatur / Wartung">Reparatur / Wartung</option>
+                <option value="Einweisung vor Ort">Einweisung vor Ort</option>
+                <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cf-message">Ihre Nachricht</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="Beschreiben Sie Ihr Vorhaben, Material, Stückzahlen und Anforderungen …" required></textarea>
+            </div>
+            <p class="form-hint">Nach dem Klick öffnet sich Ihr E-Mail-Programm — dort können Sie Anhänge (Zeichnungen, CAD-Daten) hinzufügen.</p>
+            <button type="submit" class="button">E-Mail öffnen &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section soft compact">
     <div class="container">
       <p class="eyebrow">Anfahrt</p>
@@ -34,23 +82,137 @@ import { company } from "@data/site";
       </div>
     </div>
   </section>
-  <section class="section soft">
-    <div class="container split">
-      <div>
-        <p class="eyebrow">Anfrage vorbereiten</p>
-        <h2>Hilfreich für eine schnelle Einschätzung</h2>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <ul>
-            <li>Zeichnungen, Muster oder CAD-Daten</li>
-            <li>Material, Stückzahlen und Zielbranche</li>
-            <li>Anforderungen an Oberfläche, Zykluszeit und Qualität</li>
-            <li>Geplanter Serienstart oder Zeitrahmen</li>
-          </ul>
-          <a class="button" href={`mailto:${company.email}?subject=Projektanfrage`}>E-Mail schreiben</a>
-        </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const email = "info@schreck-kunststofftechnik.com";
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = (document.getElementById("cf-name") as HTMLInputElement).value.trim();
+    const replyTo = (document.getElementById("cf-email") as HTMLInputElement).value.trim();
+    const subject = (document.getElementById("cf-subject") as HTMLSelectElement).value;
+    const message = (document.getElementById("cf-message") as HTMLTextAreaElement).value.trim();
+
+    if (!name || !replyTo || !message) {
+      return;
+    }
+
+    const body = `${message}\n\n---\nAbsender: ${name}\nAntwort-E-Mail: ${replyTo}`;
+    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  });
+</script>
+
+<style>
+  .form-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 52px;
+    align-items: start;
+  }
+
+  .form-intro .lead {
+    margin-top: 18px;
+  }
+
+  .hint-list {
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .hint-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .hint-list li::before {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: 0.5em;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  label {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary-deep);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.96rem;
+    transition: border-color 160ms;
+    appearance: none;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.12);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 130px;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230891b2' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 38px;
+    cursor: pointer;
+  }
+
+  .form-hint {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .button {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  @media (max-width: 860px) {
+    .form-layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>
