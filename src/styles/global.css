@@ -79,9 +79,7 @@ main {
 }
 
 .section.mid {
-  background:
-    linear-gradient(135deg, rgba(8, 145, 178, 0.18) 0%, rgba(15, 31, 53, 0.12) 100%),
-    #d6eaf5;
+  background: linear-gradient(160deg, #edf1f6 0%, #dde4ee 100%);
 }
 
 .eyebrow {
