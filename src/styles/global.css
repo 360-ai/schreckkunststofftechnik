@@ -68,18 +68,28 @@ main {
 .section.dark {
   color: #fff;
   background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(135deg, rgba(15, 31, 53, 0.96), rgba(30, 58, 95, 0.96)),
     var(--primary-deep);
+  background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%;
 }
 
 .section.soft {
   background:
+    linear-gradient(90deg, rgba(15, 31, 53, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(15, 31, 53, 0.035) 1px, transparent 1px),
     linear-gradient(135deg, rgba(244, 247, 251, 0.96), rgba(255, 255, 255, 0.96)),
     var(--surface-soft);
+  background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%;
 }
 
 .section.mid {
-  background: linear-gradient(160deg, #edf1f6 0%, #dde4ee 100%);
+  background:
+    linear-gradient(90deg, rgba(15, 31, 53, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(15, 31, 53, 0.045) 1px, transparent 1px),
+    linear-gradient(160deg, #edf1f6 0%, #dde4ee 100%);
+  background-size: 44px 44px, 44px 44px, 100% 100%;
 }
 
 .eyebrow {
