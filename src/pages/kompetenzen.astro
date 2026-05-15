@@ -2,6 +2,39 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 
+const faqs = [
+  {
+    q: "Was bedeutet Abmusterung und warum ist sie wichtig?",
+    a: "Bei der Abmusterung werden erste Muster aus dem neuen Werkzeug unter Serienbedingungen gespritzt, vermessen und bewertet. Schreck verfügt über eine eigene Spritzgießmaschine, sodass Formen mit Abmusterungsprotokoll und dokumentierter Serienreife ausgeliefert werden können."
+  },
+  {
+    q: "Wie lange dauert die Entwicklung eines Spritzgusswerkzeugs?",
+    a: "Die Dauer hängt stark von der Bauteilkomplexität, den Toleranzanforderungen und der Anzahl der Abmusterungsschleifen ab. Einfache Werkzeuge können in wenigen Wochen fertiggestellt werden, komplexe Mehrkomponentenwerkzeuge benötigen mehrere Monate."
+  },
+  {
+    q: "Welche Materialien und Kunststoffe werden bei Schreck verarbeitet?",
+    a: "Schreck entwickelt Werkzeuge für eine breite Palette technischer Kunststoffe — von Standard-Thermoplasten wie PP, PE und ABS bis hin zu Hochleistungswerkstoffen für Medizintechnik und Automotive. Die Materialwahl wird gemeinsam mit dem Kunden auf Basis der Anforderungen festgelegt."
+  },
+  {
+    q: "Was bedeutet Serienreife im Formenbau?",
+    a: "Serienreife bedeutet, dass das Werkzeug reproduzierbar Teile innerhalb der geforderten Maß- und Qualitätstoleranzen produziert. Schreck liefert Formen erst aus, wenn Abmusterung, Vermessung und Dokumentation dieses Ziel bestätigen."
+  },
+  {
+    q: "Bietet Schreck auch Reparatur und Wartung bestehender Werkzeuge an?",
+    a: "Ja. Schreck übernimmt Reparaturen bei Werkzeugschäden sowie vorbeugende Wartung, um die Standzeit zu verlängern. Ergänzend werden Einweisungen vor Ort angeboten, damit das Team des Kunden das Werkzeug korrekt einsetzen kann."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a }
+  }))
+};
+
 const competencies = [
   { title: "Konzeptionierung", text: "Anforderungen klären, Machbarkeit prüfen und eine tragfähige Werkzeugstrategie definieren — bevor der erste Span fällt." },
   { title: "Konstruktion", text: "Formen und Bauteile fertigungsgerecht und prozesssicher auslegen. CAD-gestützt, materialspezifisch und mit Blick auf die spätere Produktion." },
@@ -17,6 +50,7 @@ const competencies = [
 <BaseLayout
   title="Kompetenzen im Werkzeug- und Formenbau"
   description="Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation bei Schreck Kunststofftechnik."
+  jsonLd={faqSchema}
 >
   <PageHero eyebrow="Kompetenzen" title="Vom Konzept bis zum serienreifen Werkzeug" text="Schreck begleitet Projekte über alle entscheidenden Schritte des Formenbaus hinweg: technisch, nachvollziehbar und mit Blick auf die spätere Produktion." />
   <section class="section">
@@ -32,6 +66,21 @@ const competencies = [
       ))}
     </div>
   </section>
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Fragen zum Formenbau bei Schreck</h2>
+      <div class="faq-list">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary>{q}</summary>
+            <div class="faq-answer">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="section dark after-sales">
     <div class="container">
       <p class="eyebrow">After-Sales</p>

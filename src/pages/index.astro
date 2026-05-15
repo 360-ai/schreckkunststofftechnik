@@ -3,27 +3,41 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ProductCard from "@components/ProductCard.astro";
 import { industries, products, stats } from "@data/site";
 
+const faqs = [
+  {
+    q: "Welche Leistungen bietet Schreck Kunststofftechnik?",
+    a: "Schreck Kunststofftechnik bietet Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung, Dokumentation sowie Reparatur und Wartung von Formen und Spritzgusswerkzeugen — von der ersten Produktidee bis zur serienreifen Produktionslösung."
+  },
+  {
+    q: "Für welche Branchen fertigt Schreck Werkzeuge?",
+    a: "Schreck fertigt für Medizintechnik, Labortechnik, Verpackung und Kosmetik, Innenanspritzung, Mehrkomponentenwerkzeuge sowie Kleinstteile. Kunden kommen u. a. aus Automotive, Elektronik und der Luftfahrtindustrie."
+  },
+  {
+    q: "Wo ist Schreck Kunststofftechnik ansässig?",
+    a: "Schreck Kunststofftechnik GmbH ist im Herzen Hessens ansässig: Wolkersdorfer Straße 28, 35099 Burgwald-Bottendorf. Von dort werden Kunden deutschlandweit und international betreut."
+  },
+  {
+    q: "Seit wann ist Schreck im Formenbau tätig?",
+    a: "Schreck Kunststofftechnik wurde am 1. Januar 1984 gegründet. Seitdem wurden über 1.000 Formen zur Serienreife gebracht und mehr als 30 Lehrlinge zum Werkzeugmechaniker ausgebildet."
+  },
+  {
+    q: "Übernimmt Schreck auch Reparaturen und Wartung?",
+    a: "Ja. Schreck bietet After-Sales-Service: Einweisung vor Ort, schnelle Instandsetzung bei Schäden und vorbeugende Wartung, damit Werkzeuge dauerhaft in einwandfreiem Zustand bleiben."
+  },
+  {
+    q: "Wie läuft eine Projektanfrage bei Schreck ab?",
+    a: "Interessenten senden Zeichnungen, Muster, CAD-Daten oder Lastenhefte an info@schreck-kunststofftechnik.com. Das Team prüft Machbarkeit und Fertigungskonzept und meldet sich mit einer fachlichen Einschätzung."
+  }
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Welche Leistungen bietet Schreck Kunststofftechnik?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Schreck Kunststofftechnik bietet Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung, Dokumentation sowie Reparatur und Wartung von Formen und Spritzgusswerkzeugen."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "Für welche Branchen fertigt Schreck Werkzeuge?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Schreck fertigt unter anderem für Medizintechnik, Labortechnik, Verpackung, Kosmetik, Automobilindustrie, Elektronik und technische Kunststoffprodukte."
-      }
-    }
-  ]
+  mainEntity: faqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a }
+  }))
 };
 
 const processSteps = [
@@ -227,6 +241,21 @@ const heroVideoLoopEnd = 6.8;
             <p>Schnelle Instandsetzung und vorbeugende Wartung — wir halten Ihre Werkzeuge dauerhaft in einwandfreiem Zustand.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Was Kunden über Schreck wissen wollen</h2>
+      <div class="faq-list">
+        {faqs.map(({ q, a }) => (
+          <details class="faq-item">
+            <summary>{q}</summary>
+            <div class="faq-answer">{a}</div>
+          </details>
+        ))}
       </div>
     </div>
   </section>
