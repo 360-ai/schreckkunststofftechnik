@@ -132,7 +132,12 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', gaId);
+          gtag('config', gaId, {
+            anonymize_ip: true,
+            storage: 'none',
+            client_storage: 'none',
+            storeGac: false
+          });
         </script>
       </>
     )}
