@@ -125,3 +125,23 @@ je Datei genau 1 H1
 ```
 
 Die vollständige Seitentabelle, Faktenquellen, Bildgrößen und Redirect-Map stehen in `01-bestandsaufnahme.md`.
+
+## AP2 – Faktenbasis und Positionierung
+
+Prüfschritte:
+
+```text
+Abgleich aller Aussagen mit den bestätigten Fakten des Arbeitsauftrags
+Abgleich mit den in AP1 dokumentierten WordPress-Seiten und Original-PDFs
+Trennung in bestätigte Fakten, zulässige Ableitungen und offene Fragen
+```
+
+Ergebnis:
+
+- 62 bestätigte Fakten bzw. klar abgegrenzte Faktenblöcke dokumentiert,
+- 12 zulässige Ableitungen mit Herleitung dokumentiert,
+- offene Aussagen nach Priorität A–C getrennt,
+- Positionierung, Projekteignung, Kundenprobleme, Kontaktzeitpunkt sowie Informationsbedarf von Einkauf und Konstruktion festgelegt,
+- Sprachregeln gegen unbelegte Garantien und KI-Marketing-Sprache definiert.
+
+Die verbindliche Quelle für die Textumsetzung ist `02-faktenbasis-positionierung.md`.
