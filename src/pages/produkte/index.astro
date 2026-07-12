@@ -5,60 +5,50 @@ import ProductCard from "@components/ProductCard.astro";
 import { products } from "@data/site";
 
 const faqs = [
-  {
-    q: "Welche Produktbereiche deckt Schreck Kunststofftechnik ab?",
-    a: "Schreck fertigt Spritzgusswerkzeuge für sechs Schwerpunktbereiche: Medizintechnik, Labortechnik, Verpackung und Kosmetik, Innenanspritzung, Mehrkomponentenwerkzeuge sowie Kleinstteile."
-  },
-  {
-    q: "Fertigt Schreck auch Werkzeuge für regulierte Branchen wie Medizintechnik?",
-    a: "Ja. Für Medizintechnik und Labortechnik entwickelt Schreck Werkzeuge mit reproduzierbarer Qualität, sauberen Oberflächen, Partikelfreiheit und vollständiger Qualitätsdokumentation — abgestimmt auf die besonderen Anforderungen regulierter Anwendungen."
-  },
-  {
-    q: "Was sind Mehrkomponentenwerkzeuge?",
-    a: "Mehrkomponentenwerkzeuge — auch 2K-Werkzeuge genannt — ermöglichen das Spritzgießen von Bauteilen aus mehreren Materialien oder Farben in einem Prozessschritt. Schreck entwickelt diese Werkzeuge mit Voll- und Teilheißkanallösungen für reproduzierbare Serienqualität."
-  },
-  {
-    q: "Für welche Kleinteile kann Schreck Werkzeuge bauen?",
-    a: "Schreck fertigt Kleinstartikelformen für funktionale Kleinstteile, optische Gehäuse und technische Bauteile mit hohen Anforderungen an Entlüftung, Maßhaltigkeit und Standzeit — unter anderem für Medizintechnik und Elektronik."
-  }
+  { q: "Welche Formen und Spritzgusswerkzeuge fertigt Schreck?", a: "Schreck fertigt Formen für Kunststoffverarbeitung sowie für Aluminium- und Zink-Druckguss. Die Schwerpunkte der Website sind Medizin, Labor, Verpackung und Kosmetik, Innenanspritzung, Mehrkomponentenwerkzeuge und Kleinstteile." },
+  { q: "Kann Schreck hergestellte Formen selbst abmustern?", a: "Ja. Schreck mustert hergestellte Formen auf eigenen Spritzgießmaschinen ab. Abmusterung, Vermessung und Optimierung verbinden Werkzeugbau und späteren Serienprozess." },
+  { q: "Wie finde ich den passenden Produktbereich?", a: "Wählen Sie zuerst nach Bauteil und Anwendung: Medizin, Labor, Verpackung, Innenanspritzung, Mehrkomponenten oder Kleinstteile. Wenn die Zuordnung nicht eindeutig ist, genügt eine Zeichnung oder ein Muster für die erste Projektbesprechung." }
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a }
-  }))
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
 };
 ---
 
 <BaseLayout
-  title="Produkte und Werkzeugbau"
-  description="Produktbereiche von Schreck Kunststofftechnik: Medizintechnik, Labortechnik, Verpackung, Innenanspritzung, Mehrkomponentenwerkzeuge und Kleinstteile."
+  title="Spritzgusswerkzeuge und Formenbau nach Anwendung"
+  description="Spritzgusswerkzeuge von Schreck für Medizin, Labor, Verpackung, Innenanspritzung, Mehrkomponenten und Kleinstteile – bis zur Abmusterung."
   jsonLd={faqSchema}
 >
-  <PageHero eyebrow="Produkte" title="Formtechnologie für hohe Wertschöpfung" text="Schreck entwickelt und fertigt Formen für Kunststoff-, Aluminium- und Zink-Druckgussverarbeitung. Die Umsetzung erfolgt nach Kundenvorgaben von der Idee bis zur Serienreife." />
+  <PageHero eyebrow="Produkte" title="Spritzgusswerkzeuge für klar definierte Anwendungen" text="Schreck entwickelt und fertigt Formen für Kunststoffverarbeitung sowie Aluminium- und Zink-Druckguss. Sechs Produktbereiche zeigen belegte Anwendungen und Formanforderungen." />
   <section class="section">
     <div class="container">
-      <div class="grid three">
-        {products.map((product) => <ProductCard product={product} />)}
+      <div class="selection-intro">
+        <div><p class="eyebrow">Produktbereiche</p><h2>Vom Bauteil zur passenden Werkzeugaufgabe</h2></div>
+        <p class="lead">Die Einteilung folgt konkreten Anwendungen. Prozessschritte wie Konstruktion, Abmusterung, Vermessung und Optimierung werden auf der Kompetenzseite gebündelt.</p>
       </div>
+      <div class="grid three product-grid">{products.map((product) => <ProductCard product={product} />)}</div>
     </div>
   </section>
   <section class="section soft">
     <div class="container">
       <p class="eyebrow">Häufige Fragen</p>
-      <h2>Fragen zu den Produktbereichen</h2>
-      <div class="faq-list">
-        {faqs.map(({ q, a }) => (
-          <details class="faq-item">
-            <summary>{q}</summary>
-            <div class="faq-answer">{a}</div>
-          </details>
-        ))}
-      </div>
+      <h2>Produkte und Werkzeugauswahl</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
+    </div>
+  </section>
+  <section class="section dark">
+    <div class="container split">
+      <div><p class="eyebrow">Noch nicht eindeutig?</p><h2>Zeichnung oder Muster gemeinsam einordnen</h2><p class="lead">Schreck erstellt Angebote und Konstruktionen nach Zeichnungen oder Mustern. Für den ersten Schritt muss die Produktkategorie nicht abschließend feststehen.</p></div>
+      <div class="button-row"><a class="button" href="/kontakt/">Projekt besprechen</a><a class="button secondary" href="/kompetenzen/">Projektablauf ansehen</a></div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .selection-intro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 42px; align-items: end; }
+  .product-grid { margin-top: 40px; }
+  @media (max-width: 760px) { .selection-intro { grid-template-columns: 1fr; } }
+</style>

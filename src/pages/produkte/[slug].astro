@@ -4,14 +4,18 @@ import PageHero from "@components/PageHero.astro";
 import { products, company } from "@data/site";
 
 export function getStaticPaths() {
-  return products.map((product) => ({
-    params: { slug: product.slug },
-    props: { product }
-  }));
+  return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
 }
 
 const { product } = Astro.props;
 const canonicalUrl = new URL(`/produkte/${product.slug}/`, Astro.site).toString();
+const inquiryItems = [
+  "Zeichnung, Muster oder vorhandene CAD-Daten",
+  "Bauteilfunktion und Einsatzbereich",
+  "vorgesehener Werkstoff und Zielstückzahl, soweit bekannt",
+  "Maße, Toleranzen, Oberflächen- und Prüfanforderungen",
+  "geplanter Serienstart und gewünschte Dokumentation"
+];
 
 const schema = {
   "@context": "https://schema.org",
@@ -19,16 +23,10 @@ const schema = {
   "@id": `${canonicalUrl}#service`,
   name: `${product.title} - ${company.name}`,
   provider: { "@id": new URL("/#organization", Astro.site).toString() },
-  areaServed: [
-    { "@type": "Country", name: "Deutschland" },
-    { "@type": "State", name: company.region }
-  ],
+  areaServed: [{ "@type": "Country", name: "Deutschland" }, { "@type": "State", name: company.region }],
   serviceType: product.keywords.join(", "),
   description: product.intro,
-  audience: {
-    "@type": "BusinessAudience",
-    audienceType: "B2B-Kunden im Werkzeug- und Formenbau"
-  },
+  audience: { "@type": "BusinessAudience", audienceType: "B2B-Kunden im Werkzeug- und Formenbau" },
   termsOfService: new URL("/kontakt/", Astro.site).toString()
 };
 
@@ -36,92 +34,105 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Produkte",
-      item: new URL("/produkte/", Astro.site).toString()
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: product.title,
-      item: canonicalUrl
-    }
+    { "@type": "ListItem", position: 1, name: "Startseite", item: new URL("/", Astro.site).toString() },
+    { "@type": "ListItem", position: 2, name: "Produkte", item: new URL("/produkte/", Astro.site).toString() },
+    { "@type": "ListItem", position: 3, name: product.title, item: canonicalUrl }
   ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: product.faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
 };
 ---
 
 <BaseLayout
-  title={`${product.title} im Formenbau`}
+  title={`${product.title}: Spritzgusswerkzeuge und Formenbau`}
   description={product.intro}
   image={product.image}
   canonical={canonicalUrl}
-  jsonLd={[schema, breadcrumbSchema]}
+  jsonLd={[schema, breadcrumbSchema, faqSchema]}
 >
   <PageHero eyebrow="Produktbereich" title={product.title} text={product.intro} image={product.image} parent={{ label: "Produkte", href: "/produkte/" }} />
+
   <section class="section">
     <div class="container split">
       <div>
         <p class="eyebrow">{product.eyebrow}</p>
-        <h2>Werkzeuge mit klaren Anforderungen an Prozess und Qualität.</h2>
-        <p class="lead">Die Produktbereiche werden bei Schreck nicht isoliert betrachtet. Konstruktion, Fertigung, Abmusterung und Optimierung greifen ineinander, damit das Werkzeug im späteren Serienbetrieb zuverlässig arbeitet.</p>
+        <h2>Anwendung und Formanforderungen gemeinsam betrachten</h2>
+        <p class="lead">{product.overview}</p>
       </div>
-      <div class="card">
-        <div class="card-body">
-          <h3>Formansprüche</h3>
-          <div class="pill-list">
-            {product.requirements.map((item) => <span class="pill">{item}</span>)}
-          </div>
-        </div>
-      </div>
+      <div class="card"><div class="card-body">
+        <h3>Dokumentierte Formanforderungen</h3>
+        <div class="pill-list">{product.requirements.map((item) => <span class="pill">{item}</span>)}</div>
+      </div></div>
     </div>
   </section>
+
   <section class="section soft">
-    <div class="container grid two">
-      <div class="card">
-        <div class="card-body">
-          <h3>Typische Bauteile und Anwendungen</h3>
-          <ul class="feature-list">
-            {product.examples.map((item) => <li>{item}</li>)}
-          </ul>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h3>Projekt-Schwerpunkte</h3>
-          <p>Für eine belastbare Auslegung werden Bauteilfunktion, Material, Zykluszeit, Oberflächenanforderung und spätere Serienprozesse gemeinsam bewertet.</p>
-          <div class="pill-list">
-            {product.keywords.map((item) => <span class="pill">{item}</span>)}
-          </div>
-        </div>
-      </div>
+    <div class="container grid two detail-grid">
+      <article class="card"><div class="card-body">
+        <p class="eyebrow">Anwendungen</p>
+        <h2>Belegte Bauteile und Einsatzfelder</h2>
+        <ul class="feature-list">{product.examples.map((item) => <li>{item}</li>)}</ul>
+      </div></article>
+      <article class="card"><div class="card-body">
+        <p class="eyebrow">Projektweg</p>
+        <h2>Bis zur Abmusterung und Serienreife</h2>
+        <p>Schreck verbindet Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation. Die hergestellten Formen können auf eigenen Spritzgießmaschinen abgemustert werden.</p>
+        <a class="text-link" href="/kompetenzen/">Projektablauf und Kompetenzen ansehen &rarr;</a>
+      </div></article>
     </div>
   </section>
-  <section class="section compact dark">
+
+  <section class="section">
     <div class="container split">
       <div>
         <p class="eyebrow">Projektanfrage</p>
-        <h2>Passendes Werkzeugkonzept für Ihre Anwendung prüfen lassen.</h2>
+        <h2>Diese Informationen helfen bei der ersten Einordnung</h2>
+        <p class="lead">Nicht jede Angabe muss zu Beginn feststehen. Je konkreter Bauteil, Einsatz und Zielprozess beschrieben sind, desto gezielter kann Schreck die Machbarkeit prüfen.</p>
       </div>
+      <ul class="inquiry-list">{inquiryItems.map((item) => <li>{item}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Direkte Antworten zu {product.title}</h2>
+      <div class="faq-list">
+        {product.faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container split">
       <div>
-        <p class="lead">Senden Sie Zeichnungen, Muster oder Lastenhefte an Schreck. Das Team meldet sich mit einer fachlichen Einschätzung zu Machbarkeit und nächsten Schritten.</p>
-        <a class="button" href="/kontakt/">Projekt anfragen</a>
+        <p class="eyebrow">Nächster Schritt</p>
+        <h2>Werkzeugkonzept für Ihre Anwendung prüfen lassen</h2>
+        <p class="lead">Übermitteln Sie Zeichnung, Muster oder vorhandene Projektdaten per E-Mail oder besprechen Sie die Ausgangslage telefonisch.</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href={`mailto:${company.email}?subject=Projektanfrage%20${encodeURIComponent(product.title)}`}>Unterlagen übermitteln</a>
+        <a class="button secondary" href="/qualitaet-zertifizierung/">Qualität &amp; Zertifizierung</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .feature-list {
-    margin: 18px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .feature-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--line);
-    font-weight: 800;
+  .detail-grid h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+  .text-link { display: inline-block; margin-top: 18px; color: var(--accent); font-weight: 800; }
+  .inquiry-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 24px 24px 24px 46px;
+    border: 1px solid rgba(8, 145, 178, 0.35);
+    border-radius: 8px;
+    background: rgba(8, 145, 178, 0.12);
+    color: var(--primary-deep);
   }
 </style>
