@@ -106,7 +106,6 @@ const heroVideoLoopEnd = 6.8;
           <div class="hero-shot hero-shot-main">
             <video
               class="hero-video"
-              autoplay
               muted
               playsinline
               preload="metadata"
@@ -174,24 +173,24 @@ const heroVideoLoopEnd = 6.8;
       <div class="process-two-col">
         <div class="process-col">
           {processSteps.slice(0, 4).map((step, i) => (
-            <article class="process-step" style={`--step-opacity: ${(1 - i * 0.18).toFixed(2)}`}>
+            <div class="process-step" style={`--step-opacity: ${(1 - i * 0.18).toFixed(2)}`}>
               <div class="process-node">{String(i + 1).padStart(2, "0")}</div>
               <div class="process-card">
                 <strong>{step.title}</strong>
                 <p>{step.text}</p>
               </div>
-            </article>
+            </div>
           ))}
         </div>
         <div class="process-col" style="--col-start-opacity: 0.18;">
           {processSteps.slice(4).map((step, i) => (
-            <article class="process-step" style={`--step-opacity: ${Math.max(0.1, 0.55 - i * 0.08).toFixed(2)}`}>
+            <div class="process-step" style={`--step-opacity: ${Math.max(0.1, 0.55 - i * 0.08).toFixed(2)}`}>
               <div class="process-node">{String(4 + i + 1).padStart(2, "0")}</div>
               <div class="process-card">
                 <strong>{step.title}</strong>
                 <p>{step.text}</p>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </div>
@@ -272,11 +271,10 @@ const heroVideoLoopEnd = 6.8;
       </div>
     </div>
   </section>
-</BaseLayout>
-
 <script>
   const counters = document.querySelectorAll<HTMLElement>(".count[data-count]");
   const heroVideos = document.querySelectorAll<HTMLVideoElement>(".hero-video[data-loop-end]");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const formatNumber = new Intl.NumberFormat("de-DE");
   const easeInOut = (progress: number) =>
@@ -307,21 +305,27 @@ const heroVideoLoopEnd = 6.8;
     requestAnimationFrame(frame);
   };
 
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target as HTMLElement);
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
-  );
+  if (prefersReducedMotion.matches) {
+    counters.forEach((counter) => {
+      const target = Number(counter.dataset.count || 0);
+      counter.textContent = `${formatNumber.format(target)}${counter.dataset.suffix || ""}`;
+      counter.dataset.done = "true";
+    });
+  } else {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target as HTMLElement);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+    );
 
-  counters.forEach((counter) => counterObserver.observe(counter));
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    counters.forEach((counter) => counterObserver.observe(counter));
+  }
 
   heroVideos.forEach((video) => {
     const loopEnd = Number(video.dataset.loopEnd || 0);
@@ -329,10 +333,11 @@ const heroVideoLoopEnd = 6.8;
     if (!loopEnd) return;
 
     if (prefersReducedMotion.matches) {
-      video.removeAttribute("autoplay");
       video.pause();
       return;
     }
+
+    void video.play().catch(() => {});
 
     const restartSegment = () => {
       video.currentTime = 0;
@@ -352,6 +357,7 @@ const heroVideoLoopEnd = 6.8;
     });
   });
 </script>
+</BaseLayout>
 
 <style>
   .hero {

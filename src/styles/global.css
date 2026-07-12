@@ -11,10 +11,11 @@
   --primary: #1e3a5f;
   --primary-deep: #0f1f35;
   --accent: #0891b2;
+  --accent-text: #04748a;
   --accent-light: #22d3ee;
   --surface: #ffffff;
   --surface-soft: #f4f7fb;
-  --muted: #64748b;
+  --muted: #5f6f82;
   --line: rgba(15, 31, 53, 0.14);
   --steel: #a7b0bd;
   --shadow: 0 24px 70px rgba(12, 18, 32, 0.18);
@@ -53,6 +54,49 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary-deep);
+  outline-offset: 3px;
+}
+
+.dark :focus-visible,
+.footer :focus-visible,
+.hero :focus-visible,
+.page-hero :focus-visible,
+.mobile-nav :focus-visible {
+  outline-color: var(--accent-light);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 8px;
+  left: 8px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--primary-deep);
+  color: #fff;
+  font-weight: 800;
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 main {
@@ -102,7 +146,7 @@ main {
 
 .eyebrow {
   margin: 0 0 14px;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -172,7 +216,7 @@ p {
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 0 18px;
-  background: var(--accent);
+  background: #067d99;
   color: #fff;
   box-shadow: 0 14px 32px rgba(8, 145, 178, 0.28);
   font-weight: 800;
@@ -180,7 +224,7 @@ p {
 }
 
 .button:hover {
-  background: #067d99;
+  background: #05677c;
   transform: translateY(-1px);
 }
 
@@ -236,7 +280,7 @@ p {
 }
 
 .card .eyebrow {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .media-card {
@@ -478,7 +522,7 @@ p {
 }
 
 .faq-item[open] summary {
-  color: var(--accent);
+  color: var(--accent-text);
   background: rgba(8, 145, 178, 0.04);
 }
 
@@ -514,6 +558,21 @@ p {
 .dark .faq-answer {
   color: rgba(255, 255, 255, 0.68);
   border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Map Embed */

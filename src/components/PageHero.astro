@@ -38,6 +38,9 @@ const { eyebrow, title, text, image = "/images/hero2.webp", parent } = Astro.pro
   }
 
   .breadcrumbs a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
     color: rgba(255, 255, 255, 0.78);
     text-decoration: underline;
     text-decoration-color: rgba(34, 211, 238, 0.42);
@@ -46,5 +49,11 @@ const { eyebrow, title, text, image = "/images/hero2.webp", parent } = Astro.pro
 
   .breadcrumbs a:hover {
     color: var(--accent-light);
+  }
+
+  .breadcrumbs span {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
   }
 </style>

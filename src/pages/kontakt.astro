@@ -26,6 +26,7 @@ const faqSchema = {
 
   <section class="section">
     <div class="container grid three">
+      <h2 class="visually-hidden">Kontaktmöglichkeiten</h2>
       <article class="card"><div class="card-body"><p class="eyebrow">Telefon</p><h3><a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a></h3><p>Fax: {company.fax}</p></div></article>
       <article class="card"><div class="card-body"><p class="eyebrow">E-Mail</p><h3><a href={`mailto:${company.email}`}>{company.email}</a></h3><p>Für Zeichnungen, Projektanfragen, Reparaturen und Bewerbungen.</p></div></article>
       <article class="card"><div class="card-body"><p class="eyebrow">Adresse</p><h3>{company.street}</h3><p>{company.postalCity}</p></div></article>
@@ -34,6 +35,7 @@ const faqSchema = {
 
   <section class="section compact">
     <div class="container grid two">
+      <h2 class="visually-hidden">Anforderungen für Einkauf und Konstruktion</h2>
       <article class="card"><div class="card-body"><p class="eyebrow">Für den Einkauf</p><h2>Leistungsfit und Nachweise prüfen</h2><p>Hilfreich sind Anwendungsbereich, Zieltermin, gewünschter Lieferumfang sowie Prüf- und Dokumentationsanforderungen. Angaben zu Zertifizierung und Ausstattung finden Sie direkt auf der Website.</p><div class="button-row"><a class="button light" href="/qualitaet-zertifizierung/">Zertifizierung</a><a class="button light" href="/maschinen-ausstattung/">Ausstattung</a></div></div></article>
       <article class="card"><div class="card-body"><p class="eyebrow">Für Konstruktion & Entwicklung</p><h2>Bauteil und Zielprozess beschreiben</h2><p>Zeichnung oder Muster, Funktion, Werkstoff, Zielstückzahl, Maße, Toleranzen, Oberfläche und geplanter Serienstart erleichtern die technische Einordnung.</p><a class="button light" href="/kompetenzen/">Projektablauf ansehen</a></div></article>
     </div>
@@ -54,14 +56,14 @@ const faqSchema = {
       </div>
       <div class="form-card card">
         <div class="card-body">
-          <form id="contact-form" novalidate>
+          <form id="contact-form">
             <div class="field">
-              <label for="cf-name">Ihr Name / Unternehmen</label>
-              <input id="cf-name" name="name" type="text" placeholder="Max Mustermann, Musterfirma GmbH" required />
+              <label for="cf-name">Ihr Name / Unternehmen (Pflichtfeld)</label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Max Mustermann, Musterfirma GmbH" required />
             </div>
             <div class="field">
-              <label for="cf-email">Ihre E-Mail-Adresse</label>
-              <input id="cf-email" name="email" type="email" placeholder="anfrage@unternehmen.de" required />
+              <label for="cf-email">Ihre E-Mail-Adresse (Pflichtfeld)</label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="anfrage@unternehmen.de" required />
             </div>
             <div class="field">
               <label for="cf-subject">Betreff</label>
@@ -74,10 +76,10 @@ const faqSchema = {
               </select>
             </div>
             <div class="field">
-              <label for="cf-message">Ihre Nachricht</label>
-              <textarea id="cf-message" name="message" rows="5" placeholder="Beschreiben Sie Ihr Vorhaben, Material, Stückzahlen und Anforderungen …" required></textarea>
+              <label for="cf-message">Ihre Nachricht (Pflichtfeld)</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="Beschreiben Sie Ihr Vorhaben, Material, Stückzahlen und Anforderungen …" aria-describedby="contact-form-hint" required></textarea>
             </div>
-            <p class="form-hint">Nach dem Klick öffnet sich Ihr E-Mail-Programm — dort können Sie Anhänge (Zeichnungen, CAD-Daten) hinzufügen.</p>
+            <p id="contact-form-hint" class="form-hint">Nach dem Klick öffnet sich Ihr E-Mail-Programm — dort können Sie Anhänge (Zeichnungen, CAD-Daten) hinzufügen.</p>
             <button type="submit" class="button">E-Mail öffnen &rarr;</button>
           </form>
         </div>
@@ -123,6 +125,7 @@ const faqSchema = {
         </div>
         <a
           class="maps-link"
+          aria-label="Google Maps öffnen (neuer Tab)"
           href="https://www.google.com/maps/search/?api=1&query=Wolkersdorfer+Stra%C3%9Fe+28,+35099+Burgwald-Bottendorf"
           target="_blank"
           rel="noopener noreferrer"
@@ -133,8 +136,6 @@ const faqSchema = {
       </div>
     </div>
   </section>
-</BaseLayout>
-
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const email = "info@schreck-kunststofftechnik.com";
@@ -156,6 +157,7 @@ const faqSchema = {
     window.location.href = mailto;
   });
 </script>
+</BaseLayout>
 
 <style>
   .form-layout {
@@ -163,6 +165,12 @@ const faqSchema = {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: 52px;
     align-items: start;
+  }
+
+  .card h3 a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
   }
 
   .form-intro .lead {
@@ -230,9 +238,15 @@ const faqSchema = {
   input:focus,
   select:focus,
   textarea:focus {
-    outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.12);
+  }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid var(--primary-deep);
+    outline-offset: 2px;
   }
 
   textarea {
@@ -292,7 +306,7 @@ const faqSchema = {
     width: 22px;
     height: 22px;
     margin-top: 2px;
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .location-row > div {
@@ -314,7 +328,10 @@ const faqSchema = {
   }
 
   .location-row a {
-    color: var(--accent);
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    color: var(--accent-text);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -328,7 +345,7 @@ const faqSchema = {
     border: 1px solid rgba(8, 145, 178, 0.34);
     border-radius: 6px;
     background: rgba(8, 145, 178, 0.06);
-    color: var(--accent);
+    color: var(--accent-text);
     font-size: 0.92rem;
     font-weight: 700;
     transition: background 160ms, border-color 160ms;

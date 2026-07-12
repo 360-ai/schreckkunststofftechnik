@@ -38,3 +38,11 @@ Stand: 12.07.2026
 - Oswald wird nicht von Google Fonts zur Laufzeit geladen. Die lateinische WOFF2-Datei wird lokal für die Gewichte 600 und 700 ausgeliefert; die Lizenzdatei liegt bei. Die inhaltliche Anpassung des Font-Abschnitts in der Datenschutzerklärung bleibt ausdrücklich dem Auftraggeber vorbehalten.
 - Der Seitentitel-Suffix lautet kurz `| Schreck`. Der vollständige Firmenname bleibt in Startseite, Organisationsdaten, Impressum, sichtbaren Inhalten und Entitätsdaten unverändert; der kurze Suffix verhindert abgeschnittene Suchergebnis-Titel.
 - Die fünf alten P0-Bilddateien wurden erst nach Umstellung und Nulltreffer-Prüfung entfernt. Die neuen WebP-Dateien reduzieren deren Gesamtgewicht um rund 95,5 %.
+
+## AP9
+
+- Die FAQ bleiben native `details`/`summary`-Elemente. Sie benötigen kein eigenes Accordion-JavaScript und behalten damit die Browser-Semantik und Tastaturbedienung.
+- Der Menüfokus bleibt beim Öffnen am auslösenden Button; der nächste Tab-Schritt führt in die Navigation. Escape schließt das Menü und stellt den Fokus am Button wieder her. Diese Variante vermeidet einen unerwarteten Fokuswechsel.
+- Die genehmigte Cyan-Palette bleibt erhalten. Für kleinen Text auf hellen Flächen wird die kontraststärkere Ableitung `#04748a` genutzt; `#22d3ee` bleibt dunklen Hintergründen vorbehalten.
+- Die Kontaktseite nutzt weiterhin nur ein lokales Mailto-Formular. Native Browservalidierung ersetzt die zuvor deaktivierte Validierung; keine Daten werden an einen Webdienst übermittelt.
+- CSP und weitere Sicherheitsheader werden in der Cloudflare-Headerdatei gepflegt. `unsafe-inline` bleibt vorerst für die bestehenden Astro-Inline-Blöcke erlaubt; eine nonce-/hashbasierte Härtung wird zusammen mit einer möglichen Consent-/Analytics-Integration bewertet.

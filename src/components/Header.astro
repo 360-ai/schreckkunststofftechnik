@@ -1,5 +1,7 @@
 ---
 import { company, navItems } from "@data/site";
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => href === "/" ? currentPath === "/" : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
@@ -9,37 +11,37 @@ import { company, navItems } from "@data/site";
   <nav class="desktop-nav" aria-label="Hauptnavigation">
     {
       navItems.map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
       ))
     }
   </nav>
   <div class="header-actions">
-    <a class="header-phone" href={`tel:${company.phone.replace(/\s/g, "")}`} aria-label="Anrufen">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <a class="header-phone" href={`tel:${company.phone.replace(/\s/g, "")}`} aria-label={`Schreck anrufen: ${company.phone}`}>
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16v.92z"/>
       </svg>
     </a>
     <a class="contact" href={`mailto:${company.email}?subject=Projektanfrage`} aria-label="E-Mail Anfrage senden">Anfragen</a>
-    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">
-      <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <button class="menu-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-navigation">
+      <svg class="icon-open" aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
         <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
       </svg>
-      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <svg class="icon-close" aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
         <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
       </svg>
     </button>
   </div>
 </header>
 
-<div class="mobile-nav" aria-label="Mobile Navigation">
-  <nav>
+<div id="mobile-navigation" class="mobile-nav" aria-hidden="true">
+  <nav aria-label="Mobile Navigation">
     {
       navItems.map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
       ))
     }
-    <a href="/maschinen-ausstattung/">Maschinen &amp; Ausstattung</a>
-    <a href="/downloads/">Downloads</a>
+    <a href="/maschinen-ausstattung/" aria-current={isCurrent("/maschinen-ausstattung/") ? "page" : undefined}>Maschinen &amp; Ausstattung</a>
+    <a href="/downloads/" aria-current={isCurrent("/downloads/") ? "page" : undefined}>Downloads</a>
   </nav>
   <div class="mobile-nav-contact">
     <a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a>
@@ -52,18 +54,53 @@ import { company, navItems } from "@data/site";
   const mobileNav = document.querySelector<HTMLElement>(".mobile-nav");
 
   if (toggle && mobileNav) {
-    toggle.addEventListener("click", () => {
-      const open = mobileNav.classList.toggle("is-open");
+    const links = [...mobileNav.querySelectorAll<HTMLAnchorElement>("a")];
+
+    const setOpen = (open: boolean, restoreFocus = false) => {
+      mobileNav.classList.toggle("is-open", open);
+      mobileNav.setAttribute("aria-hidden", String(!open));
       toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
       document.body.style.overflow = open ? "hidden" : "";
+
+      if (!open && restoreFocus) {
+        toggle.focus();
+      }
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
     });
 
-    mobileNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileNav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
+    links.forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (toggle.getAttribute("aria-expanded") !== "true") return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false, true);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusable = [toggle, ...links];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    window.matchMedia("(min-width: 761px)").addEventListener("change", (event) => {
+      if (event.matches) setOpen(false);
     });
   }
 </script>
@@ -92,6 +129,12 @@ import { company, navItems } from "@data/site";
     height: auto;
   }
 
+  .brand {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+
   .desktop-nav {
     display: flex;
     justify-content: center;
@@ -103,11 +146,21 @@ import { company, navItems } from "@data/site";
   }
 
   .desktop-nav a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
     color: rgba(15, 31, 53, 0.78);
   }
 
+  .desktop-nav a[aria-current="page"] {
+    color: var(--primary-deep);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 6px;
+  }
+
   .desktop-nav a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .header-actions {
@@ -120,8 +173,8 @@ import { company, navItems } from "@data/site";
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border: 1px solid rgba(8, 145, 178, 0.28);
     border-radius: 999px;
     color: var(--primary-deep);
@@ -130,12 +183,12 @@ import { company, navItems } from "@data/site";
   }
 
   .header-phone:hover {
-    color: var(--accent);
+    color: var(--accent-text);
     border-color: var(--accent);
   }
 
   .contact {
-    min-height: 42px;
+    min-height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -154,8 +207,8 @@ import { company, navItems } from "@data/site";
     display: none;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border: 1px solid rgba(8, 145, 178, 0.28);
     border-radius: 999px;
     padding: 0;
@@ -166,7 +219,7 @@ import { company, navItems } from "@data/site";
   }
 
   .menu-toggle:hover {
-    color: var(--accent);
+    color: var(--accent-text);
     border-color: var(--accent);
   }
 
@@ -281,19 +334,19 @@ import { company, navItems } from "@data/site";
     }
 
     .header-phone {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
     }
 
     .contact {
-      min-height: 36px;
+      min-height: 44px;
       padding: 0 12px;
       font-size: 0.86rem;
     }
 
     .menu-toggle {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
     }
   }
 

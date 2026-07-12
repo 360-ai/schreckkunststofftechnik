@@ -192,8 +192,9 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     }
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
     <Header />
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />

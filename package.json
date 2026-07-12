@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro check && astro build",
+    "check:headings": "node scripts/check-headings.mjs",
+    "check:links": "node scripts/check-internal-links.mjs",
     "check:jsonld": "node scripts/validate-jsonld.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "deploy": "npm run build && wrangler pages deploy dist --project-name schreck-kunststofftechnik"

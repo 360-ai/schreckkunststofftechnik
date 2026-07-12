@@ -96,6 +96,7 @@ const breadcrumbSchema = {
 
   <section class="section">
     <div class="container job-detail">
+      <h2 class="visually-hidden">Stellendaten und Ausbildungsbeschreibung</h2>
       <aside class="job-summary card">
         <div class="card-body">
           <p class="eyebrow">Stellendaten</p>
@@ -104,7 +105,7 @@ const breadcrumbSchema = {
             <div><dt>Standort</dt><dd>{job.data.location}</dd></div>
             <div><dt>Bereich</dt><dd>{job.data.type}</dd></div>
           </dl>
-          <a class="button" href={`mailto:${job.data.applyEmail}?subject=Bewerbung: ${job.data.title}`}>Jetzt bewerben</a>
+          <a class="button" href={`mailto:${job.data.applyEmail}?subject=${encodeURIComponent(`Bewerbung: ${job.data.title}`)}`}>Jetzt bewerben</a>
         </div>
       </aside>
       <article class="content job-copy">
@@ -125,6 +126,14 @@ const breadcrumbSchema = {
   .job-summary {
     position: sticky;
     top: 110px;
+  }
+
+  .job-copy :global(a) {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   dl {

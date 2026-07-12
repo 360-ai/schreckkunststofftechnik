@@ -392,3 +392,94 @@ img ohne alt: 0
 img ohne width: 0
 Canonical-Anzahl ungleich 1: 0
 ```
+
+## AP9 – UX, Barrierefreiheit und Code-Audit
+
+### WCAG- und Bedienungsänderungen
+
+- Skip-Link auf `#main-content`; `main` ist als Sprungziel fokussierbar.
+- Mobile Navigation mit `aria-controls`, synchronem `aria-expanded`/`aria-hidden`, Escape-Schließen, Fokus-Rückgabe und Fokusbegrenzung.
+- Aktive Hauptnavigation mit `aria-current="page"`.
+- Native FAQ-Elemente (`details`/`summary`) bleiben per Maus und Tastatur bedienbar; sichtbarer Fokus ist global definiert.
+- Kontaktformular mit sichtbaren Pflichtfeldbezeichnungen, `autocomplete`, `aria-describedby` und nativer Browservalidierung. Web3Forms bleibt deaktiviert.
+- Alle 19 HTML-Seiten besitzen genau eine H1 und keine Ebenensprünge.
+- Alle sichtbaren Touch-Ziele wurden bei 390 Pixel breitem Mobile-Viewport auf mindestens 44 × 44 Pixel geprüft.
+- `prefers-reduced-motion` deaktiviert weiche Scrollbewegung und minimiert CSS-Bewegungen; Video-Autoplay und Zahlenanimation werden bei Reduktionswunsch nicht gestartet.
+- Hellcyan `#22d3ee` wird nur auf dunklen Flächen verwendet. Für kleine Texte auf hellen Flächen wurde `#04748a` eingeführt.
+
+Berechnete Kontraste:
+
+```text
+#04748a auf #ffffff: 5,43:1
+#04748a auf #f4f7fb: 5,05:1
+#5f6f82 auf #ffffff: 5,14:1
+#5f6f82 auf #f4f7fb: 4,79:1
+Weiß auf #067d99 (CTA): 4,77:1
+#22d3ee auf #0f1f35: 9,17:1
+```
+
+### Automatisierte Strukturprüfungen
+
+Neue wiederholbare Befehle:
+
+```text
+npm run check:headings
+Überschriftenhierarchie valide: 214 Überschriften in 19 HTML-Dateien, jeweils genau eine H1.
+
+npm run check:links
+Interne Links valide: 644 Verweise in 19 HTML-Dateien (19 Fragmentverweise).
+
+npm run check:jsonld
+JSON-LD valide: 95 Blöcke in 19 HTML-Dateien.
+```
+
+Der Linkprüfer löst relative und absolute interne Ziele gegen `dist/` auf und prüft vorhandene Fragmente. Die Sitemap-Gegenprüfung ergab 0 fehlende indexierbare Seiten und 0 enthaltene `noindex`-Seiten.
+
+### W3C Nu-Validator
+
+Geprüft über `https://validator.w3.org/nu/?out=json`:
+
+```text
+dist/index.html: 0 Meldungen
+dist/kontakt/index.html: 0 Meldungen
+dist/produkte/medizintechnik/index.html: 0 Meldungen
+dist/karriere/ausbildung-werkzeugmechaniker-2027/index.html: 0 Meldungen
+```
+
+Der erste Lauf deckte zwei außerhalb von `</html>` ausgegebene Seitenscripte, acht nicht eigenständig betitelte `article`-Elemente und einen nicht URL-codierten Mailto-Betreff auf. Alle Befunde wurden behoben; der Wiederholungslauf ist meldungsfrei.
+
+### Browser- und HTTP-QA
+
+Integrierter Chromium-Test bei Desktopbreite und 390 × 844 Pixel:
+
+```text
+19/19 HTML-Seiten: kein horizontaler Überlauf
+19/19 HTML-Seiten: 0 sichtbare interaktive Ziele unter 44 × 44 Pixel
+Browserkonsole über alle Seiten: 0 Warnungen, 0 Fehler
+Mobile-Menü: ARIA-Zustände, Scrollsperre und Escape-Rückgabe valide
+Kontaktformular leer: 3 ungültige Pflichtfelder, Fokus auf cf-name, keine Navigation
+FAQ-Summary: fokussierbar und nativ aufklappbar
+```
+
+HTTP-Stichprobe gegen `npm run preview`:
+
+```text
+/             200, 1 H1
+/produkte/    200, 1 H1
+/kompetenzen/ 200, 1 H1
+/kontakt/     200, 1 H1
+```
+
+### Sicherheit und verbleibender Messpunkt
+
+`public/_headers` enthält nun CSP, HSTS, Permissions-Policy, COOP, X-Frame-Options, Nosniff und Referrer-Policy sowie langfristiges Font-Caching. Die CSP lässt wegen der bestehenden Astro-Inline-Blöcke aktuell `unsafe-inline` für Script und Style zu; bei späterer GA4-/Consent-Integration muss sie gezielt angepasst werden.
+
+Chrome ist vorhanden, Lighthouse jedoch nicht lokal installiert. Der Versuch, Lighthouse einmalig per `npx` auszuführen, wurde von der Ausführungsumgebung wegen des Downloads und Starts von Drittcode abgelehnt. Es wurde keine Umgehung vorgenommen. Lighthouse bleibt daher als expliziter Punkt für die externe Gegenprüfung offen.
+
+Abschließender Build:
+
+```text
+npm run build
+Result (33 files): 0 errors, 0 warnings, 0 hints
+19 page(s) built
+```

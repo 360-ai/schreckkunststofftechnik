@@ -35,3 +35,5 @@ Die Fragen werden im Verlauf der Arbeitspakete ergänzt, priorisiert und vor der
 - Soll Web3Forms später eingesetzt werden? Dann fehlen Schlüssel, Datenschutzprüfung und Anpassung der Datenschutzerklärung.
 - Soll Google Analytics 4 später mit Consent-Manager aktiviert werden?
 - Pflicht-Hinweis nach Oswald-Selbsthosting: Den Font-Abschnitt der Datenschutzerklärung durch den Auftraggeber auf lokale Schriftdateien ohne Drittanbieterabruf anpassen.
+- Technische Gegenprüfung: Lighthouse gegen die bereitgestellte Preview oder Staging-URL ausführen. Chrome war vorhanden, die Lighthouse-CLI jedoch nicht lokal installiert; das einmalige Nachladen und Ausführen von Drittcode wurde in dieser Umgebung nicht zugelassen.
+- Bei späterer Aktivierung von GA4/Consent oder anderen Drittanbietern die Content-Security-Policy in `public/_headers` gezielt um die tatsächlich benötigten Quellen ergänzen und erneut prüfen.
