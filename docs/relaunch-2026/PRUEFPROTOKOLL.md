@@ -72,3 +72,56 @@ Erzeugte Seiten und Endpunkte:
 /sitemap.xml
 ```
 
+## AP1 – Bestandsaufnahme
+
+### Crawl und Quellenprüfung
+
+Ausgeführt wurden Webabrufe der alten WordPress-Seiten, ihrer öffentlichen REST-Ausgaben sowie der verlinkten PDFs. Besonders geprüft wurden:
+
+```text
+https://www.schreck-kunststofftechnik.de/
+https://www.schreck-kunststofftechnik.de/?page_id=80
+https://www.schreck-kunststofftechnik.de/?page_id=82
+https://www.schreck-kunststofftechnik.de/?page_id=85
+https://www.schreck-kunststofftechnik.de/?page_id=249
+https://www.schreck-kunststofftechnik.de/?page_id=97
+https://www.schreck-kunststofftechnik.de/?page_id=99
+https://www.schreck-kunststofftechnik.de/?page_id=101
+https://www.schreck-kunststofftechnik.de/?page_id=103
+https://www.schreck-kunststofftechnik.de/?page_id=105
+https://www.schreck-kunststofftechnik.de/?page_id=107
+https://www.schreck-kunststofftechnik.de/?page_id=489
+https://www.schreck-kunststofftechnik.de/wp-content/uploads/2025/03/Maschinenpark.pdf
+https://www.schreck-kunststofftechnik.de/wp-content/uploads/2024/07/2024-ISO-Zertifikat-deutsch.pdf
+```
+
+Ergebnis: Maschinenpark mit Stand 01/2024 extrahiert. Das ISO-Zertifikat wurde heruntergeladen, textuell extrahiert und visuell als gerenderte Seite geprüft. Bestätigt wurden DIN EN ISO 9001:2015, Geltungsbereich „Formenbau von der Konstruktion bis zur Serienreife“ und Gültigkeit 28.06.2024–27.06.2027.
+
+### Build-Audit und Altfehler
+
+Ausgeführte Befehle:
+
+```text
+npm run build
+rg -n --fixed-strings --glob '*.html' --glob '*.txt' --glob '*.xml' -- ' TMG' dist
+rg -n --fixed-strings --glob '*.html' --glob '*.txt' --glob '*.xml' -- 'TTDSG' dist
+rg -n --fixed-strings --glob '*.html' --glob '*.txt' --glob '*.xml' -- 'fonts.googleapis' dist
+rg -n --fixed-strings --glob '*.html' --glob '*.txt' --glob '*.xml' -- 'ec.europa.eu/consumers/odr' dist
+rg -n --fixed-strings --glob '*.html' --glob '*.txt' --glob '*.xml' -- 'AggregateRating' dist
+```
+
+Ergebnis: Build grün mit 0 Fehlern, 0 Warnungen und 0 Hinweisen; alle fünf Altfehler-Prüfungen ergaben 0 Treffer.
+
+Zusätzliche statische Auswertung des Build-HTMLs:
+
+```text
+16 HTML-Dateien
+je Datei genau 1 H1
+53 Bildvorkommen
+0 Bilder ohne alt
+53 Bilder ohne width
+53 Bilder ohne height
+35 Bilder ohne loading
+```
+
+Die vollständige Seitentabelle, Faktenquellen, Bildgrößen und Redirect-Map stehen in `01-bestandsaufnahme.md`.
