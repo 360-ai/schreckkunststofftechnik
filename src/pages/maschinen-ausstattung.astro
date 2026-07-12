@@ -1,0 +1,134 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import { company } from "@data/site";
+
+const equipment = [
+  { area: "Fräsen", entries: ["DMU 80 Mono Block – iTNC 530, 3 Achsen", "DMG Mori CMX 600 V – 3 Achsen", "Deckel FP4MK", "DMU 50 T – TNC 426, 3 Achsen"] },
+  { area: "Drehen", entries: ["Trens"] },
+  { area: "Schleifen", entries: ["Elb Flachschleifmaschine", "2 × Jung Profilschleifmaschinen", "Moore Koordinatenschleifmaschine", "MSO Rundschleifmaschine"] },
+  { area: "Senkerodieren", entries: ["OPS Ingersoll Gantry 400", "OPS Ingersoll Gantry Eagle 400"] },
+  { area: "Spritzgießen", entries: ["ARBURG – 35 t", "ENGEL ES 200 – 2-Komponenten, 80 t"] },
+  { area: "Konstruktion", entries: ["3 × CAD Cimatron", "2 × CAM Cimatron"] },
+  { area: "Qualitätssicherung", entries: ["Werth Profile-Projector", "Tesa 2-D Messplatz Micro Hite", "optisches 20-fach Messmikroskop", "Koordinatenmessgerät PIONEER 05.06.04"] }
+];
+---
+
+<BaseLayout
+  title="Maschinen und Ausstattung im Werkzeug- und Formenbau"
+  description="Maschinenpark von Schreck Kunststofftechnik für Fräsen, Schleifen, Erodieren, Spritzgießen, Cimatron-Konstruktion und Qualitätssicherung."
+>
+  <PageHero
+    eyebrow="Maschinen & Ausstattung"
+    title="Fertigung, Abmusterung und Messtechnik im Haus"
+    text="Der dokumentierte Maschinenpark verbindet mechanische Bearbeitung, zwei Spritzgießmaschinen für die Abmusterung, Cimatron-Arbeitsplätze und eigene Messtechnik."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div>
+          <p class="eyebrow">Dokumentierter Stand 01/2024</p>
+          <h2>Maschinenpark nach Fertigungsbereich</h2>
+        </div>
+        <p class="lead">Die Liste stammt aus der veröffentlichten Maschinenpark-Unterlage von Schreck. Für die projektbezogene Verfügbarkeit und Eignung sprechen Sie das Team bitte direkt an.</p>
+      </div>
+      <div class="equipment-grid">
+        {equipment.map((group) => (
+          <article class="equipment-card">
+            <h3>{group.area}</h3>
+            <ul>
+              {group.entries.map((entry) => <li>{entry}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">Werkzeuggrenzen laut Unterlage</p>
+      <h2>Technische Eckdaten für die erste Projektprüfung</h2>
+      <div class="stat-grid limits">
+        <div class="stat"><strong>446 × 646 mm</strong><span>Werkzeug-/Formgröße bis</span></div>
+        <div class="stat"><strong>1.500 kg</strong><span>Formgewicht bis</span></div>
+        <div class="stat"><strong>2K · 80 t</strong><span>ENGEL-Abmusterung</span></div>
+        <div class="stat"><strong>35 t</strong><span>ARBURG-Abmusterung</span></div>
+      </div>
+      <p class="source-note">Stand dieser Kapazitätsangaben: 01/2024. Die konkrete Machbarkeit hängt von Geometrie, Aufbau und Projektanforderungen ab.</p>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Machbarkeit</p>
+        <h2>Passt Ihr Werkzeug zum Maschinenpark?</h2>
+        <p class="lead">Senden Sie Zeichnung, Muster oder vorhandene CAD-Daten. Schreck prüft die technischen Anforderungen projektbezogen.</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href={`mailto:${company.email}?subject=Machbarkeitsprüfung%20Werkzeug`}>Unterlagen übermitteln</a>
+        <a class="button secondary" href="/qualitaet-zertifizierung/">Qualität &amp; Zertifizierung</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: end;
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 40px;
+  }
+
+  .equipment-card {
+    padding: 24px;
+    border: 1px solid rgba(8, 145, 178, 0.35);
+    border-radius: 8px;
+    background: rgba(8, 145, 178, 0.12);
+  }
+
+  .equipment-card h3 {
+    margin-bottom: 14px;
+  }
+
+  .equipment-card ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+  }
+
+  .equipment-card li + li {
+    margin-top: 8px;
+  }
+
+  .limits {
+    margin-top: 34px;
+  }
+
+  .limits strong {
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+  }
+
+  .source-note {
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 760px) {
+    .intro-grid,
+    .equipment-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

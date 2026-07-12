@@ -199,3 +199,39 @@ Ergebnis:
 - natürliche KI-Fragen für Start-, Kompetenz-, Qualitäts- und Produktseiten formuliert,
 - nicht belegte Themen wie ISO 13485, Reinraumproduktion, Lohnspritzguss, Luftfahrt und garantierte Leistungswerte ausgeschlossen,
 - Messkonzept für die Zeit nach der Domain-Aufschaltung festgelegt.
+
+## AP5 – Informationsarchitektur
+
+Umgesetzte Strukturänderungen:
+
+```text
+src/pages/qualitaet-zertifizierung.astro
+src/pages/maschinen-ausstattung.astro
+public/downloads/iso-9001-zertifikat-2024-2027.pdf
+sichtbare Breadcrumbs über src/components/PageHero.astro
+Navigation/Footer ergänzt
+Sitemap und Legacy-Worker angepasst
+```
+
+Entscheidungsergebnis:
+
+- zwei neue indexierbare Seiten mit eigener Suchintention und belegbaren Inhalten,
+- keine duplizierenden Branchen-, FAQ-, Blog-, Referenz-, Material- oder Service-Seiten,
+- `downloads/` als Noindex-Seite aus der XML-Sitemap entfernt,
+- alte WordPress-IDs 82, 85, 89 und 380 auf passende finale Ziele gelegt.
+
+Verifikation:
+
+```text
+npm run build
+Result (30 files): 0 errors, 0 warnings, 0 hints
+19 page(s) built
+
+rg -n "qualitaet-zertifizierung|maschinen-ausstattung|downloads" dist/sitemap.xml
+Ergebnis: neue Seiten enthalten; downloads nicht enthalten
+
+rg -n '"(82|85|89|380)"' dist/_worker.js
+Ergebnis: alle vier Legacy-IDs mit finalem Ziel enthalten
+```
+
+Zusatzbefund: `git check-ignore -v public/_worker.js` zeigte den Worker als ignoriert. Der Eintrag wurde aus `.gitignore` entfernt und der Worker ab AP5 in die Versionsverwaltung aufgenommen.

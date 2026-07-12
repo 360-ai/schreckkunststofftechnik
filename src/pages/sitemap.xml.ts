@@ -6,10 +6,12 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "",               priority: "1.0", changefreq: "weekly" },
   { path: "produkte/",      priority: "0.9", changefreq: "monthly" },
   { path: "kompetenzen/",   priority: "0.8", changefreq: "monthly" },
+  { path: "qualitaet-zertifizierung/", priority: "0.8", changefreq: "monthly" },
+  { path: "maschinen-ausstattung/", priority: "0.8", changefreq: "monthly" },
   { path: "ueber-uns/",     priority: "0.7", changefreq: "monthly" },
   { path: "karriere/",      priority: "0.8", changefreq: "weekly" },
   { path: "kontakt/",       priority: "0.8", changefreq: "monthly" },
-  { path: "downloads/",     priority: "0.6", changefreq: "monthly" },
+  // downloads/ ist noindex — gehoert nicht in die Sitemap
   // datenschutz/ ist noindex — gehoert nicht in die Sitemap
   { path: "impressum/",     priority: "0.3", changefreq: "yearly" },
 ];

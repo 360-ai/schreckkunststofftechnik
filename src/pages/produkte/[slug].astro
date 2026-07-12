@@ -59,7 +59,7 @@ const breadcrumbSchema = {
   canonical={canonicalUrl}
   jsonLd={[schema, breadcrumbSchema]}
 >
-  <PageHero eyebrow="Produktbereich" title={product.title} text={product.intro} image={product.image} />
+  <PageHero eyebrow="Produktbereich" title={product.title} text={product.intro} image={product.image} parent={{ label: "Produkte", href: "/produkte/" }} />
   <section class="section">
     <div class="container split">
       <div>

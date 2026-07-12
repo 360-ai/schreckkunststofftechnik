@@ -1,0 +1,106 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHero from "@components/PageHero.astro";
+import { company } from "@data/site";
+
+const certificateUrl = "/downloads/iso-9001-zertifikat-2024-2027.pdf";
+---
+
+<BaseLayout
+  title="Qualität und ISO-9001-Zertifizierung im Formenbau"
+  description="Schreck Kunststofftechnik ist nach DIN EN ISO 9001:2015 für den Formenbau von der Konstruktion bis zur Serienreife zertifiziert."
+>
+  <PageHero
+    eyebrow="Qualität & Zertifizierung"
+    title="Geprüfte Abläufe von der Konstruktion bis zur Serienreife"
+    text="Das Qualitätsmanagement von Schreck Kunststofftechnik ist nach DIN EN ISO 9001:2015 zertifiziert. Der Geltungsbereich umfasst den Formenbau von der Konstruktion bis zur Serienreife."
+  />
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">DIN EN ISO 9001:2015</p>
+        <h2>Der zertifizierte Geltungsbereich passt zum Projektablauf.</h2>
+        <p class="lead">Das Zertifikat der SKZ-Cert GmbH gilt für „Formenbau von der Konstruktion bis zur Serienreife“. Es ist vom 28. Juni 2024 bis zum 27. Juni 2027 gültig.</p>
+        <a class="button" href={certificateUrl}>ISO-Zertifikat öffnen</a>
+      </div>
+      <dl class="certificate-card">
+        <div><dt>Norm</dt><dd>DIN EN ISO 9001:2015</dd></div>
+        <div><dt>Geltungsbereich</dt><dd>Formenbau von der Konstruktion bis zur Serienreife</dd></div>
+        <div><dt>Zertifikatsnummer</dt><dd>000854.Q/24.R</dd></div>
+        <div><dt>Gültigkeit</dt><dd>28.06.2024–27.06.2027</dd></div>
+        <div><dt>Zertifizierungsstelle</dt><dd>SKZ-Cert GmbH</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">Prüfen und dokumentieren</p>
+      <h2>Qualitätssicherung mit eigener Messtechnik</h2>
+      <p class="lead">Die dokumentierte Ausstattung umfasst einen Werth Profile-Projector, einen Tesa 2-D Messplatz Micro Hite, ein optisches 20-fach Messmikroskop und ein Koordinatenmessgerät PIONEER 05.06.04.</p>
+      <div class="link-grid">
+        <a class="card" href="/maschinen-ausstattung/"><div class="card-body"><p class="eyebrow">Technik</p><h3>Maschinen &amp; Ausstattung</h3><p>Fertigung, Spritzgießen und Messtechnik im Überblick.</p></div></a>
+        <a class="card" href="/kompetenzen/"><div class="card-body"><p class="eyebrow">Ablauf</p><h3>Vom Konzept bis zur Serienreife</h3><p>Konstruktion, Abmusterung, Vermessung, Optimierung und Dokumentation.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Projektprüfung</p>
+        <h2>Welche Nachweise braucht Ihr Projekt?</h2>
+        <p class="lead">Teilen Sie Schreck früh mit, welche Prüf-, Mess- und Dokumentationsanforderungen für Bauteil, Werkzeug und Abnahme gelten.</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href={`mailto:${company.email}?subject=Projektanfrage%20Qualitätsanforderungen`}>Anforderungen übermitteln</a>
+        <a class="button secondary" href="/kontakt/">Kontaktmöglichkeiten</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .certificate-card {
+    margin: 0;
+    padding: 28px;
+    border: 1px solid rgba(8, 145, 178, 0.35);
+    border-radius: 8px;
+    background: rgba(8, 145, 178, 0.12);
+  }
+
+  .certificate-card div + div {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(8, 145, 178, 0.22);
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 4px 0 0;
+    color: var(--primary-deep);
+    font-weight: 800;
+    line-height: 1.5;
+  }
+
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 34px;
+  }
+
+  @media (max-width: 720px) {
+    .link-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

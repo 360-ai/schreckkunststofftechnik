@@ -23,6 +23,7 @@ export const company = {
 export const navItems = [
   { label: "Produkte", href: "/produkte/" },
   { label: "Kompetenzen", href: "/kompetenzen/" },
+  { label: "Qualität", href: "/qualitaet-zertifizierung/" },
   { label: "Über uns", href: "/ueber-uns/" },
   { label: "Karriere", href: "/karriere/" },
   { label: "Kontakt", href: "/kontakt/" }

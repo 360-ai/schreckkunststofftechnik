@@ -4,15 +4,47 @@ interface Props {
   title: string;
   text: string;
   image?: string;
+  parent?: {
+    label: string;
+    href: string;
+  };
 }
 
-const { eyebrow, title, text, image = "/images/hero2.jpg" } = Astro.props;
+const { eyebrow, title, text, image = "/images/hero2.jpg", parent } = Astro.props;
 ---
 
 <section class="page-hero" style={`background-image: linear-gradient(110deg, rgba(12,18,32,.95), rgba(12,18,32,.64)), url("${image}");`}>
   <div class="container">
+    <nav class="breadcrumbs" aria-label="Brotkrumen-Navigation">
+      <a href="/">Startseite</a>
+      <span aria-hidden="true">/</span>
+      {parent && <><a href={parent.href}>{parent.label}</a><span aria-hidden="true">/</span></>}
+      <span aria-current="page">{title}</span>
+    </nav>
     <p class="eyebrow">{eyebrow}</p>
     <h1>{title}</h1>
     <p class="lead">{text}</p>
   </div>
 </section>
+
+<style>
+  .breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.82rem;
+  }
+
+  .breadcrumbs a {
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: underline;
+    text-decoration-color: rgba(34, 211, 238, 0.42);
+    text-underline-offset: 4px;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--accent-light);
+  }
+</style>
