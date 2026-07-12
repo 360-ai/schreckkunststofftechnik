@@ -2,22 +2,54 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 import { company, stats } from "@data/site";
+
+const faqs = [
+  { q: "Wann wurde Schreck Kunststofftechnik gegründet?", a: "Schreck Kunststofftechnik wurde am 1. Januar 1984 gegründet. Eine der ersten Maschinen war eine Spritzgießmaschine, um Formen mit Abmusterungsprotokoll serienreif auszuliefern." },
+  { q: "Wie groß ist das Team von Schreck?", a: "Schreck Kunststofftechnik beschäftigt 14 Mitarbeiter. Seit der Gründung wurden außerdem mehr als 30 Lehrlinge ausgebildet." },
+  { q: "Wie viele Formen hat Schreck gebaut?", a: "Seit 1984 wurden mehr als 1.000 Formen gebaut und zur Serienreife gebracht. Diese Kennzahl beschreibt die dokumentierte Unternehmenshistorie, nicht eine Zusage für ein einzelnes Projekt." },
+  { q: "Wo befindet sich Schreck Kunststofftechnik?", a: "Der Unternehmenssitz liegt in der Wolkersdorfer Straße 28, 35099 Burgwald-Bottendorf in Hessen. Telefon, E-Mail und Routenlink stehen auf der Kontaktseite." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
+};
 ---
 
 <BaseLayout
   title="Schreck Kunststofftechnik – Unternehmen, Geschichte und Standort"
   description="Schreck Kunststofftechnik GmbH ist ein Formenbau-Unternehmen aus Burgwald-Bottendorf mit Erfahrung seit 1984."
+  jsonLd={faqSchema}
 >
-  <PageHero eyebrow="Über uns" title="Im Herzen Hessens. Seit 1984." text="Schreck Kunststofftechnik steht für präzisen Werkzeug- und Formenbau, produktionsnahe Entwicklung und ein erfahrenes Team in Burgwald-Bottendorf." image="/images/luftbild_skt.png" />
+  <PageHero eyebrow="Über uns" title="Formenbau in Burgwald-Bottendorf seit 1984" text="Schreck Kunststofftechnik ist ein Werkzeug- und Formenbauer mit 14 Mitarbeitern. Mehr als 1.000 Formen wurden seit der Gründung bis zur Serienreife gebracht." image="/images/luftbild_skt.png" />
   <section class="section">
     <div class="container split">
       <div>
         <p class="eyebrow">Unternehmen</p>
-        <h2>Ein spezialisierter Partner für anspruchsvolle Kunststoffprodukte.</h2>
-        <p class="lead">Seit der Gründung wurden mehr als 1000 Formen gebaut und zur Serienreife gebracht. Hunderte Problemlösungen und Entwicklungen wurden für Kunden umgesetzt.</p>
+        <h2>Ein spezialisierter Betrieb für Werkzeug- und Formenbau.</h2>
+        <p class="lead">Schreck entwickelt und fertigt Formen für Kunststoffverarbeitung sowie Aluminium- und Zink-Druckguss. Konstruktion, Abmusterung, Vermessung und Optimierung greifen bis zur Serienreife ineinander.</p>
       </div>
       <div class="image-panel">
         <img src="/images/team.jpg" alt="Team der Schreck Kunststofftechnik GmbH" loading="lazy" />
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Unternehmen und Geschichte</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
+    </div>
+  </section>
+  <section class="section soft">
+    <div class="container">
+      <p class="eyebrow">Arbeitsweise</p>
+      <h2>Was den Projektweg bei Schreck prägt</h2>
+      <div class="grid three profile-grid">
+        <article class="card"><div class="card-body"><h3>Eigene Abmusterung</h3><p>Hergestellte Formen können auf eigenen Spritzgießmaschinen abgemustert werden. Dieser Ansatz gehört seit den frühen Unternehmensjahren zum Betriebskonzept.</p><a href="/kompetenzen/">Projektphasen ansehen &rarr;</a></div></article>
+        <article class="card"><div class="card-body"><h3>Zertifizierter Geltungsbereich</h3><p>Das ISO-9001-Zertifikat gilt für den Formenbau von der Konstruktion bis zur Serienreife und ist bis 27.06.2027 gültig.</p><a href="/qualitaet-zertifizierung/">Zertifikat ansehen &rarr;</a></div></article>
+        <article class="card"><div class="card-body"><h3>Ausbildung und Fachwissen</h3><p>Mehr als 30 Lehrlinge wurden seit der Gründung ausgebildet. Reparaturen und Schulungen des Fachpersonals gehören zum belegten Leistungsumfang.</p><a href="/karriere/">Karriere ansehen &rarr;</a></div></article>
       </div>
     </div>
   </section>
@@ -76,6 +108,10 @@ import { company, stats } from "@data/site";
           rel="noopener noreferrer"
         >Route in Google Maps planen &rarr;</a>
       </div>
+      <div class="button-row site-links">
+        <a class="button light" href="/maschinen-ausstattung/">Maschinen &amp; Ausstattung</a>
+        <a class="button light" href="/kontakt/">Projekt besprechen</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -95,6 +131,21 @@ import { company, stats } from "@data/site";
 
   .map-link-box p {
     margin: 0;
+  }
+
+  .profile-grid {
+    margin-top: 34px;
+  }
+
+  .profile-grid a {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--accent);
+    font-weight: 800;
+  }
+
+  .site-links {
+    margin-top: 24px;
   }
 
   .history-timeline {

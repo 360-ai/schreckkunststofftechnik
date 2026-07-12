@@ -19,3 +19,9 @@ Stand: 12.07.2026
 - Keine zusätzlichen Branchen-, FAQ-, Blog-, Referenz-, Material- oder Service-Seiten. Entweder bedienen vorhandene Seiten die Suchintention bereits oder es fehlen bestätigte Inhalte.
 - Maschinen & Ausstattung wurde nicht als zusätzlicher Desktop-Hauptpunkt aufgenommen. Die Seite ist über Qualität, Kompetenzen, Footer und Mobile Navigation erreichbar, damit die Hauptnavigation kompakt bleibt.
 - `public/_worker.js` wird ab AP5 versioniert. Die Datei war zuvor durch `.gitignore` ausgeschlossen und wäre damit nach einem frischen Checkout nicht reproduzierbar gewesen; sie ist für die WordPress-Query-String-Redirects erforderlich.
+
+## AP6
+
+- Nicht belegte Aussagen zu Luftfahrt, konkreter Werkstoffpalette, pauschalen Projektlaufzeiten, vollständiger Qualitätsdokumentation, internationaler Betreuung, vorbeugender Wartung sowie Ausbildungsvergütung, Zusatzleistungen und Übernahmechancen wurden entfernt.
+- Produktseiten verwenden nur Anwendungen und Formanforderungen aus den in AP2 belegten Unternehmensseiten und Flyern. „Reinraumtauglich“ wird ausdrücklich als Formanforderung und nicht als eigene Reinraumproduktion erklärt.
+- Reparatur und Schulung vor Ort bleiben sichtbar, weil beide Leistungen auf der alten Unternehmensseite belegt sind. Wartung wird nicht mehr als pauschaler aktueller Leistungsbestandteil behauptet.

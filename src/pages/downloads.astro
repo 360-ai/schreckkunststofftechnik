@@ -6,15 +6,15 @@ import { company } from "@data/site";
 
 <BaseLayout
   title="Downloads"
-  description="Unterlagen von Schreck Kunststofftechnik: ISO-Zertifikat, Produktflyer und AGB können direkt angefragt werden."
+  description="ISO-9001-Zertifikat von Schreck Kunststofftechnik herunterladen; Produktflyer und AGB können per E-Mail angefragt werden."
   robots="noindex, follow"
 >
-  <PageHero eyebrow="Downloads" title="Unterlagen und Zertifikate" text="Zertifikate, Produktflyer und weitere technische Unterlagen stellt Schreck auf Anfrage bereit." />
+  <PageHero eyebrow="Downloads" title="Zertifikat und Unterlagen" text="Das gültige ISO-9001-Zertifikat steht direkt bereit. Produktflyer, AGB und weitere Unterlagen erhalten Sie auf Anfrage." />
   <section class="section">
     <div class="container">
-      <p class="lead">Bis die final freigegebenen PDF-Dateien eingebunden sind, führt diese Seite nicht auf leere oder fehlende Downloadpfade. Für Zertifikate, AGB oder produktbezogene Unterlagen genügt eine kurze Anfrage per E-Mail.</p>
+      <p class="lead">Das ISO-Zertifikat gilt für den Formenbau von der Konstruktion bis zur Serienreife und ist bis 27.06.2027 gültig. Weitere Unterlagen können Sie per E-Mail anfragen.</p>
       <div class="grid three download-grid">
-        <a class="card" href={`mailto:${company.email}?subject=Anfrage ISO-Zertifikat`} aria-label="ISO-Zertifikat anfragen"><div class="card-body"><p class="eyebrow">Zertifizierung</p><h3>ISO-Zertifikat</h3><p>Aktuelle Zertifikatsunterlagen direkt beim Team anfragen.</p></div></a>
+        <a class="card" href="/downloads/iso-9001-zertifikat-2024-2027.pdf" aria-label="ISO-9001-Zertifikat öffnen"><div class="card-body"><p class="eyebrow">DIN EN ISO 9001:2015</p><h3>ISO-Zertifikat öffnen</h3><p>Gültig vom 28.06.2024 bis 27.06.2027, Zertifikatsnummer 000854.Q/24.R.</p></div></a>
         <a class="card" href={`mailto:${company.email}?subject=Anfrage Produktflyer`}><div class="card-body"><p class="eyebrow">Produktflyer</p><h3>Flyer</h3><p>Informationen zu Innenanspritzung, Labor, Medizin, Verpackung, Mehrkomponenten und Kleinstteilen.</p></div></a>
         <a class="card" href={`mailto:${company.email}?subject=Anfrage AGB`}><div class="card-body"><p class="eyebrow">Rechtliches</p><h3>AGB</h3><p>Allgemeine Geschäftsbedingungen auf Anfrage erhalten.</p></div></a>
       </div>

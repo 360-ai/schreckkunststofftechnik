@@ -1,174 +1,98 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
+import { company } from "@data/site";
 
 const faqs = [
-  {
-    q: "Was bedeutet Abmusterung und warum ist sie wichtig?",
-    a: "Bei der Abmusterung werden erste Muster aus dem neuen Werkzeug unter Serienbedingungen gespritzt, vermessen und bewertet. Schreck verfügt über eine eigene Spritzgießmaschine, sodass Formen mit Abmusterungsprotokoll und dokumentierter Serienreife ausgeliefert werden können."
-  },
-  {
-    q: "Wie lange dauert die Entwicklung eines Spritzgusswerkzeugs?",
-    a: "Die Dauer hängt stark von der Bauteilkomplexität, den Toleranzanforderungen und der Anzahl der Abmusterungsschleifen ab. Einfache Werkzeuge können in wenigen Wochen fertiggestellt werden, komplexe Mehrkomponentenwerkzeuge benötigen mehrere Monate."
-  },
-  {
-    q: "Welche Materialien und Kunststoffe werden bei Schreck verarbeitet?",
-    a: "Schreck entwickelt Werkzeuge für eine breite Palette technischer Kunststoffe — von Standard-Thermoplasten wie PP, PE und ABS bis hin zu Hochleistungswerkstoffen für Medizintechnik und Automotive. Die Materialwahl wird gemeinsam mit dem Kunden auf Basis der Anforderungen festgelegt."
-  },
-  {
-    q: "Was bedeutet Serienreife im Formenbau?",
-    a: "Serienreife bedeutet, dass das Werkzeug reproduzierbar Teile innerhalb der geforderten Maß- und Qualitätstoleranzen produziert. Schreck liefert Formen erst aus, wenn Abmusterung, Vermessung und Dokumentation dieses Ziel bestätigen."
-  },
-  {
-    q: "Bietet Schreck auch Reparatur und Wartung bestehender Werkzeuge an?",
-    a: "Ja. Schreck übernimmt Reparaturen bei Werkzeugschäden sowie vorbeugende Wartung, um die Standzeit zu verlängern. Ergänzend werden Einweisungen vor Ort angeboten, damit das Team des Kunden das Werkzeug korrekt einsetzen kann."
-  }
+  { q: "Wie beginnt ein Werkzeugprojekt bei Schreck?", a: "Ein Werkzeugprojekt kann mit einer Produktidee, Zeichnung oder einem Muster beginnen. Schreck erstellt Angebote und Konstruktionen nach Zeichnungen oder Mustern und klärt die weiteren Anforderungen im direkten Projektgespräch." },
+  { q: "Mustert Schreck Werkzeuge auf eigenen Maschinen ab?", a: "Ja. Schreck mustert hergestellte Formen auf eigenen Spritzgießmaschinen ab. Eine eigene Maschine gehörte bereits in den frühen Unternehmensjahren zum Konzept, Formen mit Abmusterungsprotokoll serienreif auszuliefern." },
+  { q: "Welche Schritte deckt Schreck bis zur Serienreife ab?", a: "Belegt sind Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation. Welche Schritte und Nachweise ein Projekt konkret benötigt, wird vor der Umsetzung abgestimmt." },
+  { q: "Welche Unterlagen helfen bei der ersten Prüfung?", a: "Zeichnung oder Muster sind die belegte Grundlage für Angebot und Konstruktion. Zusätzlich helfen Angaben zu Bauteilfunktion, Werkstoff, Stückzahl, Maßen, Oberfläche, geplantem Serienstart und gewünschten Prüfungen." },
+  { q: "Übernimmt Schreck Reparaturen und Schulungen?", a: "Ja. Reparaturen und die Schulung von Fachpersonal, auch vor Ort, gehören zum belegten Leistungsumfang. Art, Umfang und Termin werden für das betreffende Werkzeug vereinbart." }
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a }
-  }))
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
 };
 
 const competencies = [
-  { title: "Konzeptionierung", text: "Anforderungen klären, Machbarkeit prüfen und eine tragfähige Werkzeugstrategie definieren — bevor der erste Span fällt." },
-  { title: "Konstruktion", text: "Formen und Bauteile fertigungsgerecht und prozesssicher auslegen. CAD-gestützt, materialspezifisch und mit Blick auf die spätere Produktion." },
-  { title: "Entwicklung", text: "Werkzeuglösung, Material und Spritzgießprozess werden gemeinsam gedacht — von der Auslegung bis zum ersten Muster." },
-  { title: "Abmusterung", text: "Erstmuster systematisch prüfen, Abweichungen dokumentieren und Werkzeug oder Prozess gezielt anpassen." },
-  { title: "Vermessung", text: "Maße, Toleranzen und Funktionsflächen mit modernem Messequipment absichern — für reproduzierbare Serienqualität." },
-  { title: "Optimierung", text: "Werkzeug und Prozess Schritt für Schritt verfeinern, bis die Serienreife stabil und dokumentiert erreicht ist." },
-  { title: "Dokumentation", text: "Alle Ergebnisse nachvollziehbar festhalten: für reibungslose Übergabe, Qualitätssicherung und spätere Wartung." },
-  { title: "Reparatur und Wartung", text: "Auch nach Auslieferung bleibt das Werkzeug betreut — Reparaturen, Einweisung und vorbeugende Wartung inklusive." }
+  { title: "Konzeptionierung", text: "Bauteil, Einsatz und Zielprozess einordnen und daraus die Werkzeugaufgabe ableiten." },
+  { title: "Konstruktion", text: "Formen nach Zeichnung, Muster und abgestimmten Projektanforderungen konstruieren." },
+  { title: "Entwicklung", text: "Produkt- oder Werkzeuglösung bis zu einer fertigungsgerechten Auslegung weiterentwickeln." },
+  { title: "Abmusterung", text: "Hergestellte Formen auf eigenen Spritzgießmaschinen abmustern und erste Bauteile bewerten." },
+  { title: "Vermessung", text: "Bauteile und relevante Merkmale mit eigener Qualitätssicherungsausstattung prüfen." },
+  { title: "Optimierung", text: "Erkenntnisse aus Abmusterung und Vermessung gezielt in Werkzeug und Prozess zurückführen." },
+  { title: "Dokumentation", text: "Projekt- und Prüfergebnisse in dem für das Vorhaben vereinbarten Umfang festhalten." },
+  { title: "Reparatur & Schulung", text: "Werkzeuge reparieren und Fachpersonal bei Bedarf auch vor Ort schulen." }
 ];
 ---
 
 <BaseLayout
-  title="Kompetenzen im Werkzeug- und Formenbau"
-  description="Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation bei Schreck Kunststofftechnik."
+  title="Werkzeugbau von Konstruktion bis Serienreife"
+  description="Schreck verbindet Konzeptionierung, Konstruktion, Abmusterung, Vermessung, Optimierung, Dokumentation und Reparatur im Formenbau."
   jsonLd={faqSchema}
 >
-  <PageHero eyebrow="Kompetenzen" title="Vom Konzept bis zum serienreifen Werkzeug" text="Schreck begleitet Projekte über alle entscheidenden Schritte des Formenbaus hinweg: technisch, nachvollziehbar und mit Blick auf die spätere Produktion." />
+  <PageHero eyebrow="Kompetenzen" title="Vom Konzept bis zum serienreifen Werkzeug" text="Schreck verbindet Konstruktion, Fertigung, Abmusterung, Vermessung und Optimierung. So bleiben Werkzeug und späterer Spritzgießprozess über die entscheidenden Projektphasen zusammen." />
+
   <section class="section">
-    <div class="container grid four">
-      {competencies.map((item, index) => (
-        <article class="card">
-          <div class="card-body">
-            <p class="eyebrow">{String(index + 1).padStart(2, "0")}</p>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </div>
-        </article>
-      ))}
+    <div class="container">
+      <div class="process-intro">
+        <div><p class="eyebrow">Projektphasen</p><h2>Ein nachvollziehbarer Weg statt isolierter Einzelleistungen</h2></div>
+        <p class="lead">Der genaue Ablauf richtet sich nach Bauteil und Projektstand. Die acht belegten Kompetenzfelder zeigen, welche Schritte Schreck übernehmen kann.</p>
+      </div>
+      <div class="grid four competency-grid">
+        {competencies.map((item, index) => <article class="card"><div class="card-body"><p class="eyebrow">{String(index + 1).padStart(2, "0")}</p><h3>{item.title}</h3><p>{item.text}</p></div></article>)}
+      </div>
     </div>
   </section>
+
   <section class="section soft">
+    <div class="container evidence-grid">
+      <a class="evidence-card" href="/maschinen-ausstattung/"><p class="eyebrow">Ausstattung</p><h2>Fertigung und Abmusterung im Haus</h2><p>Maschinen für Fräsen, Schleifen, Erodieren, Spritzgießen, Cimatron-Konstruktion und Messtechnik.</p><span>Maschinenpark ansehen &rarr;</span></a>
+      <a class="evidence-card" href="/qualitaet-zertifizierung/"><p class="eyebrow">Nachweis</p><h2>ISO 9001 bis zur Serienreife</h2><p>Der zertifizierte Geltungsbereich lautet „Formenbau von der Konstruktion bis zur Serienreife“.</p><span>Zertifizierung ansehen &rarr;</span></a>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <p class="eyebrow">Häufige Fragen</p>
-      <h2>Fragen zum Formenbau bei Schreck</h2>
-      <div class="faq-list">
-        {faqs.map(({ q, a }) => (
-          <details class="faq-item">
-            <summary>{q}</summary>
-            <div class="faq-answer">{a}</div>
-          </details>
-        ))}
-      </div>
+      <h2>Projektablauf bei Schreck</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
     </div>
   </section>
 
   <section class="section dark after-sales">
     <div class="container">
-      <p class="eyebrow">After-Sales</p>
-      <h2>Service nach der Auslieferung</h2>
-      <p class="lead">Das Werkzeug ist ausgeliefert — die Betreuung nicht beendet. Schreck steht mit Einweisungen vor Ort und schneller Instandsetzung auch im laufenden Serienbetrieb zur Seite.</p>
+      <p class="eyebrow">Nach der Fertigung</p>
+      <h2>Reparatur und Einweisung</h2>
+      <p class="lead">Schreck führt Reparaturen durch und schult Fachpersonal bei Bedarf auch vor Ort. Details werden anhand des Werkzeugs und der konkreten Aufgabenstellung geklärt.</p>
       <div class="service-grid">
-        <article class="service-card">
-          <div class="service-image">
-            <img src="/images/einweisung.png" alt="Einweisung vor Ort am Werkzeug bei Schreck Kunststofftechnik" loading="lazy" />
-          </div>
-          <div class="service-body">
-            <h3>Einweisung vor Ort</h3>
-            <p>Wir schulen Ihr Team direkt am Werkzeug — fachgerecht und praxisnah, damit der Serienanlauf reibungslos gelingt.</p>
-          </div>
-        </article>
-        <article class="service-card">
-          <div class="service-image">
-            <img src="/images/reparatur.png" alt="Reparatur und Wartung von Spritzgusswerkzeugen bei Schreck Kunststofftechnik" loading="lazy" />
-          </div>
-          <div class="service-body">
-            <h3>Reparaturen &amp; Wartung</h3>
-            <p>Schnelle Instandsetzung und vorbeugende Wartung — wir halten Ihre Werkzeuge dauerhaft in einwandfreiem Zustand.</p>
-          </div>
-        </article>
+        <article class="service-card"><div class="service-image"><img src="/images/einweisung.png" alt="Einweisung vor Ort an einem Werkzeug" loading="lazy" /></div><div class="service-body"><h3>Schulung vor Ort</h3><p>Fachpersonal kann direkt am Werkzeug und bezogen auf die vereinbarte Anwendung geschult werden.</p></div></article>
+        <article class="service-card"><div class="service-image"><img src="/images/reparatur.png" alt="Reparatur eines Spritzgusswerkzeugs" loading="lazy" /></div><div class="service-body"><h3>Reparatur anfragen</h3><p>Beschreiben Sie Werkzeug, Schadenbild und Dringlichkeit. Schreck stimmt den möglichen Reparaturumfang mit Ihnen ab.</p></div></article>
       </div>
-      <div class="service-cta">
-        <a class="button" href="/kontakt/">Servicefall melden</a>
-        <a class="button secondary" href="/kontakt/">Wartungsanfrage stellen</a>
-      </div>
+      <div class="service-cta"><a class="button" href={`mailto:${company.email}?subject=Reparaturanfrage%20Werkzeug`}>Reparatur anfragen</a><a class="button secondary" href="/kontakt/">Projekt besprechen</a></div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .service-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-    margin-top: 40px;
-  }
-
-  .service-card {
-    border: 1px solid rgba(34, 211, 238, 0.2);
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .service-image {
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-  }
-
-  .service-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 300ms ease;
-  }
-
-  .service-card:hover .service-image img {
-    transform: scale(1.04);
-  }
-
-  .service-body {
-    padding: 22px 24px 26px;
-  }
-
-  .service-body h3 {
-    color: #fff;
-    margin-bottom: 10px;
-  }
-
-  .service-body p {
-    color: rgba(255, 255, 255, 0.68);
-    line-height: 1.68;
-  }
-
-  .service-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 36px;
-  }
-
-  @media (max-width: 760px) {
-    .service-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  .process-intro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 42px; align-items: end; }
+  .competency-grid { margin-top: 40px; }
+  .evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .evidence-card { padding: 28px; border: 1px solid rgba(8, 145, 178, .35); border-radius: 8px; background: rgba(8, 145, 178, .12); }
+  .evidence-card h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+  .evidence-card p:not(.eyebrow) { color: var(--muted); }
+  .evidence-card span { display: inline-block; margin-top: 14px; color: var(--accent); font-weight: 800; }
+  .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px; }
+  .service-card { border: 1px solid rgba(34, 211, 238, 0.2); border-radius: 12px; overflow: hidden; background: rgba(255, 255, 255, 0.04); }
+  .service-image { aspect-ratio: 16 / 10; overflow: hidden; }
+  .service-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
+  .service-card:hover .service-image img { transform: scale(1.04); }
+  .service-body { padding: 22px 24px 26px; }
+  .service-body h3 { color: #fff; margin-bottom: 10px; }
+  .service-body p { color: rgba(255, 255, 255, 0.68); line-height: 1.68; }
+  .service-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  @media (max-width: 760px) { .process-intro, .evidence-grid, .service-grid { grid-template-columns: 1fr; } }
 </style>

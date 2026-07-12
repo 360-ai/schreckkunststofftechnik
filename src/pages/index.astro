@@ -6,27 +6,27 @@ import { industries, products, stats } from "@data/site";
 const faqs = [
   {
     q: "Welche Leistungen bietet Schreck Kunststofftechnik?",
-    a: "Schreck Kunststofftechnik bietet Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung, Dokumentation sowie Reparatur und Wartung von Formen und Spritzgusswerkzeugen — von der ersten Produktidee bis zur serienreifen Produktionslösung."
+    a: "Schreck bietet Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation im Formenbau. Reparaturen und die Schulung von Fachpersonal, auch vor Ort, gehören ebenfalls zum belegten Leistungsumfang."
   },
   {
     q: "Für welche Branchen fertigt Schreck Werkzeuge?",
-    a: "Schreck fertigt für Medizintechnik, Labortechnik, Verpackung und Kosmetik, Innenanspritzung, Mehrkomponentenwerkzeuge sowie Kleinstteile. Kunden kommen u. a. aus Automotive, Elektronik und der Luftfahrtindustrie."
+    a: "Schreck nennt Medizin, Labor, Kosmetik, Verpackung, Filtertechnik, Automobil, Haushaltsprodukte und Elektronik als Anwendungsbereiche. Die Website vertieft Medizin, Labor, Verpackung, Innenanspritzung, Mehrkomponentenwerkzeuge und Kleinstteile."
   },
   {
     q: "Wo ist Schreck Kunststofftechnik ansässig?",
-    a: "Schreck Kunststofftechnik GmbH ist im Herzen Hessens ansässig: Wolkersdorfer Straße 28, 35099 Burgwald-Bottendorf. Von dort werden Kunden deutschlandweit und international betreut."
+    a: "Schreck Kunststofftechnik sitzt in der Wolkersdorfer Straße 28, 35099 Burgwald-Bottendorf in Hessen. Telefon, E-Mail und eine Routenplanung finden Sie auf der Kontaktseite."
   },
   {
     q: "Seit wann ist Schreck im Formenbau tätig?",
     a: "Schreck Kunststofftechnik wurde am 1. Januar 1984 gegründet. Seitdem wurden über 1.000 Formen zur Serienreife gebracht und mehr als 30 Lehrlinge zum Werkzeugmechaniker ausgebildet."
   },
   {
-    q: "Übernimmt Schreck auch Reparaturen und Wartung?",
-    a: "Ja. Schreck bietet After-Sales-Service: Einweisung vor Ort, schnelle Instandsetzung bei Schäden und vorbeugende Wartung, damit Werkzeuge dauerhaft in einwandfreiem Zustand bleiben."
+    q: "Übernimmt Schreck Reparaturen und Schulungen?",
+    a: "Ja. Schreck führt Reparaturen durch und schult Fachpersonal bei Bedarf auch vor Ort. Umfang und Termin werden für das konkrete Werkzeug abgestimmt."
   },
   {
     q: "Wie läuft eine Projektanfrage bei Schreck ab?",
-    a: "Interessenten senden Zeichnungen, Muster, CAD-Daten oder Lastenhefte an info@schreck-kunststofftechnik.com. Das Team prüft Machbarkeit und Fertigungskonzept und meldet sich mit einer fachlichen Einschätzung."
+    a: "Senden Sie eine Zeichnung oder ein Muster an info@schreck-kunststofftechnik.com oder rufen Sie an. Angaben zu Bauteilfunktion, Werkstoff, Stückzahl, Maßen, Oberfläche und gewünschter Dokumentation helfen bei der ersten Einordnung."
   }
 ];
 
@@ -71,7 +71,7 @@ const processSteps = [
   },
   {
     title: "Service",
-    text: "Wartung, Reparatur und Einweisung nach Auslieferung."
+    text: "Reparatur und Schulung des Fachpersonals, bei Bedarf auch vor Ort."
   }
 ];
 
@@ -93,12 +93,12 @@ const heroVideoLoopEnd = 6.8;
     <div class="hero-bg"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
-      <p class="eyebrow">Präzision im Formenbau seit 1984</p>
-      <h1>Produktentwicklung <span>mit System</span></h1>
-      <p class="lead">Von der Idee bis zum marktreifen Produkt: Schreck Kunststofftechnik entwickelt und fertigt anspruchsvolle Formen für Kunststoffverarbeitung, Aluminium- und Zink-Druckguss.</p>
+      <p class="eyebrow">Werkzeug- und Formenbau in Hessen seit 1984</p>
+      <h1>Formenbau <span>bis zur Serienreife</span></h1>
+      <p class="lead">Schreck Kunststofftechnik entwickelt und fertigt Formen für Kunststoffverarbeitung sowie Aluminium- und Zink-Druckguss – von der Konstruktion bis zur Abmusterung.</p>
       <div class="button-row">
-        <a class="button" href="/kontakt/">Projekt anfragen</a>
-        <a class="button secondary" href="/produkte/">Produkte ansehen</a>
+        <a class="button" href="/kontakt/">Projekt besprechen</a>
+        <a class="button secondary" href="/produkte/">Anwendungen ansehen</a>
       </div>
       </div>
       <div class="hero-visual">
@@ -129,10 +129,10 @@ const heroVideoLoopEnd = 6.8;
     <div class="container process-layout">
       <div class="process-intro">
         <p class="eyebrow">B2B-Partner für Serienreife</p>
-        <h2>Werkzeuge, die vom ersten Muster bis zur Produktion mitgedacht sind.</h2>
+        <h2>Werkzeug, Abmusterung und Optimierung zusammenführen.</h2>
       </div>
       <div>
-        <p class="lead">Schreck Kunststofftechnik ist der B2B-Partner für anspruchsvolle Kunststoffprojekte — von der ersten Idee bis zur dokumentierten Serienfreigabe. Eigene Spritzgießmaschine für Abmusterung vor Ort, vollständige Qualitätsdokumentation und Werkzeugbetreuung auch nach Auslieferung.</p>
+        <p class="lead">Schreck begleitet Werkzeugprojekte über Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation. Eigene Spritzgießmaschinen ermöglichen die Abmusterung im Haus.</p>
         <div class="pill-list">
           {industries.map((item) => <span class="pill">{item}</span>)}
         </div>
@@ -144,8 +144,8 @@ const heroVideoLoopEnd = 6.8;
     <div class="section-mark">02</div>
     <div class="container">
       <p class="eyebrow">Produktbereiche</p>
-      <h2>Formenbau für anspruchsvolle Kunststoffteile</h2>
-      <p class="lead product-lead">Sechs Schwerpunkte, ein Anspruch: technische Kunststoffteile so zu entwickeln, dass Werkzeug, Prozess und Serienqualität zusammenpassen.</p>
+      <h2>Formenbau nach Bauteil und Anwendung</h2>
+      <p class="lead product-lead">Sechs Bereiche zeigen belegte Bauteilbeispiele und Formanforderungen – von Medizin und Labor bis zu Mehrkomponentenwerkzeugen und Kleinstteilen.</p>
       <div class="grid three product-grid">
         {products.map((product) => <ProductCard product={product} />)}
       </div>
@@ -207,7 +207,7 @@ const heroVideoLoopEnd = 6.8;
       <div>
         <p class="eyebrow">Arbeitgeber & Ausbildung</p>
         <h2>Technik, Erfahrung und ein Team, das Wissen weitergibt.</h2>
-        <p class="lead">Mehr als 30 Lehrlinge wurden seit der Gründung ausgebildet. Die neue Website stellt Schreck deshalb nicht nur als Lieferanten dar, sondern auch als attraktiven Ausbildungs- und Arbeitsplatz in Burgwald-Bottendorf.</p>
+        <p class="lead">Mehr als 30 Lehrlinge wurden seit der Gründung ausgebildet. Aktuell ist die Ausbildung zum Werkzeugmechaniker mit Start im August 2027 ausgeschrieben.</p>
         <div class="button-row">
           <a class="button" href="/karriere/">Karriere ansehen</a>
           <a class="button light" href="/ueber-uns/">Über uns</a>
@@ -219,9 +219,9 @@ const heroVideoLoopEnd = 6.8;
   <section class="section mid">
     <div class="section-mark">05</div>
     <div class="container">
-      <p class="eyebrow">After-Sales</p>
-      <h2>Service nach der Auslieferung</h2>
-      <p class="lead after-sales-lead">Das Werkzeug ist ausgeliefert — die Betreuung nicht beendet. Schreck steht mit Einweisungen vor Ort und schneller Instandsetzung auch im laufenden Serienbetrieb zur Seite.</p>
+      <p class="eyebrow">Reparatur & Schulung</p>
+      <h2>Unterstützung am Werkzeug</h2>
+      <p class="lead after-sales-lead">Schreck führt Reparaturen durch und schult Fachpersonal bei Bedarf auch vor Ort. Die konkrete Aufgabe wird anhand des Werkzeugs abgestimmt.</p>
       <div class="after-sales-grid">
         <div class="after-sales-card">
           <div class="after-sales-img">
@@ -229,16 +229,16 @@ const heroVideoLoopEnd = 6.8;
           </div>
           <div class="after-sales-body">
             <h3>Einweisung vor Ort</h3>
-            <p>Wir schulen Ihr Team direkt am Werkzeug — fachgerecht und praxisnah, damit der Serienanlauf reibungslos gelingt.</p>
+            <p>Die Schulung wird am Werkzeug und bezogen auf die vereinbarte Anwendung durchgeführt.</p>
           </div>
         </div>
         <div class="after-sales-card">
           <div class="after-sales-img">
-            <img src="/images/reparatur.png" alt="Reparatur und Wartung von Spritzgusswerkzeugen bei Schreck Kunststofftechnik" loading="lazy" />
+            <img src="/images/reparatur.png" alt="Reparatur eines Spritzgusswerkzeugs bei Schreck Kunststofftechnik" loading="lazy" />
           </div>
           <div class="after-sales-body">
-            <h3>Reparaturen &amp; Wartung</h3>
-            <p>Schnelle Instandsetzung und vorbeugende Wartung — wir halten Ihre Werkzeuge dauerhaft in einwandfreiem Zustand.</p>
+            <h3>Reparaturen</h3>
+            <p>Für eine Reparaturanfrage helfen Angaben zu Werkzeug, Schadenbild und Dringlichkeit.</p>
           </div>
         </div>
       </div>
@@ -267,7 +267,7 @@ const heroVideoLoopEnd = 6.8;
         <h2>Sie planen ein neues Werkzeug oder wollen ein Produkt zur Serienreife bringen?</h2>
       </div>
       <div>
-        <p class="lead">Senden Sie Zeichnungen, Muster oder Anforderungen direkt an Schreck. Das Team prüft Machbarkeit, Fertigungskonzept und nächste Schritte.</p>
+        <p class="lead">Senden Sie eine Zeichnung, ein Muster oder vorhandene Anforderungen. Schreck ordnet die Werkzeugaufgabe ein und stimmt den nächsten fachlichen Schritt mit Ihnen ab.</p>
         <a class="button" href="/kontakt/">Kontakt aufnehmen</a>
       </div>
     </div>

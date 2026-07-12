@@ -235,3 +235,56 @@ Ergebnis: alle vier Legacy-IDs mit finalem Ziel enthalten
 ```
 
 Zusatzbefund: `git check-ignore -v public/_worker.js` zeigte den Worker als ignoriert. Der Eintrag wurde aus `.gitignore` entfernt und der Worker ab AP5 in die Versionsverwaltung aufgenommen.
+
+## AP6 – Website-Texte
+
+Umgesetzte Dateien:
+
+```text
+src/data/site.ts
+src/pages/index.astro
+src/pages/produkte/index.astro
+src/pages/produkte/[slug].astro
+src/pages/kompetenzen.astro
+src/pages/qualitaet-zertifizierung.astro
+src/pages/maschinen-ausstattung.astro
+src/pages/ueber-uns.astro
+src/pages/karriere.astro
+src/pages/karriere/[slug].astro (Daten aus Content)
+src/content/jobs/ausbildung-werkzeugmechaniker-2027.md
+src/pages/kontakt.astro
+src/pages/downloads.astro
+```
+
+Inhaltliche Prüfung:
+
+```text
+rg -n "Luftfahrt|vorbeugende Wartung|vollständige Qualitätsdokumentation|
+wenigen Wochen|mehrere Monate|Standard-Thermoplast|PP, PE|ABS|
+Übernahmechancen|Ausbildungsvergütung|Zusatzleistungen|international betreut|
+deutschlandweit|Nadelverschlusstechnik|Umspritzungsformen|Schraubformen" src
+```
+
+Ergebnis: 0 Treffer in den redaktionellen Website-Texten. Der getrennt geprüfte Begriff Web3Forms steht ausschließlich im inhaltlich gesperrten Datenschutzhinweis.
+
+Build-Auswertung nach der Textüberarbeitung:
+
+```text
+alle 19 erzeugten HTML-Seiten mit genau einem H1
+Produktdetailseiten: 356–375 Wörter statt zuvor 183–193
+Startseite: 744 Wörter und 6 sichtbare FAQ
+Kompetenzen: 497 Wörter und 5 sichtbare FAQ
+Kontakt: 425 Wörter und 4 sichtbare FAQ
+Qualität: 386 Wörter und 4 sichtbare FAQ
+Maschinen: 411 Wörter und 4 sichtbare FAQ
+Über uns: 441 Wörter und 4 sichtbare FAQ
+Karriere: 384 Wörter und 4 sichtbare FAQ
+```
+
+Ausgeführter Build:
+
+```text
+npm run build
+Result (30 files): 0 errors, 0 warnings, 0 hints
+19 page(s) built
+```

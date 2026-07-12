@@ -3,106 +3,73 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 import JobList from "@components/JobList.astro";
 import { company } from "@data/site";
+
+const faqs = [
+  { q: "Welche Stelle ist aktuell bei Schreck ausgeschrieben?", a: "Aktuell ist die Ausbildung zum Werkzeugmechaniker (m/w/d) mit Start im August 2027 ausgeschrieben. Weitere aktive Stellen werden auf dieser Seite angezeigt, sobald sie veröffentlicht sind." },
+  { q: "Wie lange dauert die Ausbildung zum Werkzeugmechaniker?", a: "Die ausgeschriebene Ausbildung dauert drei Jahre. Ausbildungsort ist Schreck Kunststofftechnik in 35099 Burgwald-Bottendorf." },
+  { q: "Wie kann ich mich bewerben?", a: `Sie können Ihre Bewerbung per E-Mail an ${company.email} oder per Post an ${company.name}, ${company.street}, ${company.postalCity} senden.` },
+  { q: "Kann ich mich initiativ bewerben?", a: "Ja, Sie können Ihr Interesse initiativ per E-Mail oder Post mitteilen. Eine Initiativbewerbung bedeutet nicht, dass aktuell eine passende Stelle offen ist." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
+};
 ---
 
-<BaseLayout
-  title="Karriere und Stellenanzeigen"
-  description="Karriere bei Schreck Kunststofftechnik: aktuelle Stellenanzeigen und Ausbildung zum Werkzeugmechaniker in Burgwald-Bottendorf."
->
-  <PageHero eyebrow="Karriere" title="Zukunft im Werkzeugbau" text="Wer Technik, Präzision und praktische Arbeit mag, findet bei Schreck ein modernes Umfeld mit Erfahrung, Teamgeist und Entwicklungsmöglichkeiten." image="/images/team.jpg" />
+<BaseLayout title="Karriere und Ausbildung im Werkzeugbau" description="Ausbildung zum Werkzeugmechaniker 2027 und Initiativbewerbung bei Schreck Kunststofftechnik in Burgwald-Bottendorf." jsonLd={faqSchema}>
+  <PageHero eyebrow="Karriere" title="Werkzeugbau lernen und mitgestalten" text="Schreck bildet seit 1984 aus. Mehr als 30 Lehrlinge haben ihre Ausbildung im Unternehmen absolviert; aktuell ist der Ausbildungsstart im August 2027 ausgeschrieben." image="/images/team.jpg" />
 
   <section class="section soft compact">
-    <div class="container">
-      <div class="why-grid">
-        <article class="why-card">
-          <p class="eyebrow">Team</p>
-          <h3>Familiäre Zusammenarbeit</h3>
-          <p>Kurze Wege, direkte Abstimmung und ein Umfeld, in dem Erfahrung wirklich weitergegeben wird.</p>
-        </article>
-        <article class="why-card">
-          <p class="eyebrow">Ausbildung</p>
-          <h3>Mehr als 30 Lehrlinge ausgebildet</h3>
-          <p>Schreck ist Ausbildungsbetrieb mit Substanz. Neue Kolleginnen und Kollegen lernen hier direkt an echten Projekten.</p>
-        </article>
-        <article class="why-card">
-          <p class="eyebrow">Technik</p>
-          <h3>Präzision mit modernem Maschinenpark</h3>
-          <p>Werkzeugbau, Vermessung und Fertigung greifen im Alltag sauber ineinander.</p>
-        </article>
-      </div>
+    <div class="container why-grid">
+      <article class="why-card"><p class="eyebrow">Erfahrung</p><h3>Mehr als 30 Lehrlinge ausgebildet</h3><p>Ausbildung gehört seit der Gründung zur Unternehmensgeschichte von Schreck.</p></article>
+      <article class="why-card"><p class="eyebrow">Praxis</p><h3>Vom Werkzeug bis zur Abmusterung</h3><p>Die ausgeschriebene Ausbildung umfasst Werkzeugherstellung, Reparatur, CNC-Maschinen, Zeichnungen sowie Mess- und Prüfmittel.</p></article>
+      <article class="why-card"><p class="eyebrow">Standort</p><h3>Burgwald-Bottendorf</h3><p>Ausbildung und Bewerbung beziehen sich auf den Unternehmensstandort in der Wolkersdorfer Straße 28.</p></article>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Offene Stellen</p>
-      <h2>Aktuelle Möglichkeiten</h2>
-      <p class="lead">Schreck sucht Werkzeugmechaniker und Auszubildende, die Technik verstehen und in einem erfahrenen Team weiterkommen wollen.</p>
-      <div class="jobs">
-        <JobList />
-      </div>
+      <p class="eyebrow">Aktuell ausgeschrieben</p>
+      <h2>Ausbildung zum Werkzeugmechaniker 2027</h2>
+      <p class="lead">Derzeit ist eine aktive Stelle veröffentlicht. Details zu Start, Ausbildungsdauer, Aufgaben und Bewerbung stehen in der Stellenanzeige.</p>
+      <div class="jobs"><JobList /></div>
     </div>
   </section>
 
   <section class="section soft">
     <div class="container split">
       <div>
-        <p class="eyebrow">Bewerbung</p>
-        <h2>Direkt bewerben oder initiativ anfragen</h2>
-        <p class="lead">Bewerbungen können per E-Mail oder per Post an {company.name}, {company.street}, {company.postalCity} gesendet werden. Wenn gerade keine passende Stelle offen ist, sind Initiativbewerbungen ausdrücklich willkommen.</p>
+        <p class="eyebrow">Initiativbewerbung</p>
+        <h2>Interesse an Werkzeug- und Formenbau?</h2>
+        <p class="lead">Wenn keine passende Stelle veröffentlicht ist, können Sie Ihr Interesse per E-Mail oder Post mitteilen. Eine Initiativbewerbung ist keine Zusage für eine aktuell offene Position.</p>
+        <p>{company.name}<br />{company.street}<br />{company.postalCity}</p>
       </div>
       <div class="apply-panel">
-        <a class="button" href={`mailto:${company.email}?subject=Bewerbung`}>Jetzt bewerben</a>
-        <a class="button light" href={`mailto:${company.email}?subject=Initiativbewerbung`}>Initiativbewerbung</a>
+        <a class="button" href={`mailto:${company.email}?subject=Bewerbung%20Ausbildung%202027`}>Für Ausbildung bewerben</a>
+        <a class="button light" href={`mailto:${company.email}?subject=Initiativbewerbung`}>Initiativbewerbung senden</a>
         <a class="apply-mail" href={`mailto:${company.email}`}>{company.email}</a>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Bewerbung und Ausbildung</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .jobs {
-    margin-top: 34px;
-  }
-
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
-  }
-
-  .why-card {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 26px 24px;
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 14px 32px rgba(12, 18, 32, 0.06);
-  }
-
-  .why-card h3 {
-    margin: 6px 0 10px;
-  }
-
-  .why-card p:not(.eyebrow) {
-    color: var(--muted);
-    line-height: 1.68;
-  }
-
-  .apply-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .apply-mail {
-    color: var(--muted);
-    font-weight: 700;
-  }
-
-  @media (max-width: 900px) {
-    .why-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  .jobs { margin-top: 34px; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .why-card { border: 1px solid var(--line); border-radius: 8px; padding: 26px 24px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 14px 32px rgba(12, 18, 32, 0.06); }
+  .why-card h3 { margin: 6px 0 10px; }
+  .why-card p:not(.eyebrow) { color: var(--muted); line-height: 1.68; }
+  .apply-panel { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .apply-mail { color: var(--muted); font-weight: 700; }
+  @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
 </style>

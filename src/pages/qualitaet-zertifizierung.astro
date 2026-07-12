@@ -4,11 +4,24 @@ import PageHero from "@components/PageHero.astro";
 import { company } from "@data/site";
 
 const certificateUrl = "/downloads/iso-9001-zertifikat-2024-2027.pdf";
+const faqs = [
+  { q: "Nach welcher Norm ist Schreck Kunststofftechnik zertifiziert?", a: "Schreck Kunststofftechnik ist nach DIN EN ISO 9001:2015 zertifiziert. Das Zertifikat wurde von der SKZ-Cert GmbH ausgestellt." },
+  { q: "Für welchen Geltungsbereich gilt das Zertifikat?", a: "Der Geltungsbereich lautet „Formenbau von der Konstruktion bis zur Serienreife“. Damit bezieht sich der Nachweis direkt auf die zentralen Projektphasen des Unternehmens." },
+  { q: "Wie lange ist das aktuelle ISO-Zertifikat gültig?", a: "Das aktuelle Zertifikat ist vom 28.06.2024 bis zum 27.06.2027 gültig. Die Zertifikatsnummer lautet 000854.Q/24.R." },
+  { q: "Welche Messtechnik ist dokumentiert?", a: "Dokumentiert sind ein Werth Profile-Projector, ein Tesa 2-D Messplatz Micro Hite, ein optisches 20-fach Messmikroskop und ein Koordinatenmessgerät PIONEER 05.06.04. Die konkrete Prüfung wird projektbezogen festgelegt." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
+};
 ---
 
 <BaseLayout
   title="Qualität und ISO-9001-Zertifizierung im Formenbau"
   description="Schreck Kunststofftechnik ist nach DIN EN ISO 9001:2015 für den Formenbau von der Konstruktion bis zur Serienreife zertifiziert."
+  jsonLd={faqSchema}
 >
   <PageHero
     eyebrow="Qualität & Zertifizierung"
@@ -43,6 +56,14 @@ const certificateUrl = "/downloads/iso-9001-zertifikat-2024-2027.pdf";
         <a class="card" href="/maschinen-ausstattung/"><div class="card-body"><p class="eyebrow">Technik</p><h3>Maschinen &amp; Ausstattung</h3><p>Fertigung, Spritzgießen und Messtechnik im Überblick.</p></div></a>
         <a class="card" href="/kompetenzen/"><div class="card-body"><p class="eyebrow">Ablauf</p><h3>Vom Konzept bis zur Serienreife</h3><p>Konstruktion, Abmusterung, Vermessung, Optimierung und Dokumentation.</p></div></a>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Zertifizierung und Qualitätssicherung</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
     </div>
   </section>
 

@@ -2,19 +2,40 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
 import { company } from "@data/site";
+
+const faqs = [
+  { q: "Wie kann ich Zeichnungen oder Muster übermitteln?", a: "Zeichnungen und vorhandene Projektdaten können Sie per E-Mail senden; physische Muster stimmen Sie bitte vorher telefonisch oder per E-Mail ab. Das Formular öffnet Ihr eigenes E-Mail-Programm, in dem Sie Dateien anhängen können." },
+  { q: "Welche Angaben helfen bei der ersten Projektprüfung?", a: "Hilfreich sind Bauteilfunktion, Zeichnung oder Muster, vorgesehener Werkstoff, Zielstückzahl, Maße, Oberflächen- und Prüfanforderungen sowie der geplante Serienstart. Nicht alle Angaben müssen zu Beginn feststehen." },
+  { q: "Werden Daten über das Formular an einen Webdienst gesendet?", a: "Nein. Das aktuelle Formular sendet keine Daten an einen Webdienst. Es erstellt nach dem Klick eine vorausgefüllte E-Mail in Ihrem eigenen E-Mail-Programm." },
+  { q: "Kann ich ein Projekt telefonisch besprechen?", a: `Ja. Sie erreichen Schreck Kunststofftechnik unter ${company.phone}. Für Unterlagen und schriftliche Anforderungen nutzen Sie ${company.email}.` }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
+};
 ---
 
 <BaseLayout
-  title="Kontakt | Schreck Kunststofftechnik – Formenbau Burgwald-Bottendorf"
-  description="Kontakt zu Schreck Kunststofftechnik GmbH in Burgwald-Bottendorf: Telefon, E-Mail, Adresse und Projektanfrage."
+  title="Kontakt und Projektanfrage im Formenbau"
+  description="Projektanfrage an Schreck Kunststofftechnik in Burgwald-Bottendorf: Zeichnung oder Muster per E-Mail übermitteln oder Werkzeugprojekt telefonisch besprechen."
+  jsonLd={faqSchema}
 >
-  <PageHero eyebrow="Kontakt" title="Projekt anfragen" text="Senden Sie Zeichnungen, Muster oder Anforderungen. Schreck prüft Ihr Vorhaben und meldet sich mit einer fachlichen Einschätzung." />
+  <PageHero eyebrow="Kontakt" title="Werkzeugprojekt besprechen" text="Übermitteln Sie Zeichnung, Muster oder vorhandene Anforderungen per E-Mail. Schreck ordnet die Werkzeugaufgabe ein und stimmt den nächsten fachlichen Schritt mit Ihnen ab." />
 
   <section class="section">
     <div class="container grid three">
       <article class="card"><div class="card-body"><p class="eyebrow">Telefon</p><h3><a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a></h3><p>Fax: {company.fax}</p></div></article>
-      <article class="card"><div class="card-body"><p class="eyebrow">E-Mail</p><h3><a href={`mailto:${company.email}`}>{company.email}</a></h3><p>Für Projektanfragen, Bewerbungen und allgemeine Anliegen.</p></div></article>
+      <article class="card"><div class="card-body"><p class="eyebrow">E-Mail</p><h3><a href={`mailto:${company.email}`}>{company.email}</a></h3><p>Für Zeichnungen, Projektanfragen, Reparaturen und Bewerbungen.</p></div></article>
       <article class="card"><div class="card-body"><p class="eyebrow">Adresse</p><h3>{company.street}</h3><p>{company.postalCity}</p></div></article>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container grid two">
+      <article class="card"><div class="card-body"><p class="eyebrow">Für den Einkauf</p><h2>Leistungsfit und Nachweise prüfen</h2><p>Hilfreich sind Anwendungsbereich, Zieltermin, gewünschter Lieferumfang sowie Prüf- und Dokumentationsanforderungen. Angaben zu Zertifizierung und Ausstattung finden Sie direkt auf der Website.</p><div class="button-row"><a class="button light" href="/qualitaet-zertifizierung/">Zertifizierung</a><a class="button light" href="/maschinen-ausstattung/">Ausstattung</a></div></div></article>
+      <article class="card"><div class="card-body"><p class="eyebrow">Für Konstruktion & Entwicklung</p><h2>Bauteil und Zielprozess beschreiben</h2><p>Zeichnung oder Muster, Funktion, Werkstoff, Zielstückzahl, Maße, Toleranzen, Oberfläche und geplanter Serienstart erleichtern die technische Einordnung.</p><a class="button light" href="/kompetenzen/">Projektablauf ansehen</a></div></article>
     </div>
   </section>
 
@@ -23,9 +44,9 @@ import { company } from "@data/site";
       <div class="form-intro">
         <p class="eyebrow">Projektanfrage</p>
         <h2>Schreiben Sie uns direkt</h2>
-        <p class="lead">Füllen Sie das Formular aus — Ihr E-Mail-Programm öffnet sich mit allen Angaben vorausgefüllt. So können Sie Zeichnungen, CAD-Daten oder Muster direkt anhängen.</p>
+        <p class="lead">Füllen Sie das Formular aus. Ihr E-Mail-Programm öffnet sich mit den Angaben vorausgefüllt; dort können Sie Zeichnungen und vorhandene Projektdaten anhängen.</p>
         <ul class="hint-list">
-          <li>Zeichnungen, Muster oder CAD-Daten</li>
+          <li>Zeichnung, Muster oder vorhandene CAD-Daten</li>
           <li>Material, Stückzahlen und Zielbranche</li>
           <li>Anforderungen an Oberfläche, Zykluszeit und Qualität</li>
           <li>Geplanter Serienstart oder Zeitrahmen</li>
@@ -47,7 +68,7 @@ import { company } from "@data/site";
               <select id="cf-subject" name="subject">
                 <option value="Projektanfrage">Projektanfrage</option>
                 <option value="Angebotsanfrage">Angebotsanfrage</option>
-                <option value="Reparatur / Wartung">Reparatur / Wartung</option>
+                <option value="Reparatur">Reparatur</option>
                 <option value="Einweisung vor Ort">Einweisung vor Ort</option>
                 <option value="Allgemeine Anfrage">Allgemeine Anfrage</option>
               </select>
@@ -61,6 +82,14 @@ import { company } from "@data/site";
           </form>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Projektanfrage und Datenübermittlung</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
     </div>
   </section>
 

@@ -10,26 +10,23 @@ order: 1
 applyEmail: "info@schreck-kunststofftechnik.com"
 ---
 
-Wir entwickeln und fertigen Spritzgusswerkzeuge für anspruchsvolle Kunststoffprodukte. In deiner Ausbildung lernst du, wie aus technischen Zeichnungen präzise Werkzeuge entstehen und wie moderne Maschinen, Messmittel und handwerkliches Können zusammenarbeiten.
+Schreck Kunststofftechnik entwickelt und fertigt Spritzgusswerkzeuge von der Konstruktion bis zur Serienreife. Seit der Gründung wurden mehr als 30 Lehrlinge ausgebildet. Die Ausbildung startet im August 2027 und dauert drei Jahre.
 
 ## Das erwartet dich
 
 - Herstellen, Warten und Reparieren von Spritzgusswerkzeugen
 - Arbeiten an CNC-gesteuerten Maschinen
 - Lesen und Umsetzen technischer Zeichnungen
-- Einsatz moderner Mess- und Prüfmittel
-- Mitwirken am gesamten Produktionsprozess
+- Einsatz von Mess- und Prüfmitteln
+- Mitwirken am Produktionsprozess
 
 ## Das bringst du mit
 
 - Interesse an Technik, Maschinen und Metallbearbeitung
 - Handwerkliches Geschick und räumliches Vorstellungsvermögen
 - Sorgfalt, Teamgeist und Zuverlässigkeit
-- Guten Haupt- oder Realschulabschluss
+- Einen guten Haupt- oder Realschulabschluss
 
-## Wir bieten dir
+## So bewirbst du dich
 
-- Fundierte, abwechslungsreiche Ausbildung
-- Modernes Arbeitsumfeld mit freundlichem Team
-- Gute Übernahmechancen nach der Ausbildung
-- Attraktive Ausbildungsvergütung und Zusatzleistungen
+Sende deine Bewerbung per E-Mail an info@schreck-kunststofftechnik.com oder per Post an Schreck Kunststofftechnik GmbH, Wolkersdorfer Straße 28, 35099 Burgwald-Bottendorf.

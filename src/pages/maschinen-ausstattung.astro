@@ -12,11 +12,24 @@ const equipment = [
   { area: "Konstruktion", entries: ["3 × CAD Cimatron", "2 × CAM Cimatron"] },
   { area: "Qualitätssicherung", entries: ["Werth Profile-Projector", "Tesa 2-D Messplatz Micro Hite", "optisches 20-fach Messmikroskop", "Koordinatenmessgerät PIONEER 05.06.04"] }
 ];
+const faqs = [
+  { q: "Von welchem Stand ist die Maschinenliste?", a: "Die veröffentlichte Maschinenliste trägt den Stand 01/2024. Für Verfügbarkeit, Auslastung und die Eignung für ein konkretes Projekt ist eine direkte Abstimmung mit Schreck erforderlich." },
+  { q: "Welche Werkzeuggröße und welches Formgewicht sind dokumentiert?", a: "Dokumentiert sind Werkzeug- bzw. Formgrößen bis 446 × 646 mm und Formgewichte bis 1.500 kg. Die Machbarkeit hängt zusätzlich von Geometrie und Werkzeugaufbau ab." },
+  { q: "Kann Schreck Werkzeuge selbst abmustern?", a: "Ja. Der Maschinenpark nennt eine ARBURG mit 35 Tonnen und eine ENGEL ES 200 für 2-Komponenten-Anwendungen mit 80 Tonnen Schließkraft." },
+  { q: "Welche Konstruktionssysteme sind dokumentiert?", a: "Die Maschinenpark-Unterlage nennt drei CAD- und zwei CAM-Arbeitsplätze mit Cimatron. Unterstützte Datenschnittstellen werden vor der Übermittlung direkt abgestimmt." }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } }))
+};
 ---
 
 <BaseLayout
   title="Maschinen und Ausstattung im Werkzeug- und Formenbau"
   description="Maschinenpark von Schreck Kunststofftechnik für Fräsen, Schleifen, Erodieren, Spritzgießen, Cimatron-Konstruktion und Qualitätssicherung."
+  jsonLd={faqSchema}
 >
   <PageHero
     eyebrow="Maschinen & Ausstattung"
@@ -57,6 +70,14 @@ const equipment = [
         <div class="stat"><strong>35 t</strong><span>ARBURG-Abmusterung</span></div>
       </div>
       <p class="source-note">Stand dieser Kapazitätsangaben: 01/2024. Die konkrete Machbarkeit hängt von Geometrie, Aufbau und Projektanforderungen ab.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2>Maschinenpark und Projektgrenzen</h2>
+      <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
     </div>
   </section>
 
