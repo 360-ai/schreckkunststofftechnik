@@ -25,3 +25,9 @@ Stand: 12.07.2026
 - Nicht belegte Aussagen zu Luftfahrt, konkreter Werkstoffpalette, pauschalen Projektlaufzeiten, vollständiger Qualitätsdokumentation, internationaler Betreuung, vorbeugender Wartung sowie Ausbildungsvergütung, Zusatzleistungen und Übernahmechancen wurden entfernt.
 - Produktseiten verwenden nur Anwendungen und Formanforderungen aus den in AP2 belegten Unternehmensseiten und Flyern. „Reinraumtauglich“ wird ausdrücklich als Formanforderung und nicht als eigene Reinraumproduktion erklärt.
 - Reparatur und Schulung vor Ort bleiben sichtbar, weil beide Leistungen auf der alten Unternehmensseite belegt sind. Wartung wird nicht mehr als pauschaler aktueller Leistungsbestandteil behauptet.
+
+## AP7
+
+- Neben den geforderten Tokens GPTBot, ClaudeBot, Google-Extended und PerplexityBot werden OAI-SearchBot, Claude-SearchBot und Claude-User ausdrücklich erlaubt. Die offiziellen Anbieter trennen inzwischen Training, Suche und nutzerinitiierte Abrufe; die zusätzlichen Gruppen verbessern Auffindbarkeit, ohne die allgemeine Allow-Regel zu verändern.
+- `directApply` im JobPosting wurde auf `false` gesetzt. Die Bewerbung erfolgt per E-Mail und ist kein vollständig integrierter Bewerbungsprozess auf der Website.
+- BreadcrumbList wird für alle inneren Seiten erzeugt; Startseite und 404 erhalten bewusst keinen strukturierten Breadcrumb. Produkt- und Jobdetails behalten ihre explizite dreistufige Hierarchie.

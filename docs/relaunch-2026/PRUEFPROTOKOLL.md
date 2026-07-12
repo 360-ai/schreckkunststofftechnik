@@ -288,3 +288,64 @@ npm run build
 Result (30 files): 0 errors, 0 warnings, 0 hints
 19 page(s) built
 ```
+
+## AP7 – GEO und strukturierte Daten
+
+### Bot-Namen aus offiziellen Quellen
+
+Geprüfte Primärquellen:
+
+```text
+OpenAI: https://help.openai.com/en/articles/12627856-publishers-and-developers-faq
+Anthropic: https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
+Google: https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers
+Perplexity: https://docs.perplexity.ai/docs/resources/perplexity-crawlers
+```
+
+Bestätigte und erlaubte Tokens:
+
+```text
+GPTBot
+OAI-SearchBot
+ClaudeBot
+Claude-SearchBot
+Claude-User
+Google-Extended
+PerplexityBot
+```
+
+### Build und JSON-LD-Validierung
+
+Ausgeführte Befehle:
+
+```text
+npm run build
+npm run check:jsonld
+```
+
+Ergebnis:
+
+```text
+Result (31 files): 0 errors, 0 warnings, 0 hints
+19 page(s) built
+
+JSON-LD valide: 95 Blöcke in 19 HTML-Dateien
+BreadcrumbList: 17
+FAQPage: 14
+JobPosting: 1
+LocalBusiness: 19
+Organization: 19
+Service: 6
+WebPage: 19
+WebSite: 19
+Firmenentität in JSON-LD, Impressum und llms.txt konsistent.
+```
+
+Das Skript `scripts/validate-jsonld.mjs` extrahiert alle JSON-LD-Blöcke aus `dist/`, parst sie und prüft typabhängige Pflichtfelder. Zusätzlich vergleicht es Name, Anschrift, Telefon und E-Mail zwischen Organization/LocalBusiness, Impressum und `llms.txt`.
+
+### Weitere Änderungen
+
+- `knowsAbout` wird aus der final belegten Leistungs-, Branchen- und Produktliste erzeugt.
+- Organization/LocalBusiness enthält Gründungsdatum, 14 Mitarbeiter, Logo, Adresse und Kontaktdaten.
+- `llms.txt` enthält finale Seitenstruktur, Zertifikat, belegte Kerndaten und Projektanfrage-Hinweise.
+- JobPosting bleibt mit sichtbarer Stellenanzeige synchron; `directApply` ist wegen der E-Mail-Bewerbung `false`.

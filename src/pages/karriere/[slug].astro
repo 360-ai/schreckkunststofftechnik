@@ -31,7 +31,7 @@ const jobSchema = {
   datePosted: job.data.datePosted,
   validThrough: job.data.validThrough,
   employmentType: job.data.type === "Ausbildung" ? "INTERN" : "FULL_TIME",
-  directApply: true,
+  directApply: false,
   identifier: {
     "@type": "PropertyValue",
     name: company.name,
@@ -60,12 +60,18 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 1,
+      name: "Startseite",
+      item: new URL("/", Astro.site).toString()
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
       name: "Karriere",
       item: new URL("/karriere/", Astro.site).toString()
     },
     {
       "@type": "ListItem",
-      position: 2,
+      position: 3,
       name: job.data.title,
       item: canonicalUrl
     }
