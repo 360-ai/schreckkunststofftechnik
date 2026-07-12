@@ -145,3 +145,36 @@ Ergebnis:
 - Sprachregeln gegen unbelegte Garantien und KI-Marketing-Sprache definiert.
 
 Die verbindliche Quelle für die Textumsetzung ist `02-faktenbasis-positionierung.md`.
+
+## AP3 – Wettbewerbsanalyse
+
+Ausgeführte Recherche:
+
+```text
+Web-Suche mit vier Suchmustern zu Formenbau Medizintechnik,
+Spritzgusswerkzeugen in Hessen, Mehrkomponenten-Werkzeugbau
+und Werkzeugbau für Laboranwendungen
+
+Abruf und Auswertung der Primär-Websites von:
+wisa-formenbau.de
+fenkl-formenbau.de
+midena.de
+precupa.de
+rmf-formenbau.de
+hwf-werkzeugbau.de
+```
+
+Zusätzliche Browserprüfung bei 1280 × 720 Pixeln:
+
+```text
+Startseiten auf H1-Struktur, Typografie, Farbsystem, Navigation,
+sichtbare CTAs, Bildmenge und technische Erreichbarkeit geprüft
+```
+
+Ergebnis:
+
+- sechs Anbieter mit Positionierung, Struktur, Zielgruppen, Vertrauenssignalen, Branchen, SEO/GEO, CTAs und Design bewertet,
+- Vergleichsmatrix erstellt,
+- WISA als größennahe Referenz und HWF als größerer Regionalbenchmark gekennzeichnet,
+- sieben Konsequenzen für Informationsarchitektur und Umsetzung abgeleitet,
+- keine Texte oder Designs übernommen.
