@@ -10,11 +10,26 @@ interface Props {
 }
 
 const { product } = Astro.props;
+const imageDimensions: Record<string, { width: number; height: number }> = {
+  "/images/grafik_medizin_2.png": { width: 260, height: 273 },
+  "/images/grafik_labor_3.png": { width: 1191, height: 896 },
+  "/images/grafik_verpackung_4.png": { width: 250, height: 166 },
+  "/images/grafik_innen1_6.png": { width: 1024, height: 615 },
+  "/images/grafik_2k_3.png": { width: 1291, height: 832 },
+  "/images/grafik_kleinstteile_1.png": { width: 283, height: 160 }
+};
+const dimensions = imageDimensions[product.image];
 ---
 
 <a class="card media-card" href={`/produkte/${product.slug}/`}>
   <div class="media">
-    <img src={product.image} alt={`${product.title} bei Schreck Kunststofftechnik`} loading="lazy" />
+    <img
+      src={product.image}
+      alt={`${product.title} bei Schreck Kunststofftechnik`}
+      width={dimensions?.width}
+      height={dimensions?.height}
+      loading="lazy"
+    />
   </div>
   <div class="card-body">
     <p class="eyebrow">{product.eyebrow}</p>

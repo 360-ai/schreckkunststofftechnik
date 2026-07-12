@@ -31,3 +31,10 @@ Stand: 12.07.2026
 - Neben den geforderten Tokens GPTBot, ClaudeBot, Google-Extended und PerplexityBot werden OAI-SearchBot, Claude-SearchBot und Claude-User ausdrücklich erlaubt. Die offiziellen Anbieter trennen inzwischen Training, Suche und nutzerinitiierte Abrufe; die zusätzlichen Gruppen verbessern Auffindbarkeit, ohne die allgemeine Allow-Regel zu verändern.
 - `directApply` im JobPosting wurde auf `false` gesetzt. Die Bewerbung erfolgt per E-Mail und ist kein vollständig integrierter Bewerbungsprozess auf der Website.
 - BreadcrumbList wird für alle inneren Seiten erzeugt; Startseite und 404 erhalten bewusst keinen strukturierten Breadcrumb. Produkt- und Jobdetails behalten ihre explizite dreistufige Hierarchie.
+
+## AP8
+
+- Das Standard-OG-Bild ist ein eigenes lokales 1200-×-630-Motiv. Produktbilder werden weiterhin im sichtbaren Seitenhero verwendet, aber nicht als uneinheitliche Social-Share-Bilder mit falschem Seitenverhältnis.
+- Oswald wird nicht von Google Fonts zur Laufzeit geladen. Die lateinische WOFF2-Datei wird lokal für die Gewichte 600 und 700 ausgeliefert; die Lizenzdatei liegt bei. Die inhaltliche Anpassung des Font-Abschnitts in der Datenschutzerklärung bleibt ausdrücklich dem Auftraggeber vorbehalten.
+- Der Seitentitel-Suffix lautet kurz `| Schreck`. Der vollständige Firmenname bleibt in Startseite, Organisationsdaten, Impressum, sichtbaren Inhalten und Entitätsdaten unverändert; der kurze Suffix verhindert abgeschnittene Suchergebnis-Titel.
+- Die fünf alten P0-Bilddateien wurden erst nach Umstellung und Nulltreffer-Prüfung entfernt. Die neuen WebP-Dateien reduzieren deren Gesamtgewicht um rund 95,5 %.

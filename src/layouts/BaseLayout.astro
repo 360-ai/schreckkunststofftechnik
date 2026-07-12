@@ -16,13 +16,13 @@ interface Props {
 const {
   title,
   description,
-  image = "/images/hero2.jpg",
+  image = "/images/og-schreck.jpg",
   canonical,
   robots = "index, follow",
   jsonLd = []
 } = Astro.props;
 
-const pageTitle = title.includes(company.name) ? title : `${title} | ${company.name}`;
+const pageTitle = title.includes("Schreck Kunststofftechnik") ? title : `${title} | Schreck`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 const imageUrl = new URL(image, Astro.site).toString();
 const organizationId = new URL("/#organization", Astro.site).toString();
@@ -137,12 +137,15 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="de" href={canonicalUrl} />
+    <link rel="alternate" hreflang="de-DE" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={`${company.name} - Formenbau und Kunststofftechnik`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -158,6 +161,7 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     <meta name="ICBM" content="51.017, 8.832" />
     <!-- Robots -->
     <meta name="robots" content={robots} />
+    <link rel="preload" href="/fonts/oswald-600-700.woff2" as="font" type="font/woff2" crossorigin />
     {/* ACHTUNG DSGVO: Dieser GA4-Block laedt, SOBALD PUBLIC_GA_ID gesetzt wird — ohne Consent!
         Die Variable darf erst gesetzt werden, wenn ein Consent-Banner (Opt-in, § 25 TDDDG)
         davor haengt und GA4 erst nach Einwilligung initialisiert wird. Die storage-Parameter

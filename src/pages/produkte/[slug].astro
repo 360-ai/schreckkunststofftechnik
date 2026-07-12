@@ -9,6 +9,11 @@ export function getStaticPaths() {
 
 const { product } = Astro.props;
 const canonicalUrl = new URL(`/produkte/${product.slug}/`, Astro.site).toString();
+const metaDescriptions: Record<string, string> = {
+  medizintechnik: "Spritzgusswerkzeuge für medizinische Kunststoffteile wie Einmalspritzen, Schutzkappen, Verbindungselemente, Kleinstteile und Filtertechnik.",
+  innenanspritzung: "Werkzeugkonzepte für Innenanspritzung in der Verschlusstechnik – mit Fokus auf Oberflächengüte, Maßqualität und balancierte Fließwege."
+};
+const metaDescription = metaDescriptions[product.slug] ?? product.intro;
 const inquiryItems = [
   "Zeichnung, Muster oder vorhandene CAD-Daten",
   "Bauteilfunktion und Einsatzbereich",
@@ -48,9 +53,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title={`${product.title}: Spritzgusswerkzeuge und Formenbau`}
-  description={product.intro}
-  image={product.image}
+  title={`Spritzgusswerkzeuge: ${product.title}`}
+  description={metaDescription}
   canonical={canonicalUrl}
   jsonLd={[schema, breadcrumbSchema, faqSchema]}
 >

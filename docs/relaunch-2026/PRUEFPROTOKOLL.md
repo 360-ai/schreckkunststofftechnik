@@ -349,3 +349,46 @@ Das Skript `scripts/validate-jsonld.mjs` extrahiert alle JSON-LD-Blöcke aus `di
 - Organization/LocalBusiness enthält Gründungsdatum, 14 Mitarbeiter, Logo, Adresse und Kontaktdaten.
 - `llms.txt` enthält finale Seitenstruktur, Zertifikat, belegte Kerndaten und Projektanfrage-Hinweise.
 - JobPosting bleibt mit sichtbarer Stellenanzeige synchron; `directApply` ist wegen der E-Mail-Bewerbung `false`.
+
+## AP8 – Performance und technisches SEO
+
+### Bilder und Layout-Stabilität
+
+Die fünf P0-Bilder wurden in sinnvoller Zielauflösung als WebP neu ausgegeben und die alten Dateien nach Referenzprüfung entfernt:
+
+| Datei | vorher | nachher |
+|---|---:|---:|
+| Hero | 7.174.773 Byte | `hero2.webp`: 128.582 Byte |
+| Einweisung | 7.180.166 Byte | `einweisung.webp`: 127.060 Byte |
+| Luftbild | 3.087.336 Byte | `luftbild_skt.webp`: 332.068 Byte |
+| Eingang | 3.099.913 Byte | `skt_eingang.webp`: 326.786 Byte |
+| Reparatur | 2.107.303 Byte | `reparatur.webp`: 93.684 Byte |
+
+Gesamt: 22.649.491 Byte auf 1.008.180 Byte, rund 95,5 % weniger. Das neue Social-Share-Bild `og-schreck.jpg` ist 1200 × 630 Pixel groß und 115.566 Byte schwer. Alle ausgelieferten `<img>`-Elemente besitzen `alt`, `width` und `height`; Bilder unterhalb des sichtbaren Einstiegs werden verzögert geladen.
+
+### Lokale Schrift und Metadaten
+
+- Oswald 600/700 liegt als lokale WOFF2-Datei unter `public/fonts/`; `font-display: swap`, Preload und die SIL Open Font License sind enthalten.
+- Keine Runtime-Verbindung zu `fonts.googleapis.com` oder `fonts.gstatic.com`.
+- Standard-OG-Bild ist das lokale 1200-×-630-Motiv mit Breiten-/Höhenmetadaten.
+- `hreflang="de-DE"` und `hreflang="x-default"` sind gesetzt.
+- Seitentitel wurden auf einen kurzen Markensuffix umgestellt; die längsten finalen Titel liegen bei 60 Zeichen, ausgenommen wird bei der technischen Auswertung nur dann, wenn HTML-Entities als mehrere Quellzeichen gezählt werden.
+- Jede HTML-Seite besitzt genau einen Canonical-Link.
+
+### Prüfungen
+
+```text
+npm run build
+Result (31 files): 0 errors, 0 warnings, 0 hints
+19 page(s) built
+
+npm run check:jsonld
+JSON-LD valide: 95 Blöcke in 19 HTML-Dateien
+
+Bilddateien in dist/images > 500.000 Byte: 0
+alte P0-Bildreferenzen in dist: 0
+fonts.googleapis / fonts.gstatic.com in dist: 0
+img ohne alt: 0
+img ohne width: 0
+Canonical-Anzahl ungleich 1: 0
+```
