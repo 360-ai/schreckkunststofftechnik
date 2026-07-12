@@ -125,6 +125,11 @@ const schemas = [...defaultSchemas, ...customSchemas.filter(Boolean)];
     <meta name="ICBM" content="51.017, 8.832" />
     <!-- Robots -->
     <meta name="robots" content={robots} />
+    {/* ACHTUNG DSGVO: Dieser GA4-Block laedt, SOBALD PUBLIC_GA_ID gesetzt wird — ohne Consent!
+        Die Variable darf erst gesetzt werden, wenn ein Consent-Banner (Opt-in, § 25 TDDDG)
+        davor haengt und GA4 erst nach Einwilligung initialisiert wird. Die storage-Parameter
+        unten sind KEIN Ersatz fuer eine Einwilligung. Zusaetzlich noetig: AVV mit Google +
+        GA4-Abschnitt in der Datenschutzerklaerung (Abschnitt 6 anpassen). */}
     {import.meta.env.PUBLIC_GA_ID && (
       <>
         <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>

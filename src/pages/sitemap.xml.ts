@@ -10,7 +10,7 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "karriere/",      priority: "0.8", changefreq: "weekly" },
   { path: "kontakt/",       priority: "0.8", changefreq: "monthly" },
   { path: "downloads/",     priority: "0.6", changefreq: "monthly" },
-  { path: "datenschutz/",   priority: "0.3", changefreq: "yearly" },
+  // datenschutz/ ist noindex — gehoert nicht in die Sitemap
   { path: "impressum/",     priority: "0.3", changefreq: "yearly" },
 ];
 
