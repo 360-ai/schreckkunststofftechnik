@@ -178,3 +178,24 @@ Ergebnis:
 - WISA als größennahe Referenz und HWF als größerer Regionalbenchmark gekennzeichnet,
 - sieben Konsequenzen für Informationsarchitektur und Umsetzung abgeleitet,
 - keine Texte oder Designs übernommen.
+
+## AP4 – Keyword- und Suchintentionsstrategie
+
+Ausgeführte Prüfungen:
+
+```text
+Abgleich der Cluster mit der Faktenbasis aus AP2
+Abgleich der Suchergebnis-Typen für Formenbau Hessen,
+Formenbau Medizintechnik, 2K/Mehrkomponentenwerkzeuge und Labortechnik
+Zuordnung jedes Clusters zu genau einer Zielseite
+Prüfung auf fachlich nicht belegte Suchbegriffe
+```
+
+Ergebnis:
+
+- 18 Suchcluster nach Anbieter-, Informations-, Vergleichs-, regionaler, Branchen-, Karriere- und Projektintention geordnet,
+- jeder Cluster genau einer Zielseite zugeordnet,
+- Seitenrollen zur Vermeidung von Kannibalisierung dokumentiert,
+- natürliche KI-Fragen für Start-, Kompetenz-, Qualitäts- und Produktseiten formuliert,
+- nicht belegte Themen wie ISO 13485, Reinraumproduktion, Lohnspritzguss, Luftfahrt und garantierte Leistungswerte ausgeschlossen,
+- Messkonzept für die Zeit nach der Domain-Aufschaltung festgelegt.
