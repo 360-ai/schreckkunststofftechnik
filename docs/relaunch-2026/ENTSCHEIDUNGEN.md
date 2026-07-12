@@ -1,6 +1,6 @@
 # Entscheidungslog Relaunch 2026
 
-Stand: 12.07.2026
+Stand: 13.07.2026
 
 ## AP0
 
@@ -46,3 +46,9 @@ Stand: 12.07.2026
 - Die genehmigte Cyan-Palette bleibt erhalten. Für kleinen Text auf hellen Flächen wird die kontraststärkere Ableitung `#04748a` genutzt; `#22d3ee` bleibt dunklen Hintergründen vorbehalten.
 - Die Kontaktseite nutzt weiterhin nur ein lokales Mailto-Formular. Native Browservalidierung ersetzt die zuvor deaktivierte Validierung; keine Daten werden an einen Webdienst übermittelt.
 - CSP und weitere Sicherheitsheader werden in der Cloudflare-Headerdatei gepflegt. `unsafe-inline` bleibt vorerst für die bestehenden Astro-Inline-Blöcke erlaubt; eine nonce-/hashbasierte Härtung wird zusammen mit einer möglichen Consent-/Analytics-Integration bewertet.
+
+## AP10
+
+- Die vorhandene Astro-Seite bleibt die Relaunch-Basis. Die Abschlussprüfung bestätigt, dass eine Optimierung fachlich und wirtschaftlich sinnvoller war als ein Neuaufbau.
+- Eine englische Version wird nicht gebaut, solange Zielmärkte, qualifizierte internationale Nachfrage und ein Pflege-/Freigabeprozess nicht bestätigt sind.
+- Das vom Auftraggeber bereitgestellte Arbeitsauftrags-Markdown bleibt absichtlich unversioniert und wird nicht Teil der Website oder Projektdokumentation im Repository.

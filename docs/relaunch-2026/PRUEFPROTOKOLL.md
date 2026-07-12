@@ -1,6 +1,6 @@
 # Prüfprotokoll Relaunch 2026
 
-Stand: 12.07.2026
+Stand: 13.07.2026
 
 ## AP0 – Sicherung und Baseline
 
@@ -483,3 +483,11 @@ npm run build
 Result (33 files): 0 errors, 0 warnings, 0 hints
 19 page(s) built
 ```
+
+## AP10 – Abschluss und Übergabe
+
+- `BERICHT.md` mit Management-Zusammenfassung, Ist-Analyse, Wettbewerb, Positionierung, Sitemap, Text-/SEO-/GEO-Konzept, Maßnahmenkatalog, Commit-/Datei-/Testnachweisen, offenen Fragen und 30/60/90-Tage-Plan erstellt.
+- Englische Version bewertet und mangels bestätigtem Marktbedarf bewusst nicht gebaut.
+- Offene Fragen konsolidiert; DSE-Font-Anpassung auf Priorität A vor Veröffentlichung gesetzt.
+- Optimierung der vorhandenen Astro-Seite abschließend als richtige technische Entscheidung bestätigt.
+- Kein Deployment, keine Domain-Aufschaltung und keine Aktivierung von GA4, Consent oder Web3Forms ausgeführt.
