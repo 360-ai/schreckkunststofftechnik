@@ -1,13 +1,21 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
-import ProductCard from "@components/ProductCard.astro";
-import { products } from "@data/site";
+import { products, company } from "@data/site";
+
+const imageDimensions: Record<string, { width: number; height: number }> = {
+  "/images/grafik_medizin_2.png": { width: 260, height: 273 },
+  "/images/grafik_labor_3.png": { width: 1191, height: 896 },
+  "/images/grafik_verpackung_4.png": { width: 250, height: 166 },
+  "/images/grafik_innen1_6.png": { width: 1024, height: 615 },
+  "/images/grafik_2k_3.png": { width: 1291, height: 832 },
+  "/images/grafik_kleinstteile_1.png": { width: 283, height: 160 }
+};
 
 const faqs = [
-  { q: "Welche Formen und Spritzgusswerkzeuge fertigt Schreck?", a: "Schreck fertigt Formen für Kunststoffverarbeitung sowie für Aluminium- und Zink-Druckguss. Die Schwerpunkte der Website sind Medizin, Labor, Verpackung und Kosmetik, Innenanspritzung, Mehrkomponentenwerkzeuge und Kleinstteile." },
+  { q: "Welche Formen und Spritzgusswerkzeuge fertigt Schreck?", a: "Schreck fertigt Formen für Kunststoffverarbeitung sowie für Aluminium- und Zink-Druckguss. Die Schwerpunkte sind Medizin, Labor, Verpackung und Kosmetik, Innenanspritzung, Mehrkomponentenwerkzeuge und Kleinstteile." },
   { q: "Kann Schreck hergestellte Formen selbst abmustern?", a: "Ja. Schreck mustert hergestellte Formen auf eigenen Spritzgießmaschinen ab. Abmusterung, Vermessung und Optimierung verbinden Werkzeugbau und späteren Serienprozess." },
-  { q: "Wie finde ich den passenden Produktbereich?", a: "Wählen Sie zuerst nach Bauteil und Anwendung: Medizin, Labor, Verpackung, Innenanspritzung, Mehrkomponenten oder Kleinstteile. Wenn die Zuordnung nicht eindeutig ist, genügt eine Zeichnung oder ein Muster für die erste Projektbesprechung." }
+  { q: "Wie finde ich den passenden Produktbereich?", a: "Wählen Sie zuerst nach Bauteil und Anwendung. Wenn die Zuordnung nicht eindeutig ist, genügt eine Zeichnung oder ein Muster für die erste Projektbesprechung." }
 ];
 
 const faqSchema = {
@@ -19,19 +27,40 @@ const faqSchema = {
 
 <BaseLayout
   title="Spritzgusswerkzeuge und Formenbau nach Anwendung"
-  description="Spritzgusswerkzeuge von Schreck für Medizin, Labor, Verpackung, Innenanspritzung, Mehrkomponenten und Kleinstteile – bis zur Abmusterung."
+  description="Spritzgusswerkzeuge von Schreck für Medizin, Labor, Verpackung, Innenanspritzung, Mehrkomponenten und Kleinstteile – auf einen Blick, bis zur Abmusterung."
   jsonLd={faqSchema}
 >
-  <PageHero eyebrow="Produkte" title="Spritzgusswerkzeuge für klar definierte Anwendungen" text="Schreck entwickelt und fertigt Formen für Kunststoffverarbeitung sowie Aluminium- und Zink-Druckguss. Sechs Produktbereiche zeigen belegte Anwendungen und Formanforderungen." />
+  <PageHero eyebrow="Produkte" title="Spritzgusswerkzeuge für klar definierte Anwendungen" text="Schreck entwickelt und fertigt Formen für Kunststoffverarbeitung sowie Aluminium- und Zink-Druckguss. Sechs Anwendungsbereiche – mit den belegten Bauteilen im Überblick." />
+
   <section class="section">
     <div class="container">
       <div class="selection-intro">
-        <div><p class="eyebrow">Produktbereiche</p><h2>Vom Bauteil zur passenden Werkzeugaufgabe</h2></div>
-        <p class="lead">Die Einteilung folgt konkreten Anwendungen. Prozessschritte wie Konstruktion, Abmusterung, Vermessung und Optimierung werden auf der Kompetenzseite gebündelt.</p>
+        <div><p class="eyebrow">Anwendungsbereiche</p><h2>Vom Bauteil zur passenden Werkzeugaufgabe</h2></div>
+        <p class="lead">Die Einteilung folgt konkreten Anwendungen. Zu jedem Bereich sehen Sie, welche Bauteile bei Schreck belegt sind. Konstruktion, Abmusterung, Vermessung und Optimierung greifen bis zur Serienreife ineinander.</p>
       </div>
-      <div class="grid three product-grid">{products.map((product) => <ProductCard product={product} />)}</div>
+
+      <div class="product-groups">
+        {products.map((product) => {
+          const dim = imageDimensions[product.image];
+          return (
+            <article class="group-card card" id={product.slug}>
+              <div class="group-media">
+                <img src={product.image} alt={`${product.title} bei Schreck Kunststofftechnik`} width={dim?.width} height={dim?.height} loading="lazy" />
+              </div>
+              <div class="card-body group-body">
+                <p class="eyebrow">{product.eyebrow}</p>
+                <h3>{product.title}</h3>
+                <p>{product.intro}</p>
+                <p class="offer-label">Belegte Bauteile</p>
+                <div class="pill-list">{product.examples.map((item) => <span class="pill">{item}</span>)}</div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
     </div>
   </section>
+
   <section class="section soft">
     <div class="container">
       <p class="eyebrow">Häufige Fragen</p>
@@ -39,16 +68,72 @@ const faqSchema = {
       <div class="faq-list">{faqs.map(({ q, a }) => <details class="faq-item"><summary>{q}</summary><div class="faq-answer">{a}</div></details>)}</div>
     </div>
   </section>
+
   <section class="section dark">
     <div class="container split">
       <div><p class="eyebrow">Noch nicht eindeutig?</p><h2>Zeichnung oder Muster gemeinsam einordnen</h2><p class="lead">Schreck erstellt Angebote und Konstruktionen nach Zeichnungen oder Mustern. Für den ersten Schritt muss die Produktkategorie nicht abschließend feststehen.</p></div>
-      <div class="button-row"><a class="button" href="/kontakt/">Projekt besprechen</a><a class="button secondary" href="/kompetenzen/">Projektablauf ansehen</a></div>
+      <div class="button-row"><a class="button" href="/kontakt/">Projekt besprechen</a><a class="button secondary" href={`mailto:${company.email}?subject=Projektanfrage`}>Unterlagen senden</a></div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .selection-intro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 42px; align-items: end; }
-  .product-grid { margin-top: 40px; }
-  @media (max-width: 760px) { .selection-intro { grid-template-columns: 1fr; } }
+
+  .product-groups {
+    margin-top: 44px;
+    display: grid;
+    gap: 22px;
+  }
+
+  .group-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+    overflow: hidden;
+    scroll-margin-top: 120px;
+  }
+
+  .group-media {
+    position: relative;
+    min-height: 220px;
+    background: linear-gradient(135deg, rgba(8, 145, 178, 0.14), rgba(15, 31, 53, 0.06));
+  }
+
+  .group-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .group-media::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(90deg, transparent 60%, rgba(255, 255, 255, 0.04)), linear-gradient(180deg, transparent 55%, rgba(15, 31, 53, 0.28));
+  }
+
+  .group-body h3 {
+    margin: 6px 0 12px;
+    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  }
+
+  .group-body p:not(.eyebrow):not(.offer-label) {
+    line-height: 1.62;
+    color: var(--muted);
+  }
+
+  .offer-label {
+    margin: 20px 0 12px;
+    color: var(--primary-deep);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 760px) {
+    .selection-intro { grid-template-columns: 1fr; }
+    .group-card { grid-template-columns: 1fr; }
+    .group-media { min-height: 180px; }
+  }
 </style>

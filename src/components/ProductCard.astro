@@ -21,7 +21,7 @@ const imageDimensions: Record<string, { width: number; height: number }> = {
 const dimensions = imageDimensions[product.image];
 ---
 
-<a class="card media-card" href={`/produkte/${product.slug}/`}>
+<a class="card media-card" href={`/produkte/#${product.slug}`}>
   <div class="media">
     <img
       src={product.image}

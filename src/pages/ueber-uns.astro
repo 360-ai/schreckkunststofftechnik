@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHero from "@components/PageHero.astro";
-import { company, stats } from "@data/site";
+import { company, stats, machinePark, machineLimits, certificate } from "@data/site";
 
 const faqs = [
   { q: "Wann wurde Schreck Kunststofftechnik gegründet?", a: "Schreck Kunststofftechnik wurde am 1. Januar 1984 gegründet. Eine der ersten Maschinen war eine Spritzgießmaschine, um Formen mit Abmusterungsprotokoll serienreif auszuliefern." },
@@ -47,8 +47,8 @@ const faqSchema = {
       <p class="eyebrow">Arbeitsweise</p>
       <h2>Was den Projektweg bei Schreck prägt</h2>
       <div class="grid three profile-grid">
-        <article class="card"><div class="card-body"><h3>Eigene Abmusterung</h3><p>Hergestellte Formen können auf eigenen Spritzgießmaschinen abgemustert werden. Dieser Ansatz gehört seit den frühen Unternehmensjahren zum Betriebskonzept.</p><a href="/kompetenzen/">Projektphasen ansehen &rarr;</a></div></article>
-        <article class="card"><div class="card-body"><h3>Zertifizierter Geltungsbereich</h3><p>Das ISO-9001-Zertifikat gilt für den Formenbau von der Konstruktion bis zur Serienreife und ist bis 27.06.2027 gültig.</p><a href="/qualitaet-zertifizierung/">Zertifikat ansehen &rarr;</a></div></article>
+        <article class="card"><div class="card-body"><h3>Eigene Abmusterung</h3><p>Hergestellte Formen können auf eigenen Spritzgießmaschinen abgemustert werden. Dieser Ansatz gehört seit den frühen Unternehmensjahren zum Betriebskonzept.</p><a href="#maschinen">Maschinenpark ansehen &rarr;</a></div></article>
+        <article class="card"><div class="card-body"><h3>Zertifizierter Geltungsbereich</h3><p>Das ISO-9001-Zertifikat gilt für den Formenbau von der Konstruktion bis zur Serienreife und ist bis 27.06.2027 gültig.</p><a href="#zertifikat">Zertifikat ansehen &rarr;</a></div></article>
         <article class="card"><div class="card-body"><h3>Ausbildung und Fachwissen</h3><p>Mehr als 30 Lehrlinge wurden seit der Gründung ausgebildet. Reparaturen und Schulungen des Fachpersonals gehören zum belegten Leistungsumfang.</p><a href="/karriere/">Karriere ansehen &rarr;</a></div></article>
       </div>
     </div>
@@ -91,6 +91,48 @@ const faqSchema = {
       </div>
     </div>
   </section>
+  <section class="section soft" id="maschinen">
+    <div class="container">
+      <div class="intro-grid">
+        <div>
+          <p class="eyebrow">Maschinen &amp; Ausstattung · Stand 01/2024</p>
+          <h2>Fertigung, Abmusterung und Messtechnik im Haus</h2>
+        </div>
+        <p class="lead">Der dokumentierte Maschinenpark verbindet mechanische Bearbeitung, zwei Spritzgießmaschinen für die Abmusterung, Cimatron-Arbeitsplätze und eigene Messtechnik. Für die projektbezogene Verfügbarkeit sprechen Sie das Team bitte direkt an.</p>
+      </div>
+      <div class="equipment-grid">
+        {machinePark.map((group) => (
+          <article class="equipment-card">
+            <h3>{group.area}</h3>
+            <ul>{group.entries.map((entry) => <li>{entry}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <div class="stat-grid limits">
+        {machineLimits.map((limit) => <div class="stat"><strong>{limit.value}</strong><span>{limit.label}</span></div>)}
+      </div>
+      <p class="source-note">Stand dieser Kapazitätsangaben: 01/2024. Die konkrete Machbarkeit hängt von Geometrie, Aufbau und Projektanforderungen ab.</p>
+    </div>
+  </section>
+
+  <section class="section" id="zertifikat">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Qualität · {certificate.norm}</p>
+        <h2>Geprüfte Abläufe von der Konstruktion bis zur Serienreife</h2>
+        <p class="lead">Das Zertifikat der {certificate.authority} gilt für „{certificate.scope}“. Es ist von {certificate.validity.replace("–", " bis ")} gültig. Die Qualitätssicherung nutzt eigene Messtechnik (Werth Profile-Projector, Tesa Micro Hite, 20-fach Messmikroskop, Koordinatenmessgerät PIONEER).</p>
+        <a class="button" href={certificate.pdf}>ISO-Zertifikat öffnen</a>
+      </div>
+      <dl class="certificate-card">
+        <div><dt>Norm</dt><dd>{certificate.norm}</dd></div>
+        <div><dt>Geltungsbereich</dt><dd>{certificate.scope}</dd></div>
+        <div><dt>Zertifikatsnummer</dt><dd>{certificate.number}</dd></div>
+        <div><dt>Gültigkeit</dt><dd>{certificate.validity}</dd></div>
+        <div><dt>Zertifizierungsstelle</dt><dd>{certificate.authority}</dd></div>
+      </dl>
+    </div>
+  </section>
+
   <section class="section soft">
     <div class="container">
       <p class="eyebrow">Standort</p>
@@ -110,7 +152,7 @@ const faqSchema = {
         >Route in Google Maps planen &rarr;</a>
       </div>
       <div class="button-row site-links">
-        <a class="button light" href="/maschinen-ausstattung/">Maschinen &amp; Ausstattung</a>
+        <a class="button light" href="#maschinen">Maschinen &amp; Ausstattung</a>
         <a class="button light" href="/kontakt/">Projekt besprechen</a>
       </div>
     </div>
@@ -149,6 +191,96 @@ const faqSchema = {
 
   .site-links {
     margin-top: 24px;
+  }
+
+  #maschinen,
+  #zertifikat {
+    scroll-margin-top: 110px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 42px;
+    align-items: end;
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 40px;
+  }
+
+  .equipment-card {
+    padding: 24px;
+    border: 1px solid rgba(8, 145, 178, 0.35);
+    border-radius: 8px;
+    background: rgba(8, 145, 178, 0.12);
+  }
+
+  .equipment-card h3 {
+    margin-bottom: 14px;
+  }
+
+  .equipment-card ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+  }
+
+  .equipment-card li + li {
+    margin-top: 8px;
+  }
+
+  .limits {
+    margin-top: 34px;
+  }
+
+  .limits strong {
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+  }
+
+  .source-note {
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .certificate-card {
+    margin: 0;
+    padding: 28px;
+    border: 1px solid rgba(8, 145, 178, 0.35);
+    border-radius: 8px;
+    background: rgba(8, 145, 178, 0.12);
+  }
+
+  .certificate-card div + div {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(8, 145, 178, 0.22);
+  }
+
+  .certificate-card dt {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .certificate-card dd {
+    margin: 4px 0 0;
+    color: var(--primary-deep);
+    font-weight: 800;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 760px) {
+    .intro-grid,
+    .equipment-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .history-timeline {

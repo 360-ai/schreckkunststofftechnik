@@ -1,13 +1,9 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { products } from "@data/site";
 
 const staticPages: { path: string; priority: string; changefreq: string }[] = [
   { path: "",               priority: "1.0", changefreq: "weekly" },
   { path: "produkte/",      priority: "0.9", changefreq: "monthly" },
-  { path: "kompetenzen/",   priority: "0.8", changefreq: "monthly" },
-  { path: "qualitaet-zertifizierung/", priority: "0.8", changefreq: "monthly" },
-  { path: "maschinen-ausstattung/", priority: "0.8", changefreq: "monthly" },
   { path: "ueber-uns/",     priority: "0.7", changefreq: "monthly" },
   { path: "karriere/",      priority: "0.8", changefreq: "weekly" },
   { path: "kontakt/",       priority: "0.8", changefreq: "monthly" },
@@ -18,11 +14,6 @@ const staticPages: { path: string; priority: string; changefreq: string }[] = [
 
 export const GET: APIRoute = async ({ site }) => {
   const lastmod = new Date().toISOString().slice(0, 10);
-  const productEntries = products.map((product) => ({
-    path: `produkte/${product.slug}/`,
-    priority: "0.7",
-    changefreq: "monthly"
-  }));
   const jobEntries = (await getCollection("jobs"))
     .filter((job) => job.data.active)
     .map((job) => ({
@@ -30,7 +21,7 @@ export const GET: APIRoute = async ({ site }) => {
       priority: "0.7",
       changefreq: "weekly"
     }));
-  const allPages = [...staticPages, ...productEntries, ...jobEntries];
+  const allPages = [...staticPages, ...jobEntries];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allPages.map(({ path, priority, changefreq }) =>

@@ -3,7 +3,7 @@ import { capabilities, company, products, siteUrl } from "@data/site";
 
 export const GET: APIRoute = () => {
   const productLines = products
-    .map((product) => `- ${product.title}: ${siteUrl}/produkte/${product.slug}/ - ${product.intro}`)
+    .map((product) => `- ${product.title}: ${siteUrl}/produkte/#${product.slug} - ${product.intro}`)
     .join("\n");
 
   const body = `# ${company.name}
@@ -23,7 +23,7 @@ ${company.name} ist ein Werkzeug- und Formenbauer in ${company.location}. Das Un
 - Norm: DIN EN ISO 9001:2015
 - Geltungsbereich: Formenbau von der Konstruktion bis zur Serienreife
 - Zertifikat: 000854.Q/24.R, gültig 28.06.2024 bis 27.06.2027
-- Seite: ${siteUrl}/qualitaet-zertifizierung/
+- Seite: ${siteUrl}/ueber-uns/#zertifikat
 
 ## Leistungen
 ${capabilities.map((item) => `- ${item}`).join("\n")}
@@ -32,10 +32,9 @@ ${capabilities.map((item) => `- ${item}`).join("\n")}
 ${productLines}
 
 ## Wichtige Seiten
-- Produkte: ${siteUrl}/produkte/
-- Kompetenzen und Projektablauf: ${siteUrl}/kompetenzen/
-- Qualität und Zertifizierung: ${siteUrl}/qualitaet-zertifizierung/
-- Maschinen und Ausstattung (dokumentierter Stand 01/2024): ${siteUrl}/maschinen-ausstattung/
+- Produkte und Anwendungsbereiche: ${siteUrl}/produkte/
+- Qualität und Zertifizierung: ${siteUrl}/ueber-uns/#zertifikat
+- Maschinen und Ausstattung (dokumentierter Stand 01/2024): ${siteUrl}/ueber-uns/#maschinen
 - Unternehmen: ${siteUrl}/ueber-uns/
 - Karriere: ${siteUrl}/karriere/
 - Kontakt und Projektanfrage: ${siteUrl}/kontakt/

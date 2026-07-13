@@ -22,12 +22,39 @@ export const company = {
 
 export const navItems = [
   { label: "Produkte", href: "/produkte/" },
-  { label: "Kompetenzen", href: "/kompetenzen/" },
-  { label: "Qualität", href: "/qualitaet-zertifizierung/" },
+  { label: "Downloads", href: "/downloads/" },
   { label: "Über uns", href: "/ueber-uns/" },
   { label: "Karriere", href: "/karriere/" },
   { label: "Kontakt", href: "/kontakt/" }
 ];
+
+// Maschinenpark (Stand 01/2024) — auf /ueber-uns/#maschinen eingebunden.
+export const machinePark = [
+  { area: "Fräsen", entries: ["DMU 80 Mono Block – iTNC 530, 3 Achsen", "DMG Mori CMX 600 V – 3 Achsen", "Deckel FP4MK", "DMU 50 T – TNC 426, 3 Achsen"] },
+  { area: "Drehen", entries: ["Trens"] },
+  { area: "Schleifen", entries: ["Elb Flachschleifmaschine", "2 × Jung Profilschleifmaschinen", "Moore Koordinatenschleifmaschine", "MSO Rundschleifmaschine"] },
+  { area: "Senkerodieren", entries: ["OPS Ingersoll Gantry 400", "OPS Ingersoll Gantry Eagle 400"] },
+  { area: "Spritzgießen", entries: ["ARBURG – 35 t", "ENGEL ES 200 – 2-Komponenten, 80 t"] },
+  { area: "Konstruktion", entries: ["3 × CAD Cimatron", "2 × CAM Cimatron"] },
+  { area: "Qualitätssicherung", entries: ["Werth Profile-Projector", "Tesa 2-D Messplatz Micro Hite", "optisches 20-fach Messmikroskop", "Koordinatenmessgerät PIONEER 05.06.04"] }
+];
+
+export const machineLimits = [
+  { value: "446 × 646 mm", label: "Werkzeug-/Formgröße bis" },
+  { value: "1.500 kg", label: "Formgewicht bis" },
+  { value: "2K · 80 t", label: "ENGEL-Abmusterung" },
+  { value: "35 t", label: "ARBURG-Abmusterung" }
+];
+
+// ISO-9001-Zertifikat — auf /ueber-uns/#zertifikat eingebunden.
+export const certificate = {
+  norm: "DIN EN ISO 9001:2015",
+  scope: "Formenbau von der Konstruktion bis zur Serienreife",
+  number: "000854.Q/24.R",
+  validity: "28.06.2024–27.06.2027",
+  authority: "SKZ-Cert GmbH",
+  pdf: "/downloads/iso-9001-zertifikat-2024-2027.pdf"
+};
 
 export const products = [
   {

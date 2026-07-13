@@ -99,15 +99,18 @@ test("legacy WordPress query URLs are redirected before static assets are served
     "18": "/kontakt/",
     "20": "/impressum/",
     "80": "/ueber-uns/",
-    "97": "/produkte/verpackung-kosmetik/",
-    "99": "/produkte/innenanspritzung/",
-    "101": "/produkte/labortechnik/",
-    "103": "/produkte/medizintechnik/",
-    "105": "/produkte/mehrkomponentenwerkzeuge/",
-    "107": "/produkte/kleinstteile/",
+    "82": "/ueber-uns/#maschinen",
+    "85": "/ueber-uns/#zertifikat",
+    "97": "/produkte/#verpackung-kosmetik",
+    "99": "/produkte/#innenanspritzung",
+    "101": "/produkte/#labortechnik",
+    "103": "/produkte/#medizintechnik",
+    "105": "/produkte/#mehrkomponentenwerkzeuge",
+    "107": "/produkte/#kleinstteile",
     "249": "/produkte/",
     "297": "/downloads/",
     "338": "/datenschutz/",
+    "380": "/ueber-uns/#zertifikat",
     "489": "/karriere/"
   };
 
@@ -129,6 +132,6 @@ test("LLM facts endpoint exposes the entity and canonical service pages", () => 
   const content = fs.readFileSync(llmsPath, "utf8");
   assert.match(content, /Schreck Kunststofftechnik GmbH/);
   assert.match(content, /Wolkersdorfer Straße 28/);
-  assert.match(content, /https:\/\/www\.schreck-kunststofftechnik\.de\/produkte\/medizintechnik\//);
+  assert.match(content, /https:\/\/www\.schreck-kunststofftechnik\.de\/produkte\/#medizintechnik/);
   assert.match(content, /Spritzgusswerkzeuge|Formenbau/);
 });

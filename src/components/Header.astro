@@ -40,8 +40,6 @@ const isCurrent = (href: string) => href === "/" ? currentPath === "/" : current
         <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
       ))
     }
-    <a href="/maschinen-ausstattung/" aria-current={isCurrent("/maschinen-ausstattung/") ? "page" : undefined}>Maschinen &amp; Ausstattung</a>
-    <a href="/downloads/" aria-current={isCurrent("/downloads/") ? "page" : undefined}>Downloads</a>
   </nav>
   <div class="mobile-nav-contact">
     <a href={`tel:${company.phone.replace(/\s/g, "")}`}>{company.phone}</a>
