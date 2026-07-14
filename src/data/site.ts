@@ -59,9 +59,10 @@ export const nav = [
 ];
 
 export const hero = {
-  h1: 'Formen für Micro-Kunststoffartikel',
+  // \n = fester Umbruch (Hero rendert mit white-space: pre-line)
+  h1: 'Präzisionsformen\nfür Kunststoffteile',
   subline:
-    'Spritzgusswerkzeuge nach Ihren Vorgaben, von der Konstruktion bis zur Serienreife. Für Medizin, Labor, Verpackung und weitere Branchen.',
+    'Von der Produktidee bis zur Serienreife. Schreck entwickelt, fertigt und optimiert Formen für Medizin, Labor, Verpackung und technische Kleinteile.',
   badges: ['Seit 1984', 'ISO 9001:2015 zertifiziert', 'Von der Idee bis zur Serienreife'],
   image: '/images/hero-werkzeug.webp',
   imageMobile: '/images/hero-werkzeug-mobil.webp',
@@ -69,10 +70,10 @@ export const hero = {
 };
 
 export const trustStrip = [
-  { value: '1984', label: 'gegründet in Burgwald-Bottendorf' },
-  { value: 'ISO 9001:2015', label: 'zertifizierter Formenbau' },
-  { value: '14', label: 'Mitarbeiter' },
-  { value: '7', label: 'Branchen' },
+  { value: 'Seit 1984', label: 'Formenbau aus Hessen' },
+  { value: '1.000+', label: 'Formen bis zur Serienreife' },
+  { value: 'ISO 9001', label: 'zertifiziert bis Juni 2027' },
+  { value: 'Alles im Block', label: 'von Konstruktion bis Abmusterung' },
 ];
 
 // Die 7 Leistungsschritte aus den Flyern (identischer Wortlaut in allen sechs PDFs).

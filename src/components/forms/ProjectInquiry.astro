@@ -75,7 +75,7 @@ import { inquiryForm, industries, company } from '@data/site';
         <label class="field-label" for="branche">Branche (optional)</label>
         <select class="field-input" id="branche" name="branche">
           <option value="">Bitte wählen</option>
-          {industries.map((b) => <option value={b}>{b}</option>)}
+          {[...industries, 'Sonstiges'].map((b) => <option value={b}>{b}</option>)}
         </select>
       </div>
 
