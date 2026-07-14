@@ -104,6 +104,11 @@ p, li { max-width: 70ch; }
 .dark-section h1, .dark-section h2, .dark-section h3 { color: var(--surface); }
 .dark-section p { color: rgba(242, 242, 242, 0.78); }
 
+/* Weiße Karten in dunklen Sektionen (z. B. Hero-Formular) behalten dunkle Typo */
+.dark-section .card h1, .dark-section .card h2, .dark-section .card h3, .dark-section .card h4 { color: var(--ink); }
+.dark-section .card p { color: var(--slate); }
+.dark-section .card :focus-visible { outline-color: var(--petrol-deep); }
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
