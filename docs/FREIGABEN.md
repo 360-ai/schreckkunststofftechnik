@@ -14,4 +14,4 @@ Hier trägt Denis Entscheidungen mit Datum ein. Solange ein Punkt offen ist, ble
 | 8 | Mitarbeiterzahl 14 bestätigt (Prüfdatum) | OFFEN | | |
 | 9 | Wireframe-Freigabe AP2a (390/1280 px) | OFFEN | | |
 | 10 | Screenshot-Designabnahme nach AP5 | OFFEN | | |
-| 11 | Repo + Cloudflare-Pages-Projekt anlegen, Push-Freigabe | OFFEN | | |
+| 11 | Repo/Deployment | ENTSCHIEDEN | 2026-07-15 | Abweichend vom Plan: Push ins BESTEHENDE Repo 360-ai/schreckkunststofftechnik (master) als Hauptseite, alte Seite abgelöst (bleibt in Git-History). Freigabe Denis im Chat. |
