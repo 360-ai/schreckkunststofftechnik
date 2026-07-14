@@ -1,0 +1,9 @@
+# Cloudflare Pages Konfiguration (Deployment erst nach Freigabe durch Denis).
+# Lokal testen: npx wrangler pages dev dist
+name = "schreck-fable"
+compatibility_date = "2026-07-01"
+pages_build_output_dir = "dist"
+
+# Secrets (nie im Repo, im Dashboard bzw. via `wrangler secret put` setzen):
+#   RESEND_API_KEY   API-Key des Mail-Anbieters (Kandidat Resend, AP-1-Entscheidung offen)
+#   MAIL_DRY_RUN=1   Test-Modus: loggt statt zu senden

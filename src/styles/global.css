@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+/* ---------- Fonts (self-hosted, variable) ---------- */
+@font-face {
+  font-family: "Oswald";
+  src: url("/fonts/oswald-var.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Design-Tokens (docs/KONTRASTMATRIX.md beachten) ---------- */
+@theme {
+  --color-ink: #101a26;
+  --color-slate: #364c59;
+  --color-petrol: #268ea6;
+  --color-petrol-deep: #1b6478;
+  --color-cyan: #44e1f2;
+  --color-paper: #f2f2f2;
+  --color-surface: #ffffff;
+  --color-error: #b3261e;
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --ink: #101a26;
+  --slate: #364c59;
+  --petrol: #268ea6;
+  --petrol-deep: #1b6478;
+  --petrol-deep-hover: #14505f;
+  --cyan: #44e1f2;
+  --paper: #f2f2f2;
+  --surface: #ffffff;
+  --error: #b3261e;
+  --border-card: rgba(38, 142, 166, 0.35);
+  --header-h: 4.25rem;
+}
+
+/* ---------- Basis ---------- */
+html {
+  scroll-behavior: smooth;
+  accent-color: var(--petrol-deep);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+p, li { max-width: 70ch; }
+
+/* Anker nicht unter dem Sticky Header verschwinden lassen */
+[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+::selection { background: var(--cyan); color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--petrol-deep);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.dark-section :focus-visible { outline-color: var(--cyan); }
+
+/* ---------- Layout-Bausteine ---------- */
+.container {
+  width: 100%;
+  max-width: 74rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) { .container { padding-inline: 2rem; } }
+
+.section { padding-block: 3.5rem; }
+@media (min-width: 768px) { .section { padding-block: 5.5rem; } }
+
+.dark-section {
+  background: var(--ink);
+  color: var(--paper);
+}
+.dark-section h1, .dark-section h2, .dark-section h3 { color: var(--surface); }
+.dark-section p { color: rgba(242, 242, 242, 0.78); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--petrol-deep);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  background: var(--petrol);
+}
+.dark-section .eyebrow { color: var(--cyan); }
+.dark-section .eyebrow::before { background: var(--cyan); }
+
+.section-heading {
+  font-size: clamp(1.75rem, 1.3rem + 2.2vw, 2.75rem);
+  margin-top: 0.75rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem; /* 44px Touch-Ziel */
+  padding: 0.625rem 1.375rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.btn svg { width: 1.125rem; height: 1.125rem; flex: none; }
+
+.btn-primary { background: var(--petrol-deep); color: #fff; }
+.btn-primary:hover { background: var(--petrol-deep-hover); }
+.btn-primary:disabled { background: #8fa3ad; cursor: not-allowed; }
+
+.btn-outline { border-color: var(--petrol-deep); color: var(--petrol-deep); background: transparent; }
+.btn-outline:hover { background: var(--petrol-deep); color: #fff; }
+
+.dark-section .btn-outline,
+.btn-outline-light { border-color: rgba(242, 242, 242, 0.55); color: var(--surface); background: transparent; }
+.dark-section .btn-outline:hover,
+.btn-outline-light:hover { border-color: var(--cyan); color: var(--cyan); background: transparent; }
+
+.btn-ghost { color: var(--petrol-deep); background: transparent; padding-inline: 0.75rem; }
+.btn-ghost:hover { color: var(--ink); }
+
+/* ---------- Karten & Pills ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  transition: border-color 0.15s ease;
+}
+.card:hover { border-color: var(--petrol); }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--border-card);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--slate);
+  background: var(--surface);
+}
+.dark-section .pill { background: transparent; border-color: rgba(68, 225, 242, 0.4); color: var(--paper); }
+
+/* ---------- Prose (Rechtsseiten, Textseiten) ---------- */
+.prose h2 { font-size: 1.5rem; margin: 2.25rem 0 0.75rem; }
+.prose h3 { font-size: 1.17rem; margin: 1.75rem 0 0.5rem; }
+.prose p, .prose ul { margin-bottom: 1rem; color: var(--slate); }
+.prose ul { list-style: disc; padding-left: 1.4rem; }
+.prose a { color: var(--petrol-deep); text-decoration: underline; text-underline-offset: 3px; }
+.prose a:hover { color: var(--ink); }
+.prose strong { color: var(--ink); }
+
+/* ---------- Scroll-Reveal (dezent, reduced-motion-sicher) ---------- */
+.reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+}
+
+/* ---------- Formular-Grundstile ---------- */
+.field-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-bottom: 0.375rem;
+  color: var(--ink);
+}
+.field-input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.8rem;
+  font-size: 1rem; /* >= 16px gegen iOS-Zoom */
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid #8fa3ad;
+  border-radius: 8px;
+}
+.field-input:focus-visible { outline: 2px solid var(--petrol-deep); outline-offset: 0; border-color: var(--petrol-deep); }
+.field-input[aria-invalid="true"] { border: 2px solid var(--error); }
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  color: var(--error);
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+}
+.field-hint { color: var(--slate); font-size: 0.875rem; margin-top: 0.375rem; }
+
+/* Honeypot: für Menschen unsichtbar, für Bots ein normales Feld */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- Utility ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
