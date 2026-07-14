@@ -1,0 +1,149 @@
+---
+import '../styles/global.css';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import StickyMobileBar from '@components/StickyMobileBar.astro';
+import { company, siteUrl, certificate } from '@data/site';
+
+interface Breadcrumb {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  robots?: string;
+  breadcrumbs?: Breadcrumb[];
+  /** Zusätzliches JSON-LD der Seite (bereits als Objekt) */
+  jsonLd?: object[];
+}
+
+const { title, description, robots, breadcrumbs, jsonLd = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL('/images/og-schreck-fable.png', siteUrl).href;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteUrl}/#organization`,
+  name: company.name,
+  url: `${siteUrl}/`,
+  logo: new URL('/images/logo-schreck.png', siteUrl).href,
+  foundingDate: company.founded,
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: Number(company.employees) },
+  telephone: company.phoneDisplay,
+  faxNumber: company.faxDisplay,
+  email: company.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.street,
+    postalCode: company.zip,
+    addressLocality: company.city,
+    addressRegion: company.region,
+    addressCountry: company.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: company.geo.latitude,
+    longitude: company.geo.longitude,
+  },
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    name: certificate.norm,
+    description: certificate.scope,
+    credentialCategory: 'certification',
+  },
+};
+
+const breadcrumbLd = breadcrumbs?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: `${siteUrl}/` },
+        ...breadcrumbs.map((b, i) => ({
+          '@type': 'ListItem',
+          position: i + 2,
+          name: b.name,
+          item: new URL(b.href, siteUrl).href,
+        })),
+      ],
+    }
+  : null;
+
+const allJsonLd = [organization, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href="/fonts/oswald-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={company.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {allJsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Zum Inhalt springen</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <StickyMobileBar />
+
+    <script>
+      // Dezente Scroll-Reveals; respektiert prefers-reduced-motion (CSS blendet sonst nicht aus).
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -8% 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    color: var(--petrol-deep);
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+</style>
