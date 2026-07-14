@@ -2,7 +2,7 @@
 import { aboutTeaser } from '@data/site';
 ---
 
-<section class="section">
+<section class="section about-section">
   <div class="container about-grid">
     <figure class="about-media reveal">
       <img
@@ -23,6 +23,10 @@ import { aboutTeaser } from '@data/site';
 </section>
 
 <style>
+  .about-section {
+    background: var(--surface);
+    border-block: 1px solid rgba(38, 142, 166, 0.15);
+  }
   .about-grid {
     display: grid;
     gap: 2rem;

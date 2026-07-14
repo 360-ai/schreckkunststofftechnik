@@ -439,8 +439,9 @@ export const videos: { title: string; src: string }[] = [];
 export const aboutPage = {
   paragraphs: [
     'Die Schreck Kunststofftechnik GmbH wurde 1984 in Burgwald-Bottendorf gegründet. Das Unternehmen fertigt Spritzgusswerkzeuge für Micro-Kunststoffartikel, von der Konstruktion bis zur Serienreife.',
+    'Im Januar 2025 haben Roman Manz und Maximilian Grebe die Nachfolge übernommen. Sie führen die Schreck Kunststofftechnik als Gesellschafter und Geschäftsführer weiter.',
     'Heute arbeiten 14 Mitarbeiter am Standort in Burgwald-Bottendorf. Kunden kommen aus den Branchen Medizin, Labor, Kosmetik, Verpackung, Filtertechnik, Automobil und Elektronik.',
-    'Jede Form durchläuft die sieben Leistungsschritte aus dem Leistungsspektrum: Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation.',
+    'Jede Form durchläuft sieben Leistungsschritte: Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation.',
   ],
   images: {
     aerial: { src: '/images/luftbild-skt.webp', alt: 'Luftaufnahme des SKT-Firmengebäudes', width: 1451, height: 1084 },

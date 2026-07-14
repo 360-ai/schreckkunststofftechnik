@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { aboutPage, trustStrip, certificate, machinePark, processSteps, seo } from '@data/site';
+import { aboutPage, trustStrip, certificate, machinePark, seo } from '@data/site';
 ---
 
 <BaseLayout
@@ -42,22 +42,7 @@ import { aboutPage, trustStrip, certificate, machinePark, processSteps, seo } fr
     </div>
   </section>
 
-  <section class="section leistung-section">
-    <div class="container">
-      <p class="eyebrow">Leistungsspektrum</p>
-      <h2 class="section-heading">Sieben Schritte bis zur Serienform</h2>
-      <ol class="step-line">
-        {processSteps.map((step, i) => (
-          <li>
-            <span class="step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            {step.title}
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <section class="section" id="zertifikat">
+  <section class="section cert-section" id="zertifikat">
     <div class="container">
       <div class="card cert-card reveal">
         <div class="cert-copy">
@@ -127,22 +112,10 @@ import { aboutPage, trustStrip, certificate, machinePark, processSteps, seo } fr
   .img-card { overflow: hidden; }
   .img-card img { width: 100%; height: auto; display: block; }
 
-  .leistung-section { background: var(--surface); }
-  .step-line {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1.75rem;
-    font-weight: 500;
+  .cert-section {
+    background: var(--surface);
+    border-block: 1px solid rgba(38, 142, 166, 0.15);
   }
-  .step-line li { display: flex; align-items: center; gap: 0.6rem; }
-  .step-num {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.875rem;
-    color: var(--petrol);
-  }
-
   .cert-card {
     display: flex;
     flex-direction: column;
@@ -160,7 +133,6 @@ import { aboutPage, trustStrip, certificate, machinePark, processSteps, seo } fr
   .machine-card ul { display: grid; gap: 0.25rem; color: var(--slate); font-size: 0.9375rem; }
 
   @media (min-width: 640px) {
-    .step-line { flex-direction: row; flex-wrap: wrap; gap: 1rem 1.75rem; }
     .machine-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (min-width: 1024px) {
