@@ -1,0 +1,171 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { aboutPage, trustStrip, certificate, machinePark, processSteps, seo } from '@data/site';
+---
+
+<BaseLayout
+  title={seo.ueberUns.title}
+  description={seo.ueberUns.description}
+  breadcrumbs={[{ name: 'Über uns', href: '/ueber-uns/' }]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Über uns</p>
+      <h1 class="section-heading">Formenbau seit 1984</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-layout">
+      <div>
+        {aboutPage.paragraphs.map((p) => <p class="about-p">{p}</p>)}
+        <ul class="stats">
+          {trustStrip.map((item) => (
+            <li>
+              <span class="stat-value">{item.value}</span>
+              <span class="stat-label">{item.label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="about-images">
+        <figure class="card img-card reveal">
+          <img src={aboutPage.images.aerial.src} alt={aboutPage.images.aerial.alt} width={aboutPage.images.aerial.width} height={aboutPage.images.aerial.height} loading="lazy" />
+        </figure>
+        <figure class="card img-card reveal">
+          <img src={aboutPage.images.team.src} alt={aboutPage.images.team.alt} width={aboutPage.images.team.width} height={aboutPage.images.team.height} loading="lazy" />
+        </figure>
+        <figure class="card img-card reveal">
+          <img src={aboutPage.images.entrance.src} alt={aboutPage.images.entrance.alt} width={aboutPage.images.entrance.width} height={aboutPage.images.entrance.height} loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section leistung-section">
+    <div class="container">
+      <p class="eyebrow">Leistungsspektrum</p>
+      <h2 class="section-heading">Sieben Schritte bis zur Serienform</h2>
+      <ol class="step-line">
+        {processSteps.map((step, i) => (
+          <li>
+            <span class="step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            {step.title}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="zertifikat">
+    <div class="container">
+      <div class="card cert-card reveal">
+        <div class="cert-copy">
+          <p class="eyebrow">Qualität</p>
+          <h2 class="cert-heading">{certificate.norm}</h2>
+          <p class="cert-text">
+            Zertifizierter Geltungsbereich: {certificate.scope}. Ausgestellt von der {certificate.authority},
+            Zertifikat Nr. {certificate.number}, gültig vom {certificate.validFrom} bis {certificate.validTo}.
+          </p>
+        </div>
+        <a href={certificate.pdf} class="btn btn-primary">Zertifikat als PDF</a>
+      </div>
+    </div>
+  </section>
+
+  {
+    /* Maschinenpark erst nach SKT-Freigabe (AP-1, machinePark.draft) */
+    !machinePark.draft && (
+      <section class="section" id="maschinen">
+        <div class="container">
+          <p class="eyebrow">Ausstattung</p>
+          <h2 class="section-heading">Maschinenpark</h2>
+          <p class="machine-asof">{machinePark.asOf}</p>
+          <div class="machine-grid">
+            {machinePark.areas.map((area) => (
+              <div class="card machine-card">
+                <h3>{area.area}</h3>
+                <ul>
+                  {area.entries.map((entry) => (
+                    <li>{entry}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--surface);
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
+    padding-block: 2.75rem 2rem;
+  }
+  .about-layout { display: grid; gap: 2.5rem; }
+  .about-p { color: var(--slate); margin-bottom: 1rem; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .stats li { display: grid; gap: 0.15rem; }
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--petrol-deep);
+  }
+  .stat-label { font-size: 0.875rem; color: var(--slate); }
+
+  .about-images { display: grid; gap: 1rem; }
+  .img-card { overflow: hidden; }
+  .img-card img { width: 100%; height: auto; display: block; }
+
+  .leistung-section { background: var(--surface); }
+  .step-line {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    font-weight: 500;
+  }
+  .step-line li { display: flex; align-items: center; gap: 0.6rem; }
+  .step-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--petrol);
+  }
+
+  .cert-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    align-items: flex-start;
+  }
+  .cert-heading { font-size: 1.5rem; margin-top: 0.5rem; }
+  .cert-text { color: var(--slate); margin-top: 0.5rem; max-width: 60ch; }
+
+  .machine-asof { color: var(--slate); font-size: 0.9375rem; margin-top: 0.5rem; }
+  .machine-grid { display: grid; gap: 1rem; margin-top: 1.75rem; }
+  .machine-card { padding: 1.25rem; }
+  .machine-card h3 { font-size: 1.0625rem; margin-bottom: 0.5rem; }
+  .machine-card ul { display: grid; gap: 0.25rem; color: var(--slate); font-size: 0.9375rem; }
+
+  @media (min-width: 640px) {
+    .step-line { flex-direction: row; flex-wrap: wrap; gap: 1rem 1.75rem; }
+    .machine-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .about-layout { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+    .cert-card { flex-direction: row; justify-content: space-between; align-items: center; }
+    .machine-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

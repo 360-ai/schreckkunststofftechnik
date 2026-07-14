@@ -1,0 +1,131 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { career, jobs, company, seo } from '@data/site';
+
+// draft: true wird NIE gerendert (Plan Abschnitt 9)
+const visibleJobs = jobs.filter((job) => !job.draft);
+---
+
+<BaseLayout
+  title={seo.karriere.title}
+  description={seo.karriere.description}
+  breadcrumbs={[{ name: 'Karriere', href: '/karriere/' }]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Karriere</p>
+      <h1 class="section-heading">Arbeiten bei SKT</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container career-layout">
+      <div>
+        {career.intro.map((p) => <p class="career-p">{p}</p>)}
+      </div>
+      <figure class="card img-card reveal">
+        <img src="/images/einweisung.webp" alt="Einweisung an einer Maschine im SKT-Werkzeugbau" width="1200" height="693" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  {
+    visibleJobs.length > 0 && (
+      <section class="section jobs-section" id="stellen">
+        <div class="container">
+          <p class="eyebrow">Offene Stellen</p>
+          <h2 class="section-heading">Aktuelle Stellenangebote</h2>
+          <div class="job-list">
+            {visibleJobs.map((job) => (
+              <article class="card job-card" id={job.slug}>
+                <h3>{job.titel}</h3>
+                <p class="job-umfang">{job.umfang}</p>
+                {job.aufgaben.length > 0 && (
+                  <>
+                    <h4>Ihre Aufgaben</h4>
+                    <ul>{job.aufgaben.map((a) => <li>{a}</li>)}</ul>
+                  </>
+                )}
+                {job.profil.length > 0 && (
+                  <>
+                    <h4>Ihr Profil</h4>
+                    <ul>{job.profil.map((p) => <li>{p}</li>)}</ul>
+                  </>
+                )}
+                {job.benefits.length > 0 && (
+                  <>
+                    <h4>Das bietet SKT</h4>
+                    <ul>{job.benefits.map((b) => <li>{b}</li>)}</ul>
+                  </>
+                )}
+                <a
+                  class="btn btn-primary"
+                  href={`mailto:${company.email}?subject=${encodeURIComponent(`Bewerbung: ${job.titel}`)}`}
+                >
+                  Per E-Mail bewerben
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section initiative-section" id="initiativbewerbung">
+    <div class="container">
+      <div class="card initiative-card reveal">
+        <div>
+          <p class="eyebrow">Jederzeit möglich</p>
+          <h2 class="initiative-heading">{career.initiative.heading}</h2>
+          <p class="initiative-text">{career.initiative.text}</p>
+        </div>
+        <div class="initiative-actions">
+          <a
+            class="btn btn-primary"
+            href={`mailto:${company.email}?subject=${encodeURIComponent(career.initiative.mailSubject)}`}
+          >
+            Bewerbung per E-Mail
+          </a>
+          <a class="btn btn-outline" href={company.phoneLink}>{company.phoneDisplay}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--surface);
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
+    padding-block: 2.75rem 2rem;
+  }
+  .career-layout { display: grid; gap: 2rem; align-items: center; }
+  .career-p { color: var(--slate); margin-bottom: 1rem; }
+  .img-card { overflow: hidden; }
+  .img-card img { width: 100%; height: auto; display: block; }
+
+  .jobs-section { background: var(--surface); }
+  .job-list { display: grid; gap: 1.25rem; margin-top: 1.75rem; }
+  .job-card { padding: 1.5rem; }
+  .job-card h3 { font-size: 1.25rem; }
+  .job-umfang { color: var(--slate); font-size: 0.9375rem; margin-top: 0.25rem; }
+  .job-card h4 { font-size: 1rem; margin-top: 1.25rem; margin-bottom: 0.375rem; }
+  .job-card ul { list-style: disc; padding-left: 1.3rem; color: var(--slate); display: grid; gap: 0.25rem; }
+  .job-card .btn { margin-top: 1.5rem; }
+
+  .initiative-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.75rem;
+  }
+  .initiative-heading { font-size: 1.5rem; margin-top: 0.5rem; }
+  .initiative-text { color: var(--slate); margin-top: 0.5rem; max-width: 52ch; }
+  .initiative-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  @media (min-width: 1024px) {
+    .career-layout { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+    .initiative-card { flex-direction: row; justify-content: space-between; align-items: center; }
+  }
+</style>

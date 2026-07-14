@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { downloads, seo } from '@data/site';
+import { statSync } from 'node:fs';
+import path from 'node:path';
+
+// draft: true (z. B. AVB bis zur Freigabe) wird NIE gerendert
+const visible = downloads.filter((d) => !d.draft);
+
+// Dateigröße zur Buildzeit ermitteln (Plan Abschnitt 9)
+const withSize = visible.map((d) => {
+  const filePath = path.join(process.cwd(), 'public', d.href);
+  const bytes = statSync(filePath).size;
+  const size = bytes >= 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1).replace('.', ',')} MB` : `${Math.round(bytes / 1024)} KB`;
+  return { ...d, size };
+});
+---
+
+<BaseLayout
+  title={seo.downloads.title}
+  description={seo.downloads.description}
+  breadcrumbs={[{ name: 'Downloads', href: '/downloads/' }]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Downloads</p>
+      <h1 class="section-heading">Prospekte und Zertifikat</h1>
+      <p class="page-intro">Alle Unterlagen als PDF, ohne Anmeldung.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="download-grid">
+        {
+          withSize.map((item) => (
+            <li class="card download-card reveal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 3v5h5" />
+              </svg>
+              <div class="download-body">
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+                <a href={item.href} class="download-link">
+                  PDF herunterladen
+                  <span class="download-size">({item.size})</span>
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--surface);
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
+    padding-block: 2.75rem 2rem;
+  }
+  .page-intro { color: var(--slate); margin-top: 0.875rem; }
+
+  .download-grid { display: grid; gap: 1.25rem; }
+  .download-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.375rem;
+    align-items: flex-start;
+  }
+  .download-card > svg { width: 2rem; height: 2rem; color: var(--petrol); flex: none; }
+  .download-card h2 { font-size: 1.125rem; }
+  .download-card p { color: var(--slate); font-size: 0.9375rem; margin-top: 0.25rem; }
+  .download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    min-height: 2.75rem;
+    font-weight: 600;
+    color: var(--petrol-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .download-link:hover { color: var(--ink); }
+  .download-size { font-weight: 400; color: var(--slate); font-size: 0.875rem; }
+
+  @media (min-width: 640px) {
+    .download-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .download-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

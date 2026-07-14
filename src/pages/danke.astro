@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { company, seo } from '@data/site';
+---
+
+<BaseLayout title={seo.danke.title} description={seo.danke.description} robots="noindex, follow">
+  <section class="section">
+    <div class="container danke">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-6"/></svg>
+      <h1 class="section-heading">Ihre Anfrage ist angekommen</h1>
+      <p>
+        Vielen Dank. Wir melden uns werktags in der Regel kurzfristig. Bei dringenden Fragen erreichen Sie uns unter
+        <a href={company.phoneLink}>{company.phoneDisplay}</a>.
+      </p>
+      <a href="/" class="btn btn-primary">Zur Startseite</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .danke { max-width: 44rem; }
+  .danke svg { width: 3rem; height: 3rem; color: var(--petrol); margin-bottom: 1rem; }
+  .danke p { color: var(--slate); margin-block: 1rem 1.75rem; }
+  .danke p a { color: var(--petrol-deep); }
+</style>
