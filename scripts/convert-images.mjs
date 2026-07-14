@@ -7,10 +7,12 @@ import path from 'node:path';
 const SRC = path.resolve(import.meta.dirname, '../../Bilder');
 const OUT = path.resolve(import.meta.dirname, '../public/images');
 
-// [Quelldatei, Zielname, maxBreite, Qualität]
+// [Quelldatei, Zielname, maxBreite, Qualität, cropRechtsAnteil]
+// cropRechtsAnteil: Anteil der Bildbreite, der rechts abgeschnitten wird
+// (Hero: Heitec-Schild am rechten Bildrand darf nicht sichtbar sein)
 const JOBS = [
-  ['hero2.jpg', 'hero-werkzeug.webp', 1920, 60],
-  ['hero2.jpg', 'hero-werkzeug-mobil.webp', 828, 52],
+  ['hero2.jpg', 'hero-werkzeug.webp', 1920, 60, 0.18],
+  ['hero2.jpg', 'hero-werkzeug-mobil.webp', 828, 52, 0.18],
   ['logoschreck.png', 'logo-schreck.png', 560, null],
   ['Luftbild SKT.png', 'luftbild-skt.webp', 1600, 78],
   ['Luftbild SKT.png', 'luftbild-skt-klein.webp', 800, 74],
@@ -39,8 +41,13 @@ const JOBS = [
 
 await mkdir(OUT, { recursive: true });
 
-for (const [src, out, width, quality] of JOBS) {
-  const img = sharp(path.join(SRC, src)).rotate().resize({ width, withoutEnlargement: true });
+for (const [src, out, width, quality, cropRight] of JOBS) {
+  let img = sharp(path.join(SRC, src)).rotate();
+  if (cropRight) {
+    const meta = await img.metadata();
+    img = img.extract({ left: 0, top: 0, width: Math.round(meta.width * (1 - cropRight)), height: meta.height });
+  }
+  img = img.resize({ width, withoutEnlargement: true });
   if (out.endsWith('.webp')) img.webp({ quality });
   else img.png({ compressionLevel: 9 });
   const info = await img.toFile(path.join(OUT, out));
