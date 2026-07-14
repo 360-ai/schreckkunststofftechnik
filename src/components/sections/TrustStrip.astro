@@ -1,0 +1,45 @@
+---
+import { trustStrip } from '@data/site';
+---
+
+<section class="trust" aria-label="Kennzahlen">
+  <div class="container">
+    <ul class="trust-grid">
+      {
+        trustStrip.map((item) => (
+          <li class="reveal">
+            <span class="trust-value">{item.value}</span>
+            <span class="trust-label">{item.label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .trust {
+    background: var(--surface);
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem;
+    padding-block: 1.75rem;
+  }
+  .trust-grid li { display: grid; gap: 0.15rem; }
+  .trust-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--petrol-deep);
+    line-height: 1.1;
+  }
+  .trust-label { font-size: 0.875rem; color: var(--slate); }
+
+  @media (min-width: 768px) {
+    .trust-grid { grid-template-columns: repeat(4, 1fr); }
+    .trust-value { font-size: 1.75rem; }
+  }
+</style>

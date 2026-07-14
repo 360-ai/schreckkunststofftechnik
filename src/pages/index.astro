@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/sections/Hero.astro';
+import TrustStrip from '@components/sections/TrustStrip.astro';
+import ProductGrid from '@components/sections/ProductGrid.astro';
+import Process from '@components/sections/Process.astro';
+import AboutTeaser from '@components/sections/AboutTeaser.astro';
+import VideoSection from '@components/sections/VideoSection.astro';
+import CareerTeaser from '@components/sections/CareerTeaser.astro';
+import FinalCta from '@components/sections/FinalCta.astro';
+import { seo } from '@data/site';
+---
+
+<BaseLayout title={seo.home.title} description={seo.home.description}>
+  <Hero />
+  <TrustStrip />
+  <ProductGrid />
+  <Process />
+  <AboutTeaser />
+  <VideoSection />
+  <CareerTeaser />
+  <FinalCta />
+</BaseLayout>

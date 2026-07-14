@@ -1,0 +1,43 @@
+---
+import { aboutTeaser } from '@data/site';
+---
+
+<section class="section">
+  <div class="container about-grid">
+    <figure class="about-media reveal">
+      <img
+        src={aboutTeaser.image.src}
+        alt={aboutTeaser.image.alt}
+        width={aboutTeaser.image.width}
+        height={aboutTeaser.image.height}
+        loading="lazy"
+      />
+    </figure>
+    <div class="about-copy">
+      <p class="eyebrow">Über uns</p>
+      <h2 class="section-heading">{aboutTeaser.heading}</h2>
+      {aboutTeaser.paragraphs.map((p) => <p class="about-p">{p}</p>)}
+      <a href="/ueber-uns/" class="btn btn-outline about-btn">Mehr über SKT</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  .about-media {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-card);
+  }
+  .about-media img { width: 100%; height: auto; display: block; }
+  .about-p { color: var(--slate); margin-top: 1rem; }
+  .about-btn { margin-top: 1.5rem; }
+
+  @media (min-width: 1024px) {
+    .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  }
+</style>

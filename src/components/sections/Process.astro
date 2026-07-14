@@ -1,0 +1,60 @@
+---
+import { processSteps } from '@data/site';
+---
+
+<section class="section process-section">
+  <div class="container">
+    <p class="eyebrow">Leistungsspektrum</p>
+    <h2 class="section-heading">Von der Idee bis zur Serienreife</h2>
+    <p class="section-intro">
+      Sieben Schritte, dokumentiert in jedem Prospekt. Ihre Form bleibt dabei durchgehend in einer Hand.
+    </p>
+
+    <ol class="process-list">
+      {
+        processSteps.map((step, i) => (
+          <li class="reveal">
+            <span class="process-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-section { background: var(--surface); }
+  .section-intro { color: var(--slate); margin-top: 0.875rem; }
+
+  .process-list {
+    counter-reset: step;
+    display: grid;
+    gap: 1.75rem 1.5rem;
+    margin-top: 2.25rem;
+    position: relative;
+  }
+  .process-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(38, 142, 166, 0.35);
+  }
+  .process-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--petrol);
+    letter-spacing: 0.08em;
+  }
+  .process-list h3 { font-size: 1.125rem; margin-top: 0.125rem; }
+  .process-list p { font-size: 0.9375rem; color: var(--slate); margin-top: 0.25rem; }
+
+  @media (min-width: 640px) {
+    .process-list { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 1024px) {
+    .process-list { grid-template-columns: repeat(4, 1fr); }
+    .process-list li:nth-child(n + 5) { grid-column: span 1; }
+  }
+</style>

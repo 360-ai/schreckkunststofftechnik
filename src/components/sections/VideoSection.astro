@@ -1,0 +1,33 @@
+---
+// Rendert nur, wenn Videos vorliegen (Plan Abschnitt 6, Punkt 7).
+// Kein Platzhalter-Frame im Livebetrieb.
+import { videos } from '@data/site';
+---
+
+{
+  videos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Einblicke</p>
+        <h2 class="section-heading">SKT in Bewegtbild</h2>
+        <div class="video-grid">
+          {videos.map((video) => (
+            <figure>
+              <video controls preload="metadata" src={video.src} />
+              <figcaption>{video.title}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .video-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
+  video { width: 100%; border-radius: 10px; }
+  figcaption { margin-top: 0.5rem; color: var(--slate); font-size: 0.9375rem; }
+  @media (min-width: 768px) {
+    .video-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
