@@ -79,8 +79,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const origin = request.headers.get('origin') ?? '';
   const originOk =
     ALLOWED_ORIGINS.includes(origin) ||
-    /^https:\/\/[a-z0-9-]+\.schreck-fable\.pages\.dev$/.test(origin) ||
-    origin === 'https://schreck-fable.pages.dev' ||
+    /^https:\/\/([a-z0-9-]+\.)?schreckkunststofftechnik\.pages\.dev$/.test(origin) ||
     origin.startsWith('http://localhost') ||
     origin.startsWith('http://127.0.0.1');
   if (!originOk) return fail(403, 'origin', 'Anfrage von unerlaubter Herkunft.');
