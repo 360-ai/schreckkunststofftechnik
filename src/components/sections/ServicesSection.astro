@@ -1,0 +1,64 @@
+---
+import { services } from '@data/site';
+---
+
+<section class="section" id="reparatur-schulung">
+  <div class="container">
+    <p class="eyebrow">Nach der Serie</p>
+    <h2 class="section-heading">{services.heading}</h2>
+    <p class="section-intro">{services.intro}</p>
+
+    <div class="service-grid">
+      {
+        services.items.map((item) => (
+          <article class="card service-card reveal">
+            <figure class="service-media">
+              <img src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} loading="lazy" />
+            </figure>
+            <div class="service-body">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <a href={item.cta.href} class="btn btn-outline">{item.cta.label}</a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-intro { color: var(--slate); margin-top: 0.875rem; }
+
+  .service-grid {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2.25rem;
+  }
+  .service-card { overflow: hidden; display: flex; flex-direction: column; }
+  .service-media {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
+  }
+  .service-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .service-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 1.25rem 1.375rem 1.375rem;
+  }
+  .service-body h3 { font-size: 1.25rem; }
+  .service-body p { color: var(--slate); font-size: 0.9375rem; }
+  .service-body .btn { margin-top: auto; }
+
+  @media (min-width: 768px) {
+    .service-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

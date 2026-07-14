@@ -15,6 +15,7 @@ Stand: 2026-07-14. Alles hier gilt als `draft` und wird nicht öffentlich gerend
 6. **Maschinenpark auf /ueber-uns/?** Daten Stand 01/2024 aus Projekt 1 liegen in `site.ts` (`machinePark.draft = true`). SKT-Freigabe nötig.
 7. **"Familienunternehmen"** oder ähnliche Zuschreibungen: nirgends verwendet, nur nach SKT-Freigabe ergänzen.
 8. **Mitarbeiterzahl 14:** Zahl stammt aus Unterlagen von 2026. Vor Go-Live mit SKT bestätigen und Prüfdatum notieren.
+8a. **"1.000+ Formen bis zur Serienreife"** (Trust-Leiste, Wunsch Denis 2026-07-15): Zahl stammt aus dem Statistik-Block von Projekt 1, im Fable-Plan nicht als belegt gelistet. Vor Go-Live mit SKT bestätigen.
 
 ## Technik / Deployment
 

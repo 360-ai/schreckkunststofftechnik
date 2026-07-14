@@ -73,8 +73,11 @@ export const trustStrip = [
   { value: 'Seit 1984', label: 'Formenbau aus Hessen' },
   { value: '1.000+', label: 'Formen bis zur Serienreife' },
   { value: 'ISO 9001', label: 'zertifiziert bis Juni 2027' },
-  { value: 'Alles im Block', label: 'von Konstruktion bis Abmusterung' },
+  { value: 'Alles im Blick', label: 'von Konstruktion bis Abmusterung' },
 ];
+
+export const processIntro =
+  'Sieben Schritte, von der Konzeptionierung bis zur Dokumentation: Ihre Form bleibt durchgehend in einer Hand.';
 
 // Die 7 Leistungsschritte aus den Flyern (identischer Wortlaut in allen sechs PDFs).
 export const processSteps = [
@@ -303,6 +306,27 @@ export const productGroups: ProductGroup[] = [
     pdf: { href: '/downloads/skt-flyer-verpackung.pdf', label: 'Prospekt Verpackung' },
   },
 ];
+
+// Reparatur und Schulung vor Ort: belegt über den Leistungskatalog aus Projekt 1
+// (capabilities: "Reparatur", "Schulung vor Ort") und das Formular-Anliegen.
+export const services = {
+  heading: 'Reparatur & Schulung',
+  intro: 'Zwei Leistungen, die nach der Serienfreigabe weiterlaufen.',
+  items: [
+    {
+      title: 'Reparatur und Ersatzteile',
+      text: 'SKT repariert Spritzgusswerkzeuge und fertigt austauschbare Ersatzteile. Senden Sie Ihre Anfrage mit dem Anliegen Ersatzteile oder Reparatur, gern mit Fotos der Form.',
+      image: { src: '/images/reparatur.webp', alt: 'Reparatur eines Spritzgusswerkzeugs bei SKT', width: 1133, height: 944 },
+      cta: { label: 'Reparatur anfragen', href: '/#anfrage' },
+    },
+    {
+      title: 'Schulung vor Ort',
+      text: 'SKT schult Ihr Team im Umgang mit der Form, vor Ort in Ihrer Produktion. Termin und Umfang stimmen Sie direkt mit uns ab.',
+      image: { src: '/images/einweisung.webp', alt: 'Einweisung an der Maschine durch SKT', width: 1200, height: 693 },
+      cta: { label: 'Schulung anfragen', href: '/#anfrage' },
+    },
+  ],
+};
 
 export const aboutTeaser = {
   heading: 'Formenbau aus Burgwald-Bottendorf',

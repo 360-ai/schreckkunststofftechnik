@@ -1,14 +1,12 @@
 ---
-import { processSteps } from '@data/site';
+import { processSteps, processIntro } from '@data/site';
 ---
 
 <section class="section process-section">
   <div class="container">
     <p class="eyebrow">Leistungsspektrum</p>
     <h2 class="section-heading">Von der Idee bis zur Serienreife</h2>
-    <p class="section-intro">
-      Sieben Schritte, dokumentiert in jedem Prospekt. Ihre Form bleibt dabei durchgehend in einer Hand.
-    </p>
+    <p class="section-intro">{processIntro}</p>
 
     <ol class="process-list">
       {
