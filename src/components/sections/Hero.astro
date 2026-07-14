@@ -1,0 +1,91 @@
+---
+import ProjectInquiry from '@components/forms/ProjectInquiry.astro';
+import { hero } from '@data/site';
+---
+
+<section class="hero dark-section">
+  <picture class="hero-bg" aria-hidden="true">
+    <source media="(max-width: 767px)" srcset={hero.imageMobile} />
+    <img src={hero.image} alt="" width="1920" height="1600" loading="eager" fetchpriority="high" />
+  </picture>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Schreck Kunststofftechnik GmbH</p>
+      <h1>{hero.h1}</h1>
+      <p class="hero-subline">{hero.subline}</p>
+      <ul class="hero-badges">
+        {hero.badges.map((b) => <li class="pill">{b}</li>)}
+      </ul>
+    </div>
+    <div class="hero-form">
+      <ProjectInquiry />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: 3rem 3.5rem;
+  }
+  .hero-bg,
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  /* Foto stark abgedunkelt, damit Text AA-Kontrast auf --ink behält */
+  .hero-overlay {
+    background: linear-gradient(115deg, rgba(16, 26, 38, 0.96) 0%, rgba(16, 26, 38, 0.88) 45%, rgba(16, 26, 38, 0.78) 100%);
+  }
+  .hero::after {
+    /* Cyan-Akzentlinie am unteren Rand */
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan), rgba(68, 225, 242, 0));
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.125rem, 1.4rem + 3.6vw, 3.5rem);
+    margin-top: 0.875rem;
+    max-width: 16ch;
+  }
+  .hero-subline {
+    margin-top: 1rem;
+    font-size: 1.0625rem;
+    max-width: 46ch;
+  }
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .hero { padding-block: 4.5rem 5rem; }
+    .hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 4rem;
+    }
+  }
+</style>

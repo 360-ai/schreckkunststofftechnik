@@ -1,0 +1,615 @@
+---
+import { inquiryForm, industries, company } from '@data/site';
+---
+
+<div class="inquiry card" id="anfrage">
+  <h2 class="inquiry-title">{inquiryForm.heading}</h2>
+  <p class="inquiry-intro">{inquiryForm.intro}</p>
+
+  <div class="progress" aria-hidden="true">
+    <div class="progress-bar" data-progress style="width: 33.33%"></div>
+  </div>
+  <p class="step-count" data-step-count aria-live="polite">Schritt 1 von 3</p>
+
+  <form
+    method="post"
+    action="/api/anfrage"
+    enctype="multipart/form-data"
+    novalidate
+    data-inquiry
+  >
+    <!-- Honeypot (Bots füllen es aus) + Zeitfalle -->
+    <div class="hp-field" aria-hidden="true">
+      <label for="firma_web">Firma Web</label>
+      <input type="text" id="firma_web" name="firma_web" tabindex="-1" autocomplete="off" />
+    </div>
+    <input type="hidden" name="ts" data-ts value="" />
+
+    <!-- Schritt 1: Anliegen -->
+    <fieldset class="step" data-step="1">
+      <legend class="step-heading" tabindex="-1">Worum geht es?</legend>
+      <div class="chips" role="radiogroup" aria-label="Anliegen">
+        {
+          inquiryForm.topics.map((topic, i) => (
+            <label class="chip">
+              <input type="radio" name="anliegen" value={topic} required={i === 0} />
+              <span>{topic}</span>
+            </label>
+          ))
+        }
+      </div>
+      <p class="field-error" data-error-for="anliegen" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+        Bitte wählen Sie ein Anliegen aus.
+      </p>
+      <div class="step-nav">
+        <span></span>
+        <button type="button" class="btn btn-primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- Schritt 2: Projekt -->
+    <fieldset class="step" data-step="2" hidden>
+      <legend class="step-heading" tabindex="-1">Ihr Projekt</legend>
+
+      <div class="field">
+        <label class="field-label" for="beschreibung">Projektbeschreibung *</label>
+        <textarea
+          class="field-input"
+          id="beschreibung"
+          name="beschreibung"
+          rows="4"
+          required
+          aria-describedby="beschreibung-hint"
+        ></textarea>
+        <p class="field-hint" id="beschreibung-hint">
+          Bauteil, Werkstoff, Stückzahl: alles hilft, nichts ist Pflicht im Detail.
+        </p>
+        <p class="field-error" data-error-for="beschreibung" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+          Bitte beschreiben Sie Ihr Projekt kurz.
+        </p>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="branche">Branche (optional)</label>
+        <select class="field-input" id="branche" name="branche">
+          <option value="">Bitte wählen</option>
+          {industries.map((b) => <option value={b}>{b}</option>)}
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="field-label" id="upload-label">Dateien (optional)</span>
+        <div class="dropzone" data-dropzone>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0 4 4m-4-4-4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+          <p>
+            <button type="button" class="dz-browse" data-browse aria-describedby="upload-label upload-hint">Dateien auswählen</button>
+            <span class="dz-drop-hint">oder hierher ziehen</span>
+          </p>
+          <input
+            type="file"
+            name="dateien"
+            multiple
+            accept={inquiryForm.upload.accept}
+            class="visually-hidden"
+            data-file-input
+            tabindex="-1"
+          />
+        </div>
+        <p class="field-hint" id="upload-hint">
+          Zeichnung, CAD oder Fotos: pdf, step, stp, igs, iges, dxf, dwg, png, jpg, zip.
+          Max. {inquiryForm.upload.maxFiles} Dateien, {inquiryForm.upload.maxTotalMb} MB gesamt.
+        </p>
+        <ul class="file-list" data-file-list aria-live="polite"></ul>
+        <p class="field-error" data-error-for="dateien" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+          <span data-file-error-text>Datei nicht zulässig.</span>
+        </p>
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="btn btn-ghost" data-back>Zurück</button>
+        <button type="button" class="btn btn-primary" data-next>Weiter</button>
+      </div>
+    </fieldset>
+
+    <!-- Schritt 3: Kontakt -->
+    <fieldset class="step" data-step="3" hidden>
+      <legend class="step-heading" tabindex="-1">Ihre Kontaktdaten</legend>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="firma">Firma (optional)</label>
+          <input class="field-input" type="text" id="firma" name="firma" autocomplete="organization" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="name">Name *</label>
+          <input class="field-input" type="text" id="name" name="name" required autocomplete="name" />
+          <p class="field-error" data-error-for="name" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+            Bitte geben Sie Ihren Namen an.
+          </p>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="email">E-Mail *</label>
+          <input
+            class="field-input"
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+            inputmode="email"
+          />
+          <p class="field-error" data-error-for="email" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+            Bitte geben Sie eine gültige E-Mail-Adresse an.
+          </p>
+        </div>
+        <div class="field">
+          <label class="field-label" for="telefon">Telefon (optional)</label>
+          <input
+            class="field-input"
+            type="tel"
+            id="telefon"
+            name="telefon"
+            autocomplete="tel"
+            inputmode="tel"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="nachricht">Ergänzende Nachricht (optional)</label>
+        <textarea class="field-input" id="nachricht" name="nachricht" rows="3"></textarea>
+      </div>
+
+      <div class="step-nav">
+        <button type="button" class="btn btn-ghost" data-back>Zurück</button>
+        <button type="submit" class="btn btn-primary" data-submit>
+          <span data-submit-label>Anfrage senden</span>
+        </button>
+      </div>
+
+      <p class="privacy-note">
+        {inquiryForm.privacyNote}
+        <a href="/datenschutz/">Datenschutzerklärung</a>.
+      </p>
+    </fieldset>
+
+    <!-- Status für Screenreader + sichtbare Meldungen -->
+    <div class="form-status" data-status aria-live="polite"></div>
+
+    <!-- Fehler-Fallback mit direkten Alternativen -->
+    <div class="form-error-box" data-error-box hidden>
+      <p><strong>Das hat leider nicht geklappt.</strong> <span data-error-detail></span></p>
+      <p>
+        Sie erreichen uns direkt: <a href={company.phoneLink}>{company.phoneDisplay}</a> oder
+        <a href={`mailto:${company.email}`}>{company.email}</a>.
+      </p>
+      <button type="button" class="btn btn-outline" data-retry>Erneut versuchen</button>
+    </div>
+  </form>
+
+  <!-- Erfolgs-Screen -->
+  <div class="success" data-success hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-6"/></svg>
+    <h3 tabindex="-1" data-success-heading>Ihre Anfrage ist unterwegs</h3>
+    <p>Wir melden uns werktags in der Regel kurzfristig zurück.</p>
+    <dl class="summary" data-summary></dl>
+  </div>
+</div>
+
+<script>
+  const root = document.getElementById('anfrage')!;
+  const form = root.querySelector<HTMLFormElement>('[data-inquiry]')!;
+  const steps = [...form.querySelectorAll<HTMLFieldSetElement>('.step')];
+  const progressBar = root.querySelector<HTMLElement>('[data-progress]')!;
+  const stepCount = root.querySelector<HTMLElement>('[data-step-count]')!;
+  const status = form.querySelector<HTMLElement>('[data-status]')!;
+  const errorBox = form.querySelector<HTMLElement>('[data-error-box]')!;
+  const errorDetail = form.querySelector<HTMLElement>('[data-error-detail]')!;
+  const successPane = root.querySelector<HTMLElement>('[data-success]')!;
+  const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+  const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]')!;
+
+  // Zeitfalle: Rendertimestamp (weiches Signal, Serverseite entscheidet)
+  form.querySelector<HTMLInputElement>('[data-ts]')!.value = String(Date.now());
+
+  let current = 0;
+
+  function showError(name: string, show: boolean, text?: string) {
+    const el = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+    if (!el) return;
+    el.hidden = !show;
+    if (text) {
+      const t = el.querySelector('[data-file-error-text]');
+      if (t) t.textContent = text;
+    }
+    const field = form.querySelector<HTMLElement>(`[name="${name}"], #${name}`);
+    field?.setAttribute('aria-invalid', String(show));
+  }
+
+  function goTo(index: number, focusHeading = true) {
+    steps[current].hidden = true;
+    steps[index].hidden = false;
+    current = index;
+    progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
+    stepCount.textContent = `Schritt ${index + 1} von ${steps.length}`;
+    if (focusHeading) {
+      const heading = steps[index].querySelector<HTMLElement>('.step-heading');
+      heading?.focus();
+    }
+  }
+
+  function validateStep(index: number): boolean {
+    if (index === 0) {
+      const checked = form.querySelector<HTMLInputElement>('input[name="anliegen"]:checked');
+      showError('anliegen', !checked);
+      return !!checked;
+    }
+    if (index === 1) {
+      const desc = form.querySelector<HTMLTextAreaElement>('#beschreibung')!;
+      const ok = desc.value.trim().length > 0;
+      showError('beschreibung', !ok);
+      if (!ok) desc.focus();
+      return ok && filesValid;
+    }
+    if (index === 2) {
+      const name = form.querySelector<HTMLInputElement>('#name')!;
+      const email = form.querySelector<HTMLInputElement>('#email')!;
+      const nameOk = name.value.trim().length > 0;
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+      showError('name', !nameOk);
+      showError('email', !emailOk);
+      if (!nameOk) name.focus();
+      else if (!emailOk) email.focus();
+      return nameOk && emailOk;
+    }
+    return true;
+  }
+
+  form.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-next]')) {
+      if (validateStep(current)) goTo(current + 1);
+    } else if (target.closest('[data-back]')) {
+      goTo(current - 1);
+    }
+  });
+
+  // ---------- Datei-Upload ----------
+  const ALLOWED = ['pdf', 'step', 'stp', 'igs', 'iges', 'dxf', 'dwg', 'png', 'jpg', 'jpeg', 'zip'];
+  const MAX_FILES = 5;
+  const MAX_TOTAL = 10 * 1024 * 1024;
+
+  const dropzone = form.querySelector<HTMLElement>('[data-dropzone]')!;
+  const fileInput = form.querySelector<HTMLInputElement>('[data-file-input]')!;
+  const browseBtn = form.querySelector<HTMLButtonElement>('[data-browse]')!;
+  const fileList = form.querySelector<HTMLUListElement>('[data-file-list]')!;
+
+  let files: File[] = [];
+  let filesValid = true;
+
+  browseBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', () => {
+    addFiles([...(fileInput.files ?? [])]);
+    fileInput.value = '';
+  });
+
+  // Drag-and-drop ist Desktop-Zusatz
+  for (const ev of ['dragenter', 'dragover']) {
+    dropzone.addEventListener(ev, (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dz-active');
+    });
+  }
+  for (const ev of ['dragleave', 'drop']) {
+    dropzone.addEventListener(ev, (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dz-active');
+    });
+  }
+  dropzone.addEventListener('drop', (e) => {
+    addFiles([...((e as DragEvent).dataTransfer?.files ?? [])]);
+  });
+
+  function addFiles(newFiles: File[]) {
+    let error = '';
+    for (const f of newFiles) {
+      const ext = f.name.split('.').pop()?.toLowerCase() ?? '';
+      if (!ALLOWED.includes(ext)) {
+        error = `"${f.name}" hat einen nicht zulässigen Dateityp (.${ext}).`;
+        continue;
+      }
+      if (files.some((x) => x.name === f.name && x.size === f.size)) continue;
+      files.push(f);
+    }
+    if (files.length > MAX_FILES) {
+      error = `Maximal ${MAX_FILES} Dateien. Die überzähligen wurden entfernt.`;
+      files = files.slice(0, MAX_FILES);
+    }
+    const total = files.reduce((s, f) => s + f.size, 0);
+    if (total > MAX_TOTAL) {
+      error = `Zusammen maximal 10 MB. Aktuell: ${(total / 1024 / 1024).toFixed(1)} MB. Bitte entfernen Sie eine Datei.`;
+      filesValid = false;
+    } else {
+      filesValid = true;
+    }
+    showError('dateien', !!error, error);
+    renderFileList();
+  }
+
+  function renderFileList() {
+    fileList.innerHTML = '';
+    files.forEach((f, i) => {
+      const li = document.createElement('li');
+      const name = document.createElement('span');
+      name.textContent = `${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)`;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = 'Entfernen';
+      remove.setAttribute('aria-label', `${f.name} entfernen`);
+      remove.addEventListener('click', () => {
+        files.splice(i, 1);
+        const total = files.reduce((s, x) => s + x.size, 0);
+        filesValid = total <= MAX_TOTAL;
+        showError('dateien', false);
+        renderFileList();
+      });
+      li.append(name, remove);
+      fileList.append(li);
+    });
+  }
+
+  // ---------- Absenden ----------
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateStep(2)) return;
+
+    submitBtn.disabled = true;
+    submitLabel.textContent = files.length ? 'Wird gesendet, Dateien werden hochgeladen' : 'Wird gesendet';
+    status.textContent = 'Ihre Anfrage wird gesendet.';
+    errorBox.hidden = true;
+
+    const data = new FormData();
+    for (const field of ['anliegen', 'beschreibung', 'branche', 'firma', 'name', 'email', 'telefon', 'nachricht', 'firma_web', 'ts']) {
+      const el = form.querySelector<HTMLInputElement>(`[name="${field}"]:not([type="radio"]), input[name="${field}"]:checked`);
+      data.append(field, el?.value ?? '');
+    }
+    for (const f of files) data.append('dateien', f, f.name);
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 60_000);
+      const res = await fetch(form.action, { method: 'POST', body: data, signal: controller.signal });
+      clearTimeout(timeout);
+      const json = await res.json().catch(() => ({}));
+
+      if (res.ok && json.ok) {
+        showSuccess(data);
+      } else {
+        fail(json.message ?? 'Der Server hat die Anfrage nicht angenommen.');
+      }
+    } catch {
+      fail('Die Verbindung ist fehlgeschlagen oder abgelaufen.');
+    }
+  });
+
+  function fail(detail: string) {
+    submitBtn.disabled = false;
+    submitLabel.textContent = 'Anfrage senden';
+    status.textContent = '';
+    errorDetail.textContent = detail;
+    errorBox.hidden = false;
+  }
+
+  form.querySelector('[data-retry]')?.addEventListener('click', () => {
+    errorBox.hidden = true;
+    submitBtn.focus();
+  });
+
+  function showSuccess(data: FormData) {
+    form.hidden = true;
+    root.querySelector<HTMLElement>('.progress')!.hidden = true;
+    stepCount.hidden = true;
+    successPane.hidden = false;
+
+    const summary = successPane.querySelector<HTMLElement>('[data-summary]')!;
+    const rows: [string, string][] = [
+      ['Anliegen', String(data.get('anliegen') ?? '')],
+      ['Branche', String(data.get('branche') || 'Keine Angabe')],
+      ['Dateien', files.length ? `${files.length} Datei${files.length > 1 ? 'en' : ''}` : 'Keine'],
+      ['Antwort an', String(data.get('email') ?? '')],
+    ];
+    summary.innerHTML = '';
+    for (const [dt, dd] of rows) {
+      const dtEl = document.createElement('dt');
+      dtEl.textContent = dt;
+      const ddEl = document.createElement('dd');
+      ddEl.textContent = dd;
+      summary.append(dtEl, ddEl);
+    }
+    successPane.querySelector<HTMLElement>('[data-success-heading]')!.focus();
+  }
+</script>
+
+<style>
+  .inquiry {
+    padding: 1.5rem 1.25rem;
+    box-shadow: 0 24px 60px rgba(16, 26, 38, 0.35);
+  }
+  .inquiry-title {
+    font-size: 1.5rem;
+  }
+  .inquiry-intro {
+    color: var(--slate);
+    font-size: 0.9375rem;
+    margin-top: 0.25rem;
+  }
+
+  .progress {
+    height: 4px;
+    background: rgba(38, 142, 166, 0.18);
+    border-radius: 2px;
+    margin-top: 1.125rem;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--petrol);
+    transition: width 0.25s ease;
+  }
+  .step-count {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--slate);
+    margin: 0.5rem 0 1rem;
+  }
+
+  .step { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .step-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--ink);
+    padding: 0;
+    margin-bottom: 0.875rem;
+  }
+  .step-heading:focus-visible { outline-offset: 4px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip { position: relative; }
+  .chip input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .chip span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-card);
+    border-radius: 999px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--surface);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .chip input:hover + span { border-color: var(--petrol); }
+  .chip input:checked + span {
+    background: var(--petrol-deep);
+    border-color: var(--petrol-deep);
+    color: #fff;
+  }
+  .chip input:focus-visible + span {
+    outline: 2px solid var(--petrol-deep);
+    outline-offset: 2px;
+  }
+
+  .field { margin-bottom: 1rem; min-width: 0; }
+  .field-row { display: grid; gap: 0 1rem; }
+  @media (min-width: 480px) {
+    .field-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  .dropzone {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1.5px dashed rgba(38, 142, 166, 0.5);
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    color: var(--slate);
+  }
+  .dropzone.dz-active { border-color: var(--petrol-deep); background: rgba(38, 142, 166, 0.06); }
+  .dropzone svg { width: 1.5rem; height: 1.5rem; color: var(--petrol); flex: none; }
+  .dz-browse {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    font-weight: 600;
+    color: var(--petrol-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    min-height: 2.75rem;
+  }
+  .dz-drop-hint { display: none; }
+  @media (min-width: 1024px) {
+    .dz-drop-hint { display: inline; margin-left: 0.3rem; }
+  }
+
+  .file-list { margin-top: 0.5rem; display: grid; gap: 0.375rem; }
+  .file-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--ink);
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 0.375rem 0.625rem;
+  }
+  .file-list button {
+    background: none;
+    border: 0;
+    color: var(--petrol-deep);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    min-height: 2rem;
+  }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+
+  .privacy-note {
+    font-size: 0.8125rem;
+    color: var(--slate);
+    margin-top: 1rem;
+  }
+  .privacy-note a { color: var(--petrol-deep); }
+
+  .form-status { font-size: 0.9375rem; color: var(--slate); margin-top: 0.75rem; }
+
+  .form-error-box {
+    margin-top: 1rem;
+    border: 1px solid var(--error);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.9375rem;
+  }
+  .form-error-box a { color: var(--petrol-deep); font-weight: 600; }
+  .form-error-box .btn { margin-top: 0.75rem; }
+
+  .success { text-align: left; padding-top: 0.5rem; }
+  .success svg { width: 3rem; height: 3rem; color: var(--petrol); }
+  .success h3 { font-size: 1.375rem; margin-top: 0.75rem; }
+  .success p { color: var(--slate); margin-top: 0.375rem; }
+  .summary {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.375rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .summary dt { font-weight: 600; color: var(--slate); }
+
+  @media (min-width: 640px) {
+    .inquiry { padding: 2rem 1.75rem; }
+  }
+</style>
