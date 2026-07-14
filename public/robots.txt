@@ -1,0 +1,6 @@
+# Schreck Kunststofftechnik GmbH
+# AI-Crawler bewusst erlaubt (dokumentierte Kundenentscheidung, Plan Abschnitt 11)
+User-agent: *
+Allow: /
+
+Sitemap: https://www.schreck-kunststofftechnik.de/sitemap-index.xml

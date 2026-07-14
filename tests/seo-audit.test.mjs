@@ -155,7 +155,8 @@ test('Anti-Slop: keine Gedankenstriche im sichtbaren Text', () => {
 test('Anti-Slop: keine Emojis', () => {
   for (const { file, $ } of pages) {
     const text = visibleText($);
-    const match = text.match(/\p{Extended_Pictographic}/u);
+    // © ® ™ sind Extended_Pictographic, aber normale Typografie, keine Emojis
+    const match = text.match(/(?![©®™])\p{Extended_Pictographic}/u);
     assert.ok(!match, `${file}: Emoji "${match?.[0]}" gefunden`);
   }
 });
