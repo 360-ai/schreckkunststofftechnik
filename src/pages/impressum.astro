@@ -1,0 +1,58 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { company, legal, seo } from '@data/site';
+---
+
+<BaseLayout
+  title={seo.impressum.title}
+  description={seo.impressum.description}
+  breadcrumbs={[{ name: 'Impressum', href: '/impressum/' }]}
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Rechtliches</p>
+      <h1 class="section-heading">Impressum</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h2>{company.name}</h2>
+      <p>
+        {company.street}<br />
+        {company.zip} {company.city}
+      </p>
+
+      <h3>Kontakt</h3>
+      <p>
+        Telefon: <a href={company.phoneLink}>{company.phoneDisplay}</a><br />
+        Telefax: {company.faxDisplay}<br />
+        E-Mail: <a href={`mailto:${company.email}`}>{company.email}</a>
+      </p>
+
+      <h3>Gesellschafter und Geschäftsführer</h3>
+      <p>{legal.managingDirectors.join(', ')}</p>
+
+      <h3>Registerangaben</h3>
+      <p>
+        {legal.register}<br />
+        USt.-Id.-Nr.: {legal.vatId}
+      </p>
+
+      <h3>Verbraucherstreitbeilegung</h3>
+      <p>
+        Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle teilzunehmen (§ 36 VSBG).
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: var(--surface);
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
+    padding-block: 2.75rem 2rem;
+  }
+  .prose { max-width: 46rem; }
+</style>
