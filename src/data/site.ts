@@ -354,7 +354,7 @@ export const inquiryForm = {
   topics: ['Neues Werkzeug', 'Serienoptimierung', 'Ersatzteile oder Reparatur', 'Sonstiges'],
   upload: {
     accept: '.pdf,.step,.stp,.igs,.iges,.dxf,.dwg,.png,.jpg,.jpeg,.zip',
-    maxFiles: 5,
+    maxFiles: 3,
     maxTotalMb: 10,
   },
   privacyNote:

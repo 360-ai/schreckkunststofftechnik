@@ -12,7 +12,7 @@ interface Env {
 
 const MAX_CONTENT_LENGTH = 15 * 1024 * 1024; // frueh ablehnen, vor dem Parsen
 const MAX_TOTAL_FILES = 10 * 1024 * 1024; // echtes Limit nach dem Parsen
-const MAX_FILES = 5;
+const MAX_FILES = 3;
 const MIN_SECONDS = 5; // Zeitfalle (weiches Signal)
 
 const ALLOWED_EXT = ['pdf', 'step', 'stp', 'igs', 'iges', 'dxf', 'dwg', 'png', 'jpg', 'jpeg', 'zip'];
@@ -116,8 +116,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const telefon = text('telefon', 60);
   const nachricht = text('nachricht');
 
-  if (!anliegen || !beschreibung || !name) {
-    return fail(400, 'missing_fields', 'Bitte füllen Sie Anliegen, Projektbeschreibung und Name aus.');
+  if (!anliegen || !beschreibung || !firma || !name || !telefon) {
+    return fail(400, 'missing_fields', 'Bitte füllen Sie Anliegen, Projektbeschreibung, Firma, Name und Telefon aus.');
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
     return fail(400, 'invalid_email', 'Bitte geben Sie eine gültige E-Mail-Adresse an.');

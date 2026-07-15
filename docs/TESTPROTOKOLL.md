@@ -20,6 +20,6 @@ Serverseitige Validierung ist damit unabhängig vom Client nachgewiesen (Fälle 
 
 ## Noch offen (blockiert durch AP-1)
 
-- **Tarif-Realitätstest:** 5 Dateien à 2 MB im Cloudflare-Preview im tatsächlich gebuchten Tarif (Workers Free: ca. 10 ms CPU-Limit). Erst möglich, wenn das Pages-Projekt angelegt ist (Freigabe Denis). Scheitert der Test: Workers Paid buchen oder Limit senken.
+- **Tarif-Realitätstest:** 3 Dateien à ca. 3 MB im Cloudflare-Preview im tatsächlich gebuchten Tarif (Workers Free: ca. 10 ms CPU-Limit). Erst möglich, wenn das Pages-Projekt angelegt ist (Freigabe Denis). Scheitert der Test: Workers Paid buchen oder Limit senken.
 - **Echter Mail-Versand** über den freigegebenen Anbieter (Kandidat Resend) inkl. Domain-Verifizierung, AVV, Tracking aus.
 - **WAF-Rate-Limit** auf `/api/anfrage` (max. 5 Requests pro Minute und IP) wird im Cloudflare-Dashboard konfiguriert, nicht im Code. Nach Projekt-Anlage einrichten.

@@ -19,7 +19,7 @@ import { inquiryForm, industries, company } from '@data/site';
     data-inquiry
   >
     <!-- Honeypot (Bots füllen es aus) + Zeitfalle -->
-    <div class="hp-field" aria-hidden="true">
+    <div class="hp-field" aria-hidden="true" inert>
       <label for="firma_web">Firma Web</label>
       <input type="text" id="firma_web" name="firma_web" tabindex="-1" autocomplete="off" />
     </div>
@@ -59,6 +59,7 @@ import { inquiryForm, industries, company } from '@data/site';
           id="beschreibung"
           name="beschreibung"
           rows="4"
+          placeholder="Beschreiben Sie hier bitte ihr Projekt und geben Sie uns wichtige Details an wie Stückzahl, Material, etc."
           required
           aria-describedby="beschreibung-hint"
         ></textarea>
@@ -95,10 +96,12 @@ import { inquiryForm, industries, company } from '@data/site';
             class="visually-hidden"
             data-file-input
             tabindex="-1"
+            aria-hidden="true"
           />
         </div>
         <p class="field-hint" id="upload-hint">
-          Zeichnung, CAD oder Fotos: pdf, step, stp, igs, iges, dxf, dwg, png, jpg, zip.
+          Dateianhang (z. B. Zeichnung: PDF, STEP, DWG) - max. 1-3 Dateien.
+          Erlaubt sind pdf, step, stp, igs, iges, dxf, dwg, png, jpg, zip.
           Max. {inquiryForm.upload.maxFiles} Dateien, {inquiryForm.upload.maxTotalMb} MB gesamt.
         </p>
         <ul class="file-list" data-file-list aria-live="polite"></ul>
@@ -120,8 +123,12 @@ import { inquiryForm, industries, company } from '@data/site';
 
       <div class="field-row">
         <div class="field">
-          <label class="field-label" for="firma">Firma (optional)</label>
-          <input class="field-input" type="text" id="firma" name="firma" autocomplete="organization" />
+          <label class="field-label" for="firma">Firma *</label>
+          <input class="field-input" type="text" id="firma" name="firma" required autocomplete="organization" />
+          <p class="field-error" data-error-for="firma" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+            Bitte geben Sie Ihre Firma an.
+          </p>
         </div>
         <div class="field">
           <label class="field-label" for="name">Name *</label>
@@ -151,15 +158,20 @@ import { inquiryForm, industries, company } from '@data/site';
           </p>
         </div>
         <div class="field">
-          <label class="field-label" for="telefon">Telefon (optional)</label>
+          <label class="field-label" for="telefon">Telefon *</label>
           <input
             class="field-input"
             type="tel"
             id="telefon"
             name="telefon"
+            required
             autocomplete="tel"
             inputmode="tel"
           />
+          <p class="field-error" data-error-for="telefon" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
+            Bitte geben Sie Ihre Telefonnummer an.
+          </p>
         </div>
       </div>
 
@@ -260,15 +272,23 @@ import { inquiryForm, industries, company } from '@data/site';
       return ok && filesValid;
     }
     if (index === 2) {
+      const firma = form.querySelector<HTMLInputElement>('#firma')!;
       const name = form.querySelector<HTMLInputElement>('#name')!;
       const email = form.querySelector<HTMLInputElement>('#email')!;
+      const telefon = form.querySelector<HTMLInputElement>('#telefon')!;
+      const firmaOk = firma.value.trim().length > 0;
       const nameOk = name.value.trim().length > 0;
       const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+      const telefonOk = telefon.value.trim().length > 0;
+      showError('firma', !firmaOk);
       showError('name', !nameOk);
       showError('email', !emailOk);
-      if (!nameOk) name.focus();
+      showError('telefon', !telefonOk);
+      if (!firmaOk) firma.focus();
+      else if (!nameOk) name.focus();
       else if (!emailOk) email.focus();
-      return nameOk && emailOk;
+      else if (!telefonOk) telefon.focus();
+      return firmaOk && nameOk && emailOk && telefonOk;
     }
     return true;
   }
@@ -284,7 +304,7 @@ import { inquiryForm, industries, company } from '@data/site';
 
   // ---------- Datei-Upload ----------
   const ALLOWED = ['pdf', 'step', 'stp', 'igs', 'iges', 'dxf', 'dwg', 'png', 'jpg', 'jpeg', 'zip'];
-  const MAX_FILES = 5;
+  const MAX_FILES = 3;
   const MAX_TOTAL = 10 * 1024 * 1024;
 
   const dropzone = form.querySelector<HTMLElement>('[data-dropzone]')!;

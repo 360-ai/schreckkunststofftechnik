@@ -5,7 +5,7 @@ Stand: 2026-07-14. Alles hier gilt als `draft` und wird nicht öffentlich gerend
 ## Blockiert Arbeitspakete
 
 1. **Mail-Anbieter (blockiert AP4-Livebetrieb).** Kandidat Resend: AVV/DPA abschließen, Standardvertragsklauseln + Transfer-Risikoabwägung dokumentieren, EU-Region festlegen, Subprozessoren-Liste ablegen, Open-/Click-Tracking deaktivieren, Absender-Domain verifizieren (Vorschlag `anfrage@schreck-kunststofftechnik.de`). Falls nicht sauber darstellbar: EU-Alternative wählen. Die Pages Function ist gebaut und läuft im Dry-Run-Modus (`MAIL_DRY_RUN=1`).
-2. **Cloudflare-Tarif-Test (blockiert AP4-Abschluss).** Upload-Test mit 5 Dateien à 2 MB im Cloudflare-Preview im gebuchten Tarif (Workers Free: ca. 10 ms CPU). Scheitert er: Workers Paid (ca. 5 USD/Monat) buchen oder Limit senken. Geht erst nach Anlage des Pages-Projekts.
+2. **Cloudflare-Tarif-Test (blockiert AP4-Abschluss).** Upload-Test mit 3 Dateien à ca. 3 MB im Cloudflare-Preview im gebuchten Tarif (Workers Free: ca. 10 ms CPU). Scheitert er: Workers Paid (ca. 5 USD/Monat) buchen oder Limit senken. Geht erst nach Anlage des Pages-Projekts.
 
 ## Inhalte
 
