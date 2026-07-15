@@ -316,13 +316,13 @@ export const services = {
     {
       title: 'Reparatur und Ersatzteile',
       text: 'SKT repariert Spritzgusswerkzeuge und fertigt austauschbare Ersatzteile. Senden Sie Ihre Anfrage mit dem Anliegen Ersatzteile oder Reparatur, gern mit Fotos der Form.',
-      image: { src: '/images/reparatur.webp', alt: 'Reparatur eines Spritzgusswerkzeugs bei SKT', width: 1200, height: 800 },
+      image: { src: '/images/reparatur-ki.webp', alt: 'Reparatur eines Spritzgusswerkzeugs bei SKT', width: 1200, height: 800 },
       cta: { label: 'Reparatur anfragen', href: '/#anfrage' },
     },
     {
       title: 'Schulung vor Ort',
       text: 'SKT schult Ihr Team im Umgang mit der Form, vor Ort in Ihrer Produktion. Termin und Umfang stimmen Sie direkt mit uns ab.',
-      image: { src: '/images/einweisung.webp', alt: 'Einweisung an der Maschine durch SKT', width: 1200, height: 693 },
+      image: { src: '/images/einweisung-ki.webp', alt: 'Einweisung an der Maschine durch SKT', width: 1200, height: 693 },
       cta: { label: 'Schulung anfragen', href: '/#anfrage' },
     },
   ],
