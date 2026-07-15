@@ -72,8 +72,8 @@ export const hero = {
 export const trustStrip = [
   { value: 'Seit 1984', label: 'Formenbau aus Hessen' },
   { value: '1.000+', label: 'Formen bis zur Serienreife' },
+  { value: '30+', label: 'ausgebildete Lehrlinge' },
   { value: 'ISO 9001', label: 'zertifiziert bis Juni 2027' },
-  { value: 'Alles im Blick', label: 'von Konstruktion bis Abmusterung' },
 ];
 
 export const processIntro =
@@ -438,10 +438,10 @@ export const videos: { title: string; src: string }[] = [];
 
 export const aboutPage = {
   paragraphs: [
-    'Die Schreck Kunststofftechnik GmbH wurde 1984 in Burgwald-Bottendorf gegründet. Das Unternehmen fertigt Spritzgusswerkzeuge für Micro-Kunststoffartikel, von der Konstruktion bis zur Serienreife.',
-    'Im Januar 2025 haben Roman Manz und Maximilian Grebe die Nachfolge übernommen. Sie führen die Schreck Kunststofftechnik als Gesellschafter und Geschäftsführer weiter.',
-    'Heute arbeiten 14 Mitarbeiter am Standort in Burgwald-Bottendorf. Kunden kommen aus den Branchen Medizin, Labor, Kosmetik, Verpackung, Filtertechnik, Automobil und Elektronik.',
-    'Jede Form durchläuft sieben Leistungsschritte: Konzeptionierung, Konstruktion, Entwicklung, Abmusterung, Vermessung, Optimierung und Dokumentation.',
+    'Die Schreck Kunststofftechnik GmbH wurde am 01.01.1984 in Burgwald-Bottendorf gegründet. Ihr Anspruch ist bis heute: von der Produktidee bis zur effizienten Produktionslösung.',
+    'Schon früh gehörte eine eigene Spritzgießmaschine zum Betrieb, damit Formen mit Abmusterungsprotokoll und damit serienreif ausgeliefert werden konnten. Seit der Gründung wurden mehr als 1.000 Formen gebaut und zur Serienreife gebracht.',
+    'Nach über 40 Jahren Firmengeschichte hat Hans Schreck die Firma im Januar 2025 zur Nachfolge an Roman Manz und Maximilian Grebe übergeben. Beide führen die Schreck Kunststofftechnik als Gesellschafter und Geschäftsführer weiter.',
+    'Heute arbeiten im Schnitt 14 Mitarbeiter am Standort in Burgwald-Bottendorf. Mehr als 30 Lehrlinge wurden ausgebildet, hunderte Problemlösungen und Entwicklungen für Kunden umgesetzt. Grundlage dafür sind ein moderner Maschinenpark und die Erfahrung aus Konstruktion, Fertigung, Abmusterung und Dokumentation.',
   ],
   images: {
     aerial: { src: '/images/luftbild-skt.webp', alt: 'Luftaufnahme des SKT-Firmengebäudes', width: 1451, height: 1084 },
