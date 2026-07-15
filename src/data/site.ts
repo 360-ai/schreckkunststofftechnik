@@ -176,7 +176,7 @@ export const productGroups: ProductGroup[] = [
     ],
     examplesLabel: 'Anwendung',
     examples: ['Verschlusstechnik'],
-    cardImage: { src: '/images/produkt-innenanspritzung-1.webp', width: 1024, height: 1536 },
+    cardImage: { src: '/images/produkt-innenanspritzung-2.webp', width: 1200, height: 687 },
     images: [
       { src: '/images/produkt-innenanspritzung-1.webp', alt: 'Farbige Kunststofftuben mit schwarzen Verschluessen fuer Innenanspritzung', width: 1024, height: 1536 },
       { src: '/images/produkt-innenanspritzung-2.webp', alt: 'Blauer und transparenter Kunststoffbecher fuer Innenanspritzung', width: 1200, height: 687 },
@@ -233,7 +233,7 @@ export const productGroups: ProductGroup[] = [
     ],
     examplesLabel: 'Produkte',
     examples: ['Einmalspritzen', 'Adaption', 'Schutzkappen', 'Verbindungselemente', 'Kleinstteile'],
-    cardImage: { src: '/images/produkt-medizin-1.webp', width: 1086, height: 1448 },
+    cardImage: { src: '/images/produkt-medizin-2.webp', width: 1200, height: 900 },
     images: [
       { src: '/images/produkt-medizin-1.webp', alt: 'Transparente medizinische Kunststoffspitzen mit rotem Musterteil', width: 1086, height: 1448 },
       { src: '/images/produkt-medizin-2.webp', alt: 'Transparente medizinische Kunststoffteile mit Kanuele', width: 1200, height: 900 },
