@@ -331,7 +331,7 @@ export const services = {
 export const aboutTeaser = {
   heading: 'Formenbau aus Burgwald-Bottendorf',
   paragraphs: [
-    'Die Schreck Kunststofftechnik GmbH fertigt seit 1984 Spritzgusswerkzeuge für Micro-Kunststoffartikel. 14 Mitarbeiter begleiten Ihre Form von der Konstruktion bis zur Serienreife.',
+    'Die Schreck Kunststofftechnik GmbH fertigt seit 1984 Spritzgusswerkzeuge für Micro-Kunststoffartikel. Ein erfahrenes Team begleitet Ihre Form von der Konstruktion bis zur Serienreife.',
     'Das Qualitätsmanagement ist nach DIN EN ISO 9001:2015 zertifiziert. Kunden kommen aus sieben Branchen, von der Medizin bis zur Elektronik.',
   ],
   image: { src: '/images/luftbild-skt.webp', alt: 'Luftaufnahme des SKT-Firmengebäudes in Burgwald-Bottendorf', width: 1451, height: 1084 },
@@ -438,8 +438,9 @@ export const videos: { title: string; src: string }[] = [];
 
 export const aboutPage = {
   paragraphs: [
-    'Die Schreck Kunststofftechnik GmbH wurde am 01.01.1984 in Burgwald-Bottendorf gegründet. Ihr Anspruch ist bis heute: von der Produktidee bis zur effizienten Produktionslösung.',
-    'Schon früh gehörte eine eigene Spritzgießmaschine zum Betrieb, damit Formen mit Abmusterungsprotokoll und damit serienreif ausgeliefert werden konnten. Seit der Gründung wurden mehr als 1.000 Formen gebaut und zur Serienreife gebracht.',
+    'Die Schreck Kunststofftechnik GmbH wurde am 01.01.1984 in Burgwald-Bottendorf gegründet. Unser Anspruch ist bis heute: von der Produktidee bis zur effizienten Produktionslösung.',
+    'Dazu begleitet SKT Projekte von der Konstruktion über den Werkzeugbau und die Abmusterung bis zur Auslieferung serienreifer Formen. Schon früh gehörte eine eigene Spritzgießmaschine zum Betrieb, damit Werkzeuge mit Abmusterungsprotokoll ausgeliefert und bei Bedarf auch nach der Serienfreigabe repariert, angepasst oder mit Ersatzteilen unterstützt werden konnten.',
+    'Seit der Gründung wurden mehr als 1.000 Formen gebaut und zur Serienreife gebracht.',
     'Nach über 40 Jahren Firmengeschichte hat Hans Schreck die Firma im Januar 2025 zur Nachfolge an Roman Manz und Maximilian Grebe übergeben. Beide führen die Schreck Kunststofftechnik als Gesellschafter und Geschäftsführer weiter.',
     'Heute arbeiten im Schnitt 14 Mitarbeiter am Standort in Burgwald-Bottendorf. Mehr als 30 Lehrlinge wurden ausgebildet, hunderte Problemlösungen und Entwicklungen für Kunden umgesetzt. Grundlage dafür sind ein moderner Maschinenpark und die Erfahrung aus Konstruktion, Fertigung, Abmusterung und Dokumentation.',
   ],

@@ -7,7 +7,7 @@ import { productGroups } from '@data/site';
     <p class="eyebrow">Produkte</p>
     <h2 class="section-heading">Sechs Produktgruppen im Formenbau</h2>
     <p class="section-intro">
-      Jede Form entsteht nach Ihren Vorgaben. Die Prospekt-Inhalte finden Sie ausführlich auf der Produktseite und als PDF.
+      Jede Form entsteht nach Ihren Vorgaben. Die Prospekt-Inhalte finden Sie ausführlich auf der <a href="/produkte/">Produktseite</a> und als PDF.
     </p>
 
     <ul class="product-grid">
@@ -49,6 +49,13 @@ import { productGroups } from '@data/site';
 
 <style>
   .section-intro { color: var(--slate); margin-top: 0.875rem; }
+  .section-intro a {
+    color: var(--petrol-deep);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .section-intro a:hover { color: var(--ink); }
 
   .product-grid {
     display: grid;
