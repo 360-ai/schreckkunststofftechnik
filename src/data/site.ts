@@ -316,7 +316,7 @@ export const services = {
     {
       title: 'Reparatur und Ersatzteile',
       text: 'SKT repariert Spritzgusswerkzeuge und fertigt austauschbare Ersatzteile. Senden Sie Ihre Anfrage mit dem Anliegen Ersatzteile oder Reparatur, gern mit Fotos der Form.',
-      image: { src: '/images/reparatur.webp', alt: 'Reparatur eines Spritzgusswerkzeugs bei SKT', width: 1133, height: 944 },
+      image: { src: '/images/reparatur.webp', alt: 'Reparatur eines Spritzgusswerkzeugs bei SKT', width: 1200, height: 800 },
       cta: { label: 'Reparatur anfragen', href: '/#anfrage' },
     },
     {
