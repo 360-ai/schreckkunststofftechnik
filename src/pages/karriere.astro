@@ -24,8 +24,18 @@ const visibleJobs = jobs.filter((job) => !job.draft);
         {career.intro.map((p) => <p class="career-p">{p}</p>)}
       </div>
       <figure class="card img-card reveal">
-        <img src="/images/karriere.webp" alt="Azubi wird im SKT-Werkzeugbau an einem Spritzgusswerkzeug angeleitet" width="1200" height="693" loading="lazy" />
+        <img src="/images/karriere.webp" alt="Azubi, Geselle und Mitarbeiter aus der Konstruktion stimmen sich an einem Spritzgusswerkzeug ab" width="1200" height="693" loading="lazy" />
       </figure>
+    </div>
+    <div class="container career-office-layout">
+      <figure class="card img-card reveal">
+        <img src="/images/karriere-buero-cad.webp" alt="Mitarbeiter stimmen ein Werkzeugmodell am CAD-Arbeitsplatz ab" width="1200" height="693" loading="lazy" />
+      </figure>
+      <div>
+        <p class="eyebrow">Werkstatt & Konstruktion</p>
+        <h2 class="office-heading">Arbeit nah am Werkzeug</h2>
+        <p class="career-p">Bei SKT arbeiten Fertigung, Konstruktion und Abstimmung direkt zusammen. So entstehen kurze Wege zwischen Idee, Werkzeug und Abmusterung.</p>
+      </div>
     </div>
   </section>
 
@@ -101,9 +111,11 @@ const visibleJobs = jobs.filter((job) => !job.draft);
     padding-block: 2.75rem 2rem;
   }
   .career-layout { display: grid; gap: 2rem; align-items: center; }
+  .career-office-layout { display: grid; gap: 2rem; align-items: center; margin-top: 3rem; }
   .career-p { color: var(--slate); margin-bottom: 1rem; }
   .img-card { overflow: hidden; }
   .img-card img { width: 100%; height: auto; display: block; }
+  .office-heading { font-size: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.75rem; }
 
   .jobs-section { background: var(--surface); }
   .job-list { display: grid; gap: 1.25rem; margin-top: 1.75rem; }
@@ -126,6 +138,7 @@ const visibleJobs = jobs.filter((job) => !job.draft);
 
   @media (min-width: 1024px) {
     .career-layout { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
+    .career-office-layout { grid-template-columns: 0.9fr 1.1fr; gap: 4rem; }
     .initiative-card { flex-direction: row; justify-content: space-between; align-items: center; }
   }
 </style>
