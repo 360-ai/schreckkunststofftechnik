@@ -339,7 +339,7 @@ export const aboutTeaser = {
 
 export const careerTeaser = {
   heading: 'Arbeiten bei SKT',
-  text: 'SKT fertigt mit 14 Mitarbeitern Spritzgusswerkzeuge in Burgwald-Bottendorf. Initiativbewerbungen sind jederzeit willkommen.',
+  text: 'SKT fertigt Spritzgusswerkzeuge in Burgwald-Bottendorf. Initiativbewerbungen aus Ausbildung, Werkzeugbau, Konstruktion und Büro sind jederzeit willkommen.',
 };
 
 export const finalCta = {
@@ -388,12 +388,13 @@ export const jobs: Job[] = [
 
 export const career = {
   intro: [
-    'SKT fertigt seit 1984 Spritzgusswerkzeuge für Micro-Kunststoffartikel in Burgwald-Bottendorf. Das Team besteht aus 14 Mitarbeitern.',
-    'Sie arbeiten am kompletten Werkzeug: von der Konstruktion über die Fertigung bis zur Abmusterung auf eigenen Spritzgießmaschinen.',
+    'Bei Schreck Kunststofftechnik arbeiten Sie in einem technischen Umfeld, in dem Genauigkeit, Eigenverantwortung und die Freude an guten Lösungen zählen. Wir entwickeln und fertigen Spritzgusswerkzeuge für anspruchsvolle Kunststoffteile - vom ersten CAD-Entwurf bis zur serienreifen Form.',
+    'Einstiegsmöglichkeiten gibt es bei uns in verschiedenen Bereichen: in der Ausbildung, in Konstruktion und CAD, im Werkzeugbau und in der Fertigung sowie in kaufmännischen und organisatorischen Aufgaben im Büro.',
+    'Auch wenn aktuell keine passende Stelle ausgeschrieben ist, freuen wir uns jederzeit über Initiativbewerbungen von Menschen, die mitdenken, sauber arbeiten und ihre Erfahrung, ihr handwerkliches Können oder ihre Lernbereitschaft einbringen möchten.',
   ],
   initiative: {
     heading: 'Initiativbewerbung',
-    text: 'Auch ohne passende Ausschreibung lohnt sich Ihre Bewerbung. Senden Sie Lebenslauf und ein kurzes Anschreiben per E-Mail.',
+    text: 'Wenn gerade keine passende Stelle ausgeschrieben ist, können Sie sich trotzdem gern initiativ bewerben. Senden Sie Lebenslauf und ein kurzes Anschreiben per E-Mail.',
     mailSubject: 'Initiativbewerbung',
   },
 };
