@@ -351,7 +351,7 @@ export const finalCta = {
 export const inquiryForm = {
   heading: 'Projekt anfragen',
   intro: 'In drei Schritten zu Ihrer Anfrage. Mit Datei-Upload für Zeichnungen und CAD-Daten.',
-  topics: ['Neues Werkzeug', 'Serienoptimierung', 'Ersatzteile oder Reparatur', 'Sonstiges'],
+  topics: ['Neuwerkzeugbau', 'Spritzgussteile', 'Ersatzteile oder Reparatur', 'Sonstiges'],
   upload: {
     accept: '.pdf,.step,.stp,.igs,.iges,.dxf,.dwg,.png,.jpg,.jpeg,.zip',
     maxFiles: 3,
