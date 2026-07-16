@@ -330,6 +330,18 @@ export const services = {
   ],
 };
 
+export const montageService = {
+  eyebrow: 'Leistung',
+  heading: 'Montageservice',
+  intro:
+    'SKT liefert auf Wunsch nicht nur Einzelteile, sondern einbaufertige Baugruppen. Von der Montage bis zur Endbearbeitung erhalten Sie fertige Komponenten aus einer Hand.',
+  points: [
+    'Montage von Baugruppen aus Ihren Spritzgussteilen',
+    'Entgraten und Endbearbeitung',
+  ],
+  cta: { label: 'Montage anfragen', href: '/#anfrage' },
+};
+
 export const aboutTeaser = {
   heading: 'Formenbau aus Burgwald-Bottendorf',
   paragraphs: [
@@ -353,7 +365,7 @@ export const finalCta = {
 export const inquiryForm = {
   heading: 'Projekt anfragen',
   intro: 'In drei Schritten zu Ihrer Anfrage. Mit Datei-Upload für Zeichnungen und CAD-Daten.',
-  topics: ['Neuwerkzeugbau', 'Spritzgussteile', 'Ersatzteile oder Reparatur', 'Sonstiges'],
+  topics: ['Neuwerkzeugbau', 'Spritzgussteile', 'Ersatzteile oder Reparatur', 'Montageservice', 'Sonstiges'],
   upload: {
     accept: '.pdf,.step,.stp,.igs,.iges,.dxf,.dwg,.png,.jpg,.jpeg,.zip',
     maxFiles: 3,
