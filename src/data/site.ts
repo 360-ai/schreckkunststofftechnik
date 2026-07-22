@@ -345,15 +345,15 @@ export const montageService = {
 export const aboutTeaser = {
   heading: 'Formenbau aus Burgwald-Bottendorf',
   paragraphs: [
-    'Die Schreck Kunststofftechnik GmbH fertigt seit 1984 Spritzgusswerkzeuge für Micro-Kunststoffartikel. Ein erfahrenes Team begleitet Ihre Form von der Konstruktion bis zur Serienreife.',
-    'Das Qualitätsmanagement ist nach DIN EN ISO 9001:2015 zertifiziert. Kunden kommen aus sieben Branchen, von der Medizin bis zur Elektronik.',
+    'Die Schreck Kunststofftechnik GmbH steht seit 1984 für präzisen Werkzeugbau in Kunststoff, Aluminium und Zinkdruckguss. Ein erfahrenes Team begleitet Ihr Werkzeug von der Produktidee über Konstruktion bis zur Serienreife.',
+    'Das Qualitätsmanagement ist nach DIN EN ISO 9001:2015 zertifiziert. Kunden kommen aus verschiedenen Industriezweigen, insbesondere aus Medizintechnik, Kosmetik und Verpackungstechnik.',
   ],
   image: { src: '/images/luftbild-skt.webp', alt: 'Luftaufnahme des SKT-Firmengebäudes in Burgwald-Bottendorf', width: 1451, height: 1084 },
 };
 
 export const careerTeaser = {
   heading: 'Arbeiten bei SKT',
-  text: 'SKT fertigt Spritzgusswerkzeuge in Burgwald-Bottendorf. Initiativbewerbungen aus Ausbildung, Werkzeugbau, Konstruktion und Büro sind jederzeit willkommen.',
+  text: 'SKT baut Werkzeuge für Kunststoff, Aluminium und Zinkdruckguss in Burgwald-Bottendorf. Initiativbewerbungen aus Ausbildung, Werkzeugbau, Konstruktion und Büro sind jederzeit willkommen.',
 };
 
 export const finalCta = {
@@ -402,7 +402,7 @@ export const jobs: Job[] = [
 
 export const career = {
   intro: [
-    'Bei Schreck Kunststofftechnik arbeiten Sie in einem technischen Umfeld, in dem Genauigkeit, Eigenverantwortung und die Freude an guten Lösungen zählen. Wir entwickeln und fertigen Spritzgusswerkzeuge für anspruchsvolle Kunststoffteile - vom ersten CAD-Entwurf bis zur serienreifen Form.',
+    'Bei Schreck Kunststofftechnik arbeiten Sie in einem technischen Umfeld, in dem Genauigkeit, Eigenverantwortung und die Freude an guten Lösungen zählen. Wir entwickeln und fertigen Werkzeuge für Kunststoff, Aluminium und Zinkdruckguss, von der ersten Produktidee bis zur serienreifen Form.',
     'Einstiegsmöglichkeiten gibt es bei uns in verschiedenen Bereichen: in der Ausbildung, in Konstruktion und CAD, im Werkzeugbau und in der Fertigung sowie in kaufmännischen und organisatorischen Aufgaben im Büro.',
     'Auch wenn aktuell keine passende Stelle ausgeschrieben ist, freuen wir uns jederzeit über Initiativbewerbungen von Menschen, die mitdenken, sauber arbeiten und ihre Erfahrung, ihr handwerkliches Können oder ihre Lernbereitschaft einbringen möchten.',
   ],
@@ -429,7 +429,7 @@ export const downloads: DownloadItem[] = [
   { title: 'Prospekt Verpackung', description: 'Formen für Verschlusstechnik, Schraubkappen und Inlays.', href: '/downloads/skt-flyer-verpackung.pdf' },
   { title: 'ISO-9001-Zertifikat', description: 'DIN EN ISO 9001:2015, ausgestellt von SKZ-Cert, gültig bis 27.06.2027.', href: '/downloads/iso-9001-zertifikat-2024-2027.pdf' },
   // AVB öffentlich ja/nein ist AP-1-Entscheidung (OFFENE-FRAGEN.md Punkt 4).
-  { title: 'Allgemeine Verkaufsbedingungen', description: 'AVB der Schreck Kunststofftechnik GmbH.', href: '/downloads/allgemeine-verkaufsbedingungen.pdf', draft: true },
+  { title: 'Allgemeine Verkaufsbedingungen', description: 'Allgemeine Verkaufs- und Lieferbedingungen der Schreck Kunststofftechnik GmbH (Stand Februar 2012).', href: '/downloads/allgemeine-verkaufsbedingungen.pdf' },
 ];
 
 // Maschinenpark Stand 01/2024, übernommen aus Projekt 1. Rendering erst nach
@@ -453,11 +453,13 @@ export const videos: { title: string; src: string }[] = [];
 
 export const aboutPage = {
   paragraphs: [
-    'Die Schreck Kunststofftechnik GmbH wurde am 01.01.1984 in Burgwald-Bottendorf gegründet. Unser Anspruch ist bis heute: von der Produktidee bis zur effizienten Produktionslösung.',
-    'Dazu begleitet SKT Projekte von der Konstruktion über den Werkzeugbau und die Abmusterung bis zur Auslieferung serienreifer Formen. Schon früh gehörte eine eigene Spritzgießmaschine zum Betrieb, damit Werkzeuge mit Abmusterungsprotokoll ausgeliefert und bei Bedarf auch nach der Serienfreigabe repariert, angepasst oder mit Ersatzteilen unterstützt werden konnten.',
-    'Seit der Gründung wurden mehr als 1.000 Formen gebaut und zur Serienreife gebracht.',
-    'Nach über 40 Jahren Firmengeschichte hat Hans Schreck die Firma im Januar 2025 zur Nachfolge an Roman Manz und Maximilian Grebe übergeben. Beide führen die Schreck Kunststofftechnik als Gesellschafter und Geschäftsführer weiter.',
-    'Heute arbeiten im Schnitt 14 Mitarbeiter am Standort in Burgwald-Bottendorf. Mehr als 30 Lehrlinge wurden ausgebildet, hunderte Problemlösungen und Entwicklungen für Kunden umgesetzt. Grundlage dafür sind ein moderner Maschinenpark und die Erfahrung aus Konstruktion, Fertigung, Abmusterung und Dokumentation.',
+    'Die Schreck Kunststofftechnik GmbH blickt auf eine langjährige Tradition im Werkzeugbau zurück. Die Wurzeln des Unternehmens reichen bis in das Jahr 1984 zurück, als Hans Schreck das Einzelunternehmen Hans Schreck Kunststofftechnik gründete. Von Beginn an lag der Fokus auf der Entwicklung und Fertigung hochwertiger Werkzeuge für die industrielle Fertigung.',
+    'Im Jahr 1991 wurde das Unternehmen in die Schreck Kunststofftechnik GmbH umgewandelt und in das Handelsregister unter HRB 276 beim Amtsgericht Frankenberg eingetragen. Später erfolgte die Änderung des Registereintrags auf HRB 3981 beim Amtsgericht Marburg. Als Gesellschafter wurden Hans Schreck und Ursula Schreck geführt. Mit der Umwandlung in eine GmbH wurde der Grundstein für weiteres Wachstum und eine langfristige Unternehmensentwicklung gelegt.',
+    'Im Jahr 2013 trat Erwin Schunke als weiterer Gesellschafter in das Unternehmen ein und beteiligte sich an der Weiterentwicklung der Firma.',
+    'Ein bedeutender Schritt in der Unternehmensgeschichte folgte im Jahr 2025: Die Schreck Kunststofftechnik GmbH wurde zu 100 % von den neuen Gesellschaftern Maximilian Grebe und Roman Manz übernommen. Mit der neuen Geschäftsführung wird die langjährige Tradition des Unternehmens fortgeführt und gleichzeitig der Fokus auf Innovation, Qualität und Zukunftsfähigkeit weiter gestärkt.',
+    'Heute steht die Schreck Kunststofftechnik GmbH für präzisen Werkzeugbau im Bereich der Kunststoff-, Aluminium- und Zinkdruckgussverarbeitung. Das Leistungsspektrum reicht von der ersten Produktidee über die Entwicklung und Konstruktion bis hin zur Serienreife des Werkzeuges. Neben der Neuanfertigung gehören auch Änderungen, Wartungen und Reparaturen bestehender Werkzeuge zum festen Bestandteil des Leistungsangebots.',
+    'Der Kundenstamm umfasst Unternehmen aus verschiedenen Industriezweigen, insbesondere aus den Bereichen Medizintechnik, Kosmetik und Verpackungstechnik. Darüber hinaus realisiert das Unternehmen auch Projekte für zahlreiche weitere Anwendungen der industriellen Fertigung.',
+    'Mit jahrzehntelanger Erfahrung, technischem Know-how und einem hohen Qualitätsanspruch versteht sich die Schreck Kunststofftechnik GmbH als zuverlässiger Partner für anspruchsvolle Werkzeuglösungen – von der ersten Idee bis zur erfolgreichen Serienproduktion.',
   ],
   images: {
     aerial: { src: '/images/luftbild-skt.webp', alt: 'Luftaufnahme des SKT-Firmengebäudes', width: 1451, height: 1084 },
@@ -468,9 +470,9 @@ export const aboutPage = {
 
 export const seo = {
   home: {
-    title: 'Formenbau für Micro-Kunststoffartikel | Schreck Kunststofftechnik GmbH',
+    title: 'Werkzeugbau für Kunststoff, Aluminium und Zinkdruckguss | Schreck Kunststofftechnik GmbH',
     description:
-      'Spritzgusswerkzeuge von der Konstruktion bis zur Serienreife. Seit 1984 in Burgwald-Bottendorf, ISO 9001:2015 zertifiziert. Projektanfrage mit CAD-Upload.',
+      'Präziser Werkzeugbau von der Produktidee bis zur Serienreife. Seit 1984 in Burgwald-Bottendorf, ISO 9001:2015 zertifiziert. Projektanfrage mit CAD-Upload.',
   },
   produkte: {
     title: 'Produkte: Spritzgusswerkzeuge und Formenbau | Schreck Kunststofftechnik GmbH',
@@ -478,14 +480,14 @@ export const seo = {
       'Mehr-Komponenten-Formen, Innenanspritzung, Labor, Medizin, Miniaturteile und Verpackung: sechs Produktgruppen mit Prospekten als PDF.',
   },
   ueberUns: {
-    title: 'Über uns: Formenbau seit 1984 | Schreck Kunststofftechnik GmbH',
+    title: 'Über uns: Werkzeugbau seit 1984 | Schreck Kunststofftechnik GmbH',
     description:
-      'Die Schreck Kunststofftechnik GmbH fertigt seit 1984 Spritzgusswerkzeuge in Burgwald-Bottendorf. 14 Mitarbeiter, ISO 9001:2015 zertifiziert.',
+      'Die Schreck Kunststofftechnik GmbH steht seit 1984 für präzisen Werkzeugbau in Burgwald-Bottendorf. Kunden aus Medizintechnik, Kosmetik und Verpackungstechnik, ISO 9001:2015 zertifiziert.',
   },
   karriere: {
     title: 'Karriere im Werkzeugbau | Schreck Kunststofftechnik GmbH',
     description:
-      'Arbeiten bei SKT in Burgwald-Bottendorf: Stellenangebote und Initiativbewerbung im Formenbau für Micro-Kunststoffartikel.',
+      'Arbeiten bei SKT in Burgwald-Bottendorf: Stellenangebote und Initiativbewerbung im Werkzeugbau für Kunststoff, Aluminium und Zinkdruckguss.',
   },
   downloads: {
     title: 'Downloads: Prospekte und Zertifikat | Schreck Kunststofftechnik GmbH',
