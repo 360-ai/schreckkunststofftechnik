@@ -429,7 +429,7 @@ export const downloads: DownloadItem[] = [
   { title: 'Prospekt Verpackung', description: 'Formen für Verschlusstechnik, Schraubkappen und Inlays.', href: '/downloads/skt-flyer-verpackung.pdf' },
   { title: 'ISO-9001-Zertifikat', description: 'DIN EN ISO 9001:2015, ausgestellt von SKZ-Cert, gültig bis 27.06.2027.', href: '/downloads/iso-9001-zertifikat-2024-2027.pdf' },
   // AVB öffentlich ja/nein ist AP-1-Entscheidung (OFFENE-FRAGEN.md Punkt 4).
-  { title: 'Allgemeine Verkaufsbedingungen', description: 'Allgemeine Verkaufs- und Lieferbedingungen der Schreck Kunststofftechnik GmbH (Stand Februar 2012).', href: '/downloads/allgemeine-verkaufsbedingungen.pdf' },
+  { title: 'Allgemeine Verkaufsbedingungen', description: 'AVB der Schreck Kunststofftechnik GmbH.', href: '/downloads/allgemeine-verkaufsbedingungen.pdf', draft: true },
 ];
 
 // Maschinenpark Stand 01/2024, übernommen aus Projekt 1. Rendering erst nach
