@@ -339,7 +339,6 @@ export const montageService = {
     'Montage von Baugruppen aus Ihren Spritzgussteilen',
     'Entgraten und Endbearbeitung',
   ],
-  image: { src: '/images/montageservice.webp', alt: 'Mitarbeiter bedient eine CNC-Fraesmaschine bei SKT', width: 1086, height: 1448 },
   cta: { label: 'Montage anfragen', href: '/#anfrage' },
 };
 

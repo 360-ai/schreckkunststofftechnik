@@ -22,7 +22,6 @@ const JOBS = [
   ['Karriere_CAD.png', 'karriere-buero-cad.webp', 1200, 76],
   ['Schulung.png', 'einweisung-ki.webp', 1200, 76],
   ['Wartung.png', 'reparatur-ki.webp', 1200, 76],
-  ['Montageservice.png', 'montageservice.webp', 1200, 76],
   ['hero1.jpg', 'gebaeude-luftaufnahme.webp', 1600, 74],
   ['grafik_2k_3.png', 'produkt-2k-1.webp', 900, 80],
   ['grafik_2k_5.png', 'produkt-2k-2.webp', 900, 80],
