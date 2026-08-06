@@ -13,7 +13,7 @@ import { services } from '@data/site';
         services.items.map((item) => (
           <article class="card service-card reveal">
             <figure class="service-media">
-              <img src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} loading="lazy" />
+              <img src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} loading="lazy" style={`object-position: ${item.image.position ?? 'center 15%'}`} />
             </figure>
             <div class="service-body">
               <h3>{item.title}</h3>
