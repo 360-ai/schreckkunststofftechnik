@@ -18,14 +18,19 @@ const visibleJobs = jobs.filter((job) => !job.draft);
     </div>
   </section>
 
-  <section class="section">
-    <div class="container career-image-grid">
-      <figure class="card img-card reveal">
-        <img src="/images/karriere.webp" alt="Azubi, Geselle und Mitarbeiter aus der Konstruktion stimmen sich an einem Spritzgusswerkzeug ab" width="1086" height="1448" loading="lazy" />
-      </figure>
-      <figure class="card img-card reveal">
-        <img src="/images/karriere-buero-cad.webp" alt="Mitarbeiter stimmen ein Werkzeugmodell am CAD-Arbeitsplatz ab" width="1086" height="1448" loading="lazy" />
-      </figure>
+  <section class="section career-hero-section">
+    <div class="container">
+      <div class="career-image-grid">
+        <figure class="card img-card reveal">
+          <img src="/images/karriere.webp" alt="Azubi, Geselle und Mitarbeiter aus der Konstruktion stimmen sich an einem Spritzgusswerkzeug ab" width="1086" height="1448" loading="lazy" />
+        </figure>
+        <figure class="card img-card reveal">
+          <img src="/images/karriere-buero-cad.webp" alt="Mitarbeiter stimmen ein Werkzeugmodell am CAD-Arbeitsplatz ab" width="1086" height="1448" loading="lazy" />
+        </figure>
+        <figure class="card img-card reveal">
+          <img src="/images/karriere-maschine.webp" alt="Mitarbeiter bedient eine CNC-Fräsmaschine bei SKT" width="1086" height="1448" loading="lazy" />
+        </figure>
+      </div>
     </div>
 
     <div class="container career-intro">
@@ -108,7 +113,8 @@ const visibleJobs = jobs.filter((job) => !job.draft);
     border-bottom: 1px solid rgba(38, 142, 166, 0.15);
     padding-block: 2.75rem 2rem;
   }
-  .career-image-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; max-width: 26rem; margin-inline: auto; }
+  .career-hero-section { padding-top: 1.75rem; }
+  .career-image-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; max-width: 26rem; }
   .career-intro { margin-top: 2.5rem; }
   .career-intro > div { max-width: 58rem; }
   .career-heading { font-size: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem); margin-top: 0.6rem; margin-bottom: 1rem; }
@@ -135,6 +141,14 @@ const visibleJobs = jobs.filter((job) => !job.draft);
   .initiative-heading { font-size: 1.5rem; margin-top: 0.5rem; }
   .initiative-text { color: var(--slate); margin-top: 0.5rem; max-width: 52ch; }
   .initiative-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  @media (min-width: 640px) {
+    .career-image-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 38rem; }
+  }
+
+  @media (min-width: 768px) {
+    .career-hero-section { padding-top: 2.75rem; }
+  }
 
   @media (min-width: 1024px) {
     .initiative-card { flex-direction: row; justify-content: space-between; align-items: center; }

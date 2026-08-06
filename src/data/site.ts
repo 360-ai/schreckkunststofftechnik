@@ -129,6 +129,34 @@ export interface ProductGroup {
 
 export const productGroups: ProductGroup[] = [
   {
+    id: 'medizin',
+    title: 'Formen für die Medizintechnik',
+    cardTitle: 'Medizin',
+    cardText:
+      'Formen für Einmalspritzen, Schutzkappen und Kleinstteile. Partikelfreiheit und lange Lebensdauer sind dokumentierte Ansprüche.',
+    pills: ['Einmalspritzen', 'Schutzkappen', 'Kleinstteile'],
+    intro: [
+      'Für die Medizintechnik fertigt SKT Formen für Einmalspritzen, Adaptionen, Schutzkappen, Verbindungselemente und Kleinstteile.',
+      'Partikelfreiheit, austauschbare Ersatzteile und lange Lebensdauer sind die im Prospekt dokumentierten Ansprüche an diese Formen.',
+    ],
+    demands: [
+      'Reproduzierbare Qualität',
+      'Abfallfreie Produktion',
+      'Lange Lebensdauer',
+      'Austauschbare Ersatzteile',
+      'Partikelfreiheit',
+      'Wartungsarme Auslegung',
+    ],
+    examplesLabel: 'Produkte',
+    examples: ['Einmalspritzen', 'Adaption', 'Schutzkappen', 'Verbindungselemente', 'Kleinstteile'],
+    cardImage: { src: '/images/produkt-medizin-2.webp', width: 1200, height: 900 },
+    images: [
+      { src: '/images/produkt-medizin-1.webp', alt: 'Transparente medizinische Kunststoffspitzen mit rotem Musterteil', width: 1086, height: 1448 },
+      { src: '/images/produkt-medizin-2.webp', alt: 'Transparente medizinische Kunststoffteile mit Kanuele', width: 1200, height: 900 },
+    ],
+    pdf: { href: '/downloads/skt-flyer-medizin.pdf', label: 'Prospekt Medizin' },
+  },
+  {
     id: 'mehrkomponenten',
     title: 'Mehr-Komponenten-Formen',
     cardTitle: 'Mehr-Komponenten-Formen',
@@ -208,37 +236,9 @@ export const productGroups: ProductGroup[] = [
     cardImage: { src: '/images/produkt-labor-1.webp', width: 1200, height: 797 },
     images: [
       { src: '/images/produkt-labor-1.webp', alt: 'Blaue Kunststoffstaebe fuer Laboranwendungen', width: 1200, height: 797 },
-      { src: '/images/produkt-labor-2.webp', alt: 'Transparente Labor-Kunststoffteile in einer Reihe', width: 1200, height: 900 },
+      { src: '/images/produkt-labor-2.webp', alt: 'Transparente Labor-Kunststoffteile aus Spritzguss', width: 900, height: 675 },
     ],
     pdf: { href: '/downloads/skt-flyer-labor.pdf', label: 'Prospekt Labor' },
-  },
-  {
-    id: 'medizin',
-    title: 'Formen für die Medizintechnik',
-    cardTitle: 'Medizin',
-    cardText:
-      'Formen für Einmalspritzen, Schutzkappen und Kleinstteile. Partikelfreiheit und lange Lebensdauer sind dokumentierte Ansprüche.',
-    pills: ['Einmalspritzen', 'Schutzkappen', 'Kleinstteile'],
-    intro: [
-      'Für die Medizintechnik fertigt SKT Formen für Einmalspritzen, Adaptionen, Schutzkappen, Verbindungselemente und Kleinstteile.',
-      'Partikelfreiheit, austauschbare Ersatzteile und lange Lebensdauer sind die im Prospekt dokumentierten Ansprüche an diese Formen.',
-    ],
-    demands: [
-      'Reproduzierbare Qualität',
-      'Abfallfreie Produktion',
-      'Lange Lebensdauer',
-      'Austauschbare Ersatzteile',
-      'Partikelfreiheit',
-      'Wartungsarme Auslegung',
-    ],
-    examplesLabel: 'Produkte',
-    examples: ['Einmalspritzen', 'Adaption', 'Schutzkappen', 'Verbindungselemente', 'Kleinstteile'],
-    cardImage: { src: '/images/produkt-medizin-2.webp', width: 1200, height: 900 },
-    images: [
-      { src: '/images/produkt-medizin-1.webp', alt: 'Transparente medizinische Kunststoffspitzen mit rotem Musterteil', width: 1086, height: 1448 },
-      { src: '/images/produkt-medizin-2.webp', alt: 'Transparente medizinische Kunststoffteile mit Kanuele', width: 1200, height: 900 },
-    ],
-    pdf: { href: '/downloads/skt-flyer-medizin.pdf', label: 'Prospekt Medizin' },
   },
   {
     id: 'miniaturteile',
@@ -340,8 +340,19 @@ export const montageService = {
     'Montage von Baugruppen aus Ihren Spritzgussteilen',
     'Entgraten und Endbearbeitung',
   ],
-  image: { src: '/images/montageservice.webp', alt: 'Mitarbeiter bedient eine CNC-Fraesmaschine bei SKT', width: 1086, height: 1448 },
+  image: { src: '/images/montageservice.webp', alt: 'Mitarbeiter montiert ein Spritzgusswerkzeug bei SKT', width: 1086, height: 1448 },
   cta: { label: 'Montage anfragen', href: '/#anfrage' },
+};
+
+export const machineryShowcase = {
+  eyebrow: 'Ausstattung',
+  heading: 'Ein Einblick in unseren Maschinenpark',
+  intro: 'Drei Stationen auf dem Weg vom Rohteil zur fertigen Form: Fräsen, Spritzguss und Senkerodieren.',
+  images: [
+    { src: '/images/maschinenpark-fraesen.webp', alt: 'DMG Mori CMX 600 V bei SKT', caption: 'CNC-Fräsen', width: 1086, height: 1448 },
+    { src: '/images/maschinenpark-spritzguss.webp', alt: 'ENGEL Spritzgussmaschine bei SKT', caption: 'Spritzguss', width: 1086, height: 1448 },
+    { src: '/images/maschinenpark-erodieren.webp', alt: 'OPS Ingersoll Gantry Eagle 400 bei SKT', caption: 'Senkerodieren', width: 1086, height: 1448 },
+  ],
 };
 
 export const aboutTeaser = {

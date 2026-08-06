@@ -4,17 +4,13 @@ import { montageService } from '@data/site';
 
 <section class="section dark-section montage-section" id="montageservice">
   <div class="container">
-    <p class="eyebrow">{montageService.eyebrow}</p>
-    <h2 class="section-heading">{montageService.heading}</h2>
-
     <div class="montage-grid">
       <div class="montage-copy reveal">
+        <p class="eyebrow">{montageService.eyebrow}</p>
+        <h2 class="section-heading">{montageService.heading}</h2>
         <p class="montage-intro">{montageService.intro}</p>
-        <a href={montageService.cta.href} class="btn btn-primary montage-cta">{montageService.cta.label}</a>
-      </div>
 
-      <div class="montage-right">
-        <ul class="montage-list reveal">
+        <ul class="montage-list">
           {
             montageService.points.map((point) => (
               <li>
@@ -27,10 +23,12 @@ import { montageService } from '@data/site';
           }
         </ul>
 
-        <figure class="montage-media reveal">
-          <img src={montageService.image.src} alt={montageService.image.alt} width={montageService.image.width} height={montageService.image.height} loading="lazy" />
-        </figure>
+        <a href={montageService.cta.href} class="btn btn-primary montage-cta">{montageService.cta.label}</a>
       </div>
+
+      <figure class="montage-media reveal">
+        <img src={montageService.image.src} alt={montageService.image.alt} width={montageService.image.width} height={montageService.image.height} loading="lazy" />
+      </figure>
     </div>
   </div>
 </section>
@@ -39,15 +37,15 @@ import { montageService } from '@data/site';
   .montage-grid {
     display: grid;
     gap: 2rem;
-    margin-top: 2.25rem;
     align-items: start;
   }
-  .montage-intro { max-width: 46ch; }
+  .montage-intro { max-width: 46ch; margin-top: 0.875rem; }
   .montage-cta { margin-top: 1.75rem; }
 
   .montage-list {
     display: grid;
     gap: 1rem;
+    margin-top: 1.5rem;
   }
   .montage-list li {
     display: flex;
@@ -64,25 +62,29 @@ import { montageService } from '@data/site';
     color: var(--cyan);
   }
 
-  .montage-right { display: flex; flex-direction: column; gap: 1.75rem; }
   .montage-media {
     overflow: hidden;
     border-radius: 10px;
-    aspect-ratio: 16 / 9;
+    /* Seitenverhaeltnis entspricht exakt der Quelldatei (1086x1448 = 3:4),
+       damit das komplette Motiv (Kopf bis Werkstueck) sichtbar bleibt statt
+       auf einen Ausschnitt zugeschnitten zu werden */
+    aspect-ratio: 3 / 4;
+    margin: 0;
   }
   .montage-media img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
-    object-position: center 20%;
   }
 
   @media (min-width: 1024px) {
     .montage-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 3rem;
     }
-    .montage-media { aspect-ratio: auto; height: 200px; }
+    .montage-copy { flex: none; }
+    .montage-media { flex: none; width: clamp(260px, 24vw, 340px); }
   }
 </style>

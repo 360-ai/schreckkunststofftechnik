@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { aboutPage, trustStrip, certificate, machinePark, seo } from '@data/site';
+import { aboutPage, trustStrip, certificate, machinePark, machineryShowcase, seo } from '@data/site';
 ---
 
 <BaseLayout
@@ -32,6 +32,24 @@ import { aboutPage, trustStrip, certificate, machinePark, seo } from '@data/site
         <figure class="card img-card reveal">
           <img src={aboutPage.images.entrance.src} alt={aboutPage.images.entrance.alt} width={aboutPage.images.entrance.width} height={aboutPage.images.entrance.height} loading="lazy" />
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section machinery-section">
+    <div class="container">
+      <p class="eyebrow">{machineryShowcase.eyebrow}</p>
+      <h2 class="section-heading">{machineryShowcase.heading}</h2>
+      <p class="section-intro">{machineryShowcase.intro}</p>
+      <div class="machinery-grid">
+        {machineryShowcase.images.map((img) => (
+          <figure class="card machinery-card reveal">
+            <div class="machinery-media">
+              <img src={img.src} alt={img.alt} width={img.width} height={img.height} loading="lazy" />
+            </div>
+            <figcaption>{img.caption}</figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>
@@ -108,7 +126,7 @@ import { aboutPage, trustStrip, certificate, machinePark, seo } from '@data/site
 
   .cert-section {
     background: var(--surface);
-    border-block: 1px solid rgba(38, 142, 166, 0.15);
+    border-bottom: 1px solid rgba(38, 142, 166, 0.15);
   }
   .cert-card {
     display: flex;
@@ -120,6 +138,19 @@ import { aboutPage, trustStrip, certificate, machinePark, seo } from '@data/site
   .cert-heading { font-size: 1.5rem; margin-top: 0.5rem; }
   .cert-text { color: var(--slate); margin-top: 0.5rem; max-width: 60ch; }
 
+  .machinery-section { background: var(--surface); border-top: 1px solid rgba(38, 142, 166, 0.15); }
+  .machinery-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  .machinery-card { overflow: hidden; }
+  .machinery-media { aspect-ratio: 4 / 3; overflow: hidden; }
+  .machinery-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .machinery-card figcaption {
+    padding: 0.875rem 1.125rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--petrol-deep);
+  }
+
   .machine-asof { color: var(--slate); font-size: 0.9375rem; margin-top: 0.5rem; }
   .machine-grid { display: grid; gap: 1rem; margin-top: 1.75rem; }
   .machine-card { padding: 1.25rem; }
@@ -128,6 +159,7 @@ import { aboutPage, trustStrip, certificate, machinePark, seo } from '@data/site
 
   @media (min-width: 640px) {
     .machine-grid { grid-template-columns: 1fr 1fr; }
+    .machinery-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (min-width: 1024px) {
     .about-layout { grid-template-columns: 1.1fr 0.9fr; gap: 4rem; }
