@@ -22,6 +22,7 @@ export const company = {
   geo: { latitude: 51.017, longitude: 8.832 },
   mapsLink:
     'https://www.google.com/maps/search/?api=1&query=Schreck+Kunststofftechnik+Wolkersdorfer+Str.+28+35099+Burgwald',
+  instagram: 'https://www.instagram.com/schreck_kunststofftechnik_gmbh/',
 };
 
 export const legal = {
@@ -347,9 +348,10 @@ export const montageService = {
 export const machineryShowcase = {
   eyebrow: 'Ausstattung',
   heading: 'Ein Einblick in unseren Maschinenpark',
-  intro: 'Drei Stationen auf dem Weg vom Rohteil zur fertigen Form: Fräsen, Spritzguss und Senkerodieren.',
+  intro: 'Vier Stationen auf dem Weg vom Rohteil zur fertigen Form: Fräsen, Drehen, Spritzguss und Senkerodieren.',
   images: [
     { src: '/images/maschinenpark-fraesen.webp', alt: 'DMG Mori CMX 600 V bei SKT', caption: 'CNC-Fräsen', width: 1086, height: 1448 },
+    { src: '/images/maschinenpark-drehen.webp', alt: 'Konventionelle Drehmaschine bei SKT', caption: 'Konventionelle Drehmaschine', width: 1086, height: 1448 },
     { src: '/images/maschinenpark-spritzguss.webp', alt: 'ENGEL Spritzgussmaschine bei SKT', caption: 'Spritzguss', width: 1086, height: 1448 },
     { src: '/images/maschinenpark-erodieren.webp', alt: 'OPS Ingersoll Gantry Eagle 400 bei SKT', caption: 'Senkerodieren', width: 1086, height: 1448 },
   ],
