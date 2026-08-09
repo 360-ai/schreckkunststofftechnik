@@ -103,6 +103,17 @@ const allJsonLd = [organization, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jso
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <script
+      is:inline
+      defer
+      src="https://stats.360-ai.org/script.js"
+      data-website-id="c7359b72-0c38-4554-bc95-4002fd96c10e"
+      data-domains="schreckkunststofftechnik.pages.dev,schreck-kunststofftechnik.com,www.schreck-kunststofftechnik.com,schreck-kunststofftechnik.de,www.schreck-kunststofftechnik.de"
+      data-do-not-track="true"
+      data-exclude-search="true"
+      data-exclude-hash="true"
+    ></script>
+
     {allJsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   </head>
   <body>
