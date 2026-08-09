@@ -390,7 +390,7 @@ export const inquiryForm = {
   intro: 'In drei Schritten zu Ihrer Anfrage.',
   topics: ['Neuwerkzeugbau', 'Spritzgussteile', 'Ersatzteile oder Reparatur', 'Montageservice', 'Sonstiges'],
   privacyNote:
-    'Beim Absenden öffnet sich eine vorausgefüllte Nachricht in Ihrem E-Mail-Programm. Details in der',
+    'Ihre Angaben werden dabei nicht an unseren Server übertragen. Details in der',
 };
 
 export interface Job {
