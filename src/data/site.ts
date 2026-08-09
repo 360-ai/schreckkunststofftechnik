@@ -310,6 +310,14 @@ export const productGroups: ProductGroup[] = [
   },
 ];
 
+// Art. 50 KI-VO: Produktbilder sind KI-generierte Illustrationen (Kundendatenschutz).
+// Hinweis am Seitenende statt am Bild, siehe produkte.astro und ProductGrid.astro.
+export const aiProductNotice = {
+  heading: 'Hinweis zu den Produktabbildungen',
+  text: 'Die auf dieser Seite gezeigten Produktbeispiele sind KI-generierte Abbildungen. Reale Bauteile aus laufenden Kundenprojekten enthalten häufig vertrauliche Konstruktionsdetails – deshalb zeigen wir keine Originalteile, sondern KI-generierte Darstellungen. Sie veranschaulichen die Formen, Materialien und Geometrien, die im Werkzeug- und Spritzguss bei SKT realistisch umsetzbar sind.',
+  homepageHint: 'Die Produktbeispiele oben sind KI-generierte Abbildungen zum Schutz vertraulicher Kundendaten.',
+};
+
 // Reparatur und Schulung vor Ort: belegt über den Leistungskatalog aus Projekt 1
 // (capabilities: "Reparatur", "Schulung vor Ort") und das Formular-Anliegen.
 export const services = {

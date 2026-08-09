@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { productGroups, seo } from '@data/site';
+import { productGroups, aiProductNotice, seo } from '@data/site';
 ---
 
 <BaseLayout
@@ -22,6 +22,9 @@ import { productGroups, seo } from '@data/site';
               <a href={`#${g.id}`}>{g.cardTitle}</a>
             </li>
           ))}
+          <li>
+            <a href="#ki-bildhinweis" class="ai-notice-link">Hinweis zu den Abbildungen</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -70,6 +73,9 @@ import { productGroups, seo } from '@data/site';
           </div>
 
           <div class="product-figures">
+            <p class="figures-label">
+              Produktbeispiele<a href="#ki-bildhinweis" class="ai-star" aria-label="KI-generierte Abbildung, Hinweis am Seitenende">*</a>
+            </p>
             {group.images.map((img) => (
               <figure class="card product-figure reveal">
                 <img src={img.src} alt={img.alt} width={img.width} height={img.height} loading="lazy" />
@@ -80,6 +86,13 @@ import { productGroups, seo } from '@data/site';
       </section>
     ))
   }
+
+  <section class="section ai-notice-section" id="ki-bildhinweis">
+    <div class="container ai-notice">
+      <p class="ai-notice-heading">{aiProductNotice.heading}</p>
+      <p class="ai-notice-text">{aiProductNotice.text}</p>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
@@ -127,7 +140,22 @@ import { productGroups, seo } from '@data/site';
 
   .product-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 
+  .ai-notice-link { color: var(--slate) !important; font-size: 0.9375rem; }
+
+  .ai-notice-section { border-top: 1px solid rgba(38, 142, 166, 0.15); }
+  .ai-notice { max-width: 68ch; }
+  .ai-notice-heading {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--slate);
+    margin-bottom: 0.5rem;
+  }
+  .ai-notice-text { color: var(--slate); font-size: 0.875rem; line-height: 1.6; }
+
   .product-figures { display: grid; gap: 1rem; align-content: start; }
+  .figures-label { font-size: 0.8125rem; color: var(--slate); margin-bottom: -0.25rem; }
+  .ai-star { color: var(--slate); text-decoration: none; margin-left: 0.1rem; }
+  .ai-star:hover { color: var(--petrol-deep); }
   .product-figure {
     padding: 1rem;
     display: grid;

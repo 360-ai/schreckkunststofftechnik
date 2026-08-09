@@ -1,5 +1,5 @@
 ---
-import { productGroups } from '@data/site';
+import { productGroups, aiProductNotice } from '@data/site';
 ---
 
 <section class="section" id="produktgruppen">
@@ -25,7 +25,10 @@ import { productGroups } from '@data/site';
                 />
               </span>
               <span class="product-body">
-                <span class="product-title">{group.cardTitle}</span>
+                <span class="product-title">
+                  {group.cardTitle}<span class="ai-star" aria-hidden="true">*</span>
+                  <span class="visually-hidden">(Produktbeispiel: KI-generierte Abbildung)</span>
+                </span>
                 <span class="product-text">{group.cardText}</span>
                 <span class="product-pills">
                   {group.pills.map((pill) => (
@@ -44,6 +47,10 @@ import { productGroups } from '@data/site';
         ))
       }
     </ul>
+
+    <p class="ai-notice-hint">
+      {aiProductNotice.homepageHint} <a href="/produkte/#ki-bildhinweis">Mehr dazu</a>.
+    </p>
   </div>
 </section>
 
@@ -62,6 +69,13 @@ import { productGroups } from '@data/site';
     gap: 1.25rem;
     margin-top: 2.25rem;
   }
+  .ai-notice-hint {
+    margin-top: 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--slate);
+  }
+  .ai-notice-hint a { color: var(--slate); text-decoration: underline; text-underline-offset: 2px; }
+  .ai-notice-hint a:hover { color: var(--petrol-deep); }
   .product-card { overflow: hidden; }
   .product-link {
     display: flex;
@@ -97,6 +111,7 @@ import { productGroups } from '@data/site';
     color: var(--ink);
   }
   .product-text { font-size: 0.9375rem; color: var(--slate); }
+  .ai-star { color: var(--slate); font-weight: 400; margin-left: 0.05rem; }
   .product-pills { display: flex; flex-wrap: wrap; gap: 0.375rem; }
   .product-more {
     display: inline-flex;
