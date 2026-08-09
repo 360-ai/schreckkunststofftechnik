@@ -387,15 +387,10 @@ export const finalCta = {
 // Multi-Step-Formular (Plan Abschnitt 7)
 export const inquiryForm = {
   heading: 'Projekt anfragen',
-  intro: 'In drei Schritten zu Ihrer Anfrage. Mit Datei-Upload für Zeichnungen und CAD-Daten.',
+  intro: 'In drei Schritten zu Ihrer Anfrage.',
   topics: ['Neuwerkzeugbau', 'Spritzgussteile', 'Ersatzteile oder Reparatur', 'Montageservice', 'Sonstiges'],
-  upload: {
-    accept: '.pdf,.step,.stp,.igs,.iges,.dxf,.dwg,.png,.jpg,.jpeg,.zip',
-    maxFiles: 3,
-    maxTotalMb: 10,
-  },
   privacyNote:
-    'Ihre Angaben werden zur Bearbeitung der Anfrage per E-Mail an SKT übermittelt. Details in der',
+    'Beim Absenden öffnet sich eine vorausgefüllte Nachricht in Ihrem E-Mail-Programm. Details in der',
 };
 
 export interface Job {

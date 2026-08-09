@@ -11,20 +11,7 @@ import { inquiryForm, industries, company } from '@data/site';
   </div>
   <p class="step-count" data-step-count aria-live="polite">Schritt 1 von 3</p>
 
-  <form
-    method="post"
-    action="/api/anfrage"
-    enctype="multipart/form-data"
-    novalidate
-    data-inquiry
-  >
-    <!-- Honeypot (Bots füllen es aus) + Zeitfalle -->
-    <div class="hp-field" aria-hidden="true" inert>
-      <label for="firma_web">Firma Web</label>
-      <input type="text" id="firma_web" name="firma_web" tabindex="-1" autocomplete="off" />
-    </div>
-    <input type="hidden" name="ts" data-ts value="" />
-
+  <form novalidate data-inquiry data-company-email={company.email}>
     <!-- Schritt 1: Anliegen -->
     <fieldset class="step" data-step="1">
       <legend class="step-heading" tabindex="-1">Worum geht es?</legend>
@@ -81,34 +68,15 @@ import { inquiryForm, industries, company } from '@data/site';
       </div>
 
       <div class="field">
-        <span class="field-label" id="upload-label">Dateien (optional)</span>
-        <div class="dropzone" data-dropzone>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V4m0 0 4 4m-4-4-4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+        <div class="notice-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></svg>
           <p>
-            <button type="button" class="dz-browse" data-browse aria-describedby="upload-label upload-hint">Dateien auswählen</button>
-            <span class="dz-drop-hint">oder hierher ziehen</span>
+            Zeichnungen, CAD-Daten oder andere sensible Unterlagen übermitteln wir Ihnen am liebsten persönlich.
+            Rufen Sie uns an unter <a href={company.phoneLink}>{company.phoneDisplay}</a> oder schreiben Sie uns
+            eine E-Mail an <a href={`mailto:${company.email}`}>{company.email}</a>, den Austausch der Dateien
+            klären wir dann gemeinsam. Dieses Formular dient der ersten, unverbindlichen Kontaktaufnahme.
           </p>
-          <input
-            type="file"
-            name="dateien"
-            multiple
-            accept={inquiryForm.upload.accept}
-            class="visually-hidden"
-            data-file-input
-            tabindex="-1"
-            aria-hidden="true"
-          />
         </div>
-        <p class="field-hint" id="upload-hint">
-          Dateianhang (z. B. Zeichnung: PDF, STEP, DWG) - max. 1-3 Dateien.
-          Erlaubt sind pdf, step, stp, igs, iges, dxf, dwg, png, jpg, zip.
-          Max. {inquiryForm.upload.maxFiles} Dateien, {inquiryForm.upload.maxTotalMb} MB gesamt.
-        </p>
-        <ul class="file-list" data-file-list aria-live="polite"></ul>
-        <p class="field-error" data-error-for="dateien" hidden>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
-          <span data-file-error-text>Datei nicht zulässig.</span>
-        </p>
       </div>
 
       <div class="step-nav">
@@ -187,31 +155,32 @@ import { inquiryForm, industries, company } from '@data/site';
         </button>
       </div>
 
+      <p class="submit-hint">Öffnet eine vorausgefüllte Nachricht in Ihrem E-Mail-Programm.</p>
       <p class="privacy-note">
         {inquiryForm.privacyNote}
         <a href="/datenschutz/">Datenschutzerklärung</a>.
       </p>
     </fieldset>
 
-    <!-- Status für Screenreader + sichtbare Meldungen -->
-    <div class="form-status" data-status aria-live="polite"></div>
-
-    <!-- Fehler-Fallback mit direkten Alternativen -->
-    <div class="form-error-box" data-error-box hidden>
-      <p><strong>Das hat leider nicht geklappt.</strong> <span data-error-detail></span></p>
-      <p>
-        Sie erreichen uns direkt: <a href={company.phoneLink}>{company.phoneDisplay}</a> oder
-        <a href={`mailto:${company.email}`}>{company.email}</a>.
-      </p>
-      <button type="button" class="btn btn-outline" data-retry>Erneut versuchen</button>
-    </div>
   </form>
 
   <!-- Erfolgs-Screen -->
   <div class="success" data-success hidden>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-6"/></svg>
-    <h3 tabindex="-1" data-success-heading>Ihre Anfrage ist unterwegs</h3>
-    <p>Wir melden uns werktags in der Regel kurzfristig zurück.</p>
+    <h3 tabindex="-1" data-success-heading>Ihr E-Mail-Programm öffnet sich jetzt</h3>
+    <p>
+      Bitte prüfen Sie die vorausgefüllte Nachricht und senden Sie sie ab. Falls sich nichts öffnet, erreichen
+      Sie uns direkt: <a href={company.phoneLink}>{company.phoneDisplay}</a> oder
+      <a href={`mailto:${company.email}`}>{company.email}</a>.
+    </p>
+    <div class="mail-fallback">
+      <p class="mail-fallback-label">Oder kopieren Sie Ihre Angaben direkt in eine neue E-Mail:</p>
+      <textarea class="mail-fallback-text" data-mail-text readonly rows="6"></textarea>
+      <div class="mail-fallback-actions">
+        <button type="button" class="btn btn-outline" data-copy>In Zwischenablage kopieren</button>
+        <span class="copy-status" data-copy-status aria-live="polite"></span>
+      </div>
+    </div>
     <dl class="summary" data-summary></dl>
   </div>
 </div>
@@ -219,29 +188,18 @@ import { inquiryForm, industries, company } from '@data/site';
 <script>
   const root = document.getElementById('anfrage')!;
   const form = root.querySelector<HTMLFormElement>('[data-inquiry]')!;
+  const companyEmail = form.dataset.companyEmail!;
   const steps = [...form.querySelectorAll<HTMLFieldSetElement>('.step')];
   const progressBar = root.querySelector<HTMLElement>('[data-progress]')!;
   const stepCount = root.querySelector<HTMLElement>('[data-step-count]')!;
-  const status = form.querySelector<HTMLElement>('[data-status]')!;
-  const errorBox = form.querySelector<HTMLElement>('[data-error-box]')!;
-  const errorDetail = form.querySelector<HTMLElement>('[data-error-detail]')!;
   const successPane = root.querySelector<HTMLElement>('[data-success]')!;
-  const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]')!;
-  const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]')!;
-
-  // Zeitfalle: Rendertimestamp (weiches Signal, Serverseite entscheidet)
-  form.querySelector<HTMLInputElement>('[data-ts]')!.value = String(Date.now());
 
   let current = 0;
 
-  function showError(name: string, show: boolean, text?: string) {
+  function showError(name: string, show: boolean) {
     const el = form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
     if (!el) return;
     el.hidden = !show;
-    if (text) {
-      const t = el.querySelector('[data-file-error-text]');
-      if (t) t.textContent = text;
-    }
     const field = form.querySelector<HTMLElement>(`[name="${name}"], #${name}`);
     field?.setAttribute('aria-invalid', String(show));
   }
@@ -269,7 +227,7 @@ import { inquiryForm, industries, company } from '@data/site';
       const ok = desc.value.trim().length > 0;
       showError('beschreibung', !ok);
       if (!ok) desc.focus();
-      return ok && filesValid;
+      return ok;
     }
     if (index === 2) {
       const firma = form.querySelector<HTMLInputElement>('#firma')!;
@@ -302,149 +260,64 @@ import { inquiryForm, industries, company } from '@data/site';
     }
   });
 
-  // ---------- Datei-Upload ----------
-  const ALLOWED = ['pdf', 'step', 'stp', 'igs', 'iges', 'dxf', 'dwg', 'png', 'jpg', 'jpeg', 'zip'];
-  const MAX_FILES = 3;
-  const MAX_TOTAL = 10 * 1024 * 1024;
-
-  const dropzone = form.querySelector<HTMLElement>('[data-dropzone]')!;
-  const fileInput = form.querySelector<HTMLInputElement>('[data-file-input]')!;
-  const browseBtn = form.querySelector<HTMLButtonElement>('[data-browse]')!;
-  const fileList = form.querySelector<HTMLUListElement>('[data-file-list]')!;
-
-  let files: File[] = [];
-  let filesValid = true;
-
-  browseBtn.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', () => {
-    addFiles([...(fileInput.files ?? [])]);
-    fileInput.value = '';
-  });
-
-  // Drag-and-drop ist Desktop-Zusatz
-  for (const ev of ['dragenter', 'dragover']) {
-    dropzone.addEventListener(ev, (e) => {
-      e.preventDefault();
-      dropzone.classList.add('dz-active');
-    });
-  }
-  for (const ev of ['dragleave', 'drop']) {
-    dropzone.addEventListener(ev, (e) => {
-      e.preventDefault();
-      dropzone.classList.remove('dz-active');
-    });
-  }
-  dropzone.addEventListener('drop', (e) => {
-    addFiles([...((e as DragEvent).dataTransfer?.files ?? [])]);
-  });
-
-  function addFiles(newFiles: File[]) {
-    let error = '';
-    for (const f of newFiles) {
-      const ext = f.name.split('.').pop()?.toLowerCase() ?? '';
-      if (!ALLOWED.includes(ext)) {
-        error = `"${f.name}" hat einen nicht zulässigen Dateityp (.${ext}).`;
-        continue;
-      }
-      if (files.some((x) => x.name === f.name && x.size === f.size)) continue;
-      files.push(f);
-    }
-    if (files.length > MAX_FILES) {
-      error = `Maximal ${MAX_FILES} Dateien. Die überzähligen wurden entfernt.`;
-      files = files.slice(0, MAX_FILES);
-    }
-    const total = files.reduce((s, f) => s + f.size, 0);
-    if (total > MAX_TOTAL) {
-      error = `Zusammen maximal 10 MB. Aktuell: ${(total / 1024 / 1024).toFixed(1)} MB. Bitte entfernen Sie eine Datei.`;
-      filesValid = false;
-    } else {
-      filesValid = true;
-    }
-    showError('dateien', !!error, error);
-    renderFileList();
-  }
-
-  function renderFileList() {
-    fileList.innerHTML = '';
-    files.forEach((f, i) => {
-      const li = document.createElement('li');
-      const name = document.createElement('span');
-      name.textContent = `${f.name} (${(f.size / 1024 / 1024).toFixed(1)} MB)`;
-      const remove = document.createElement('button');
-      remove.type = 'button';
-      remove.textContent = 'Entfernen';
-      remove.setAttribute('aria-label', `${f.name} entfernen`);
-      remove.addEventListener('click', () => {
-        files.splice(i, 1);
-        const total = files.reduce((s, x) => s + x.size, 0);
-        filesValid = total <= MAX_TOTAL;
-        showError('dateien', false);
-        renderFileList();
-      });
-      li.append(name, remove);
-      fileList.append(li);
-    });
-  }
-
-  // ---------- Absenden ----------
-  form.addEventListener('submit', async (e) => {
+  // ---------- Absenden per mailto ----------
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validateStep(2)) return;
 
-    submitBtn.disabled = true;
-    submitLabel.textContent = files.length ? 'Wird gesendet, Dateien werden hochgeladen' : 'Wird gesendet';
-    status.textContent = 'Ihre Anfrage wird gesendet.';
-    errorBox.hidden = true;
+    const anliegen = form.querySelector<HTMLInputElement>('input[name="anliegen"]:checked')?.value ?? '';
+    const beschreibung = form.querySelector<HTMLTextAreaElement>('#beschreibung')!.value.trim();
+    const branche = form.querySelector<HTMLSelectElement>('#branche')!.value;
+    const firma = form.querySelector<HTMLInputElement>('#firma')!.value.trim();
+    const name = form.querySelector<HTMLInputElement>('#name')!.value.trim();
+    const email = form.querySelector<HTMLInputElement>('#email')!.value.trim();
+    const telefon = form.querySelector<HTMLInputElement>('#telefon')!.value.trim();
+    const nachricht = form.querySelector<HTMLTextAreaElement>('#nachricht')!.value.trim();
 
-    const data = new FormData();
-    for (const field of ['anliegen', 'beschreibung', 'branche', 'firma', 'name', 'email', 'telefon', 'nachricht', 'firma_web', 'ts']) {
-      const el = form.querySelector<HTMLInputElement>(`[name="${field}"]:not([type="radio"]), input[name="${field}"]:checked`);
-      data.append(field, el?.value ?? '');
-    }
-    for (const f of files) data.append('dateien', f, f.name);
+    const subject = `Projektanfrage: ${anliegen} von ${firma}`;
+    const bodyLines = [
+      `Anliegen: ${anliegen}`,
+      `Firma: ${firma}`,
+      `Name: ${name}`,
+      `Telefon: ${telefon}`,
+      branche ? `Branche: ${branche}` : '',
+      '',
+      'Projektbeschreibung:',
+      beschreibung,
+      nachricht ? `\nErgänzende Nachricht:\n${nachricht}` : '',
+    ].filter((line) => line !== '');
 
-    try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 60_000);
-      const res = await fetch(form.action, { method: 'POST', body: data, signal: controller.signal });
-      clearTimeout(timeout);
-      const json = await res.json().catch(() => ({}));
+    const bodyText = bodyLines.join('\n');
+    const mailto = `mailto:${companyEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    const mailText = `An: ${companyEmail}\nBetreff: ${subject}\n\n${bodyText}`;
 
-      if (res.ok && json.ok) {
-        showSuccess(data);
-      } else {
-        fail(json.message ?? 'Der Server hat die Anfrage nicht angenommen.');
-      }
-    } catch {
-      fail('Die Verbindung ist fehlgeschlagen oder abgelaufen.');
-    }
+    // Erst den Erfolgs-Screen mit Kopieren-Fallback zeigen, danach erst versuchen, das
+    // Mail-Programm zu oeffnen. So gehen die eingegebenen Daten auf keinen Fall verloren,
+    // selbst wenn das Oeffnen fehlschlaegt oder die Seite dabei neu laedt.
+    showSuccess({ anliegen, branche, email, mailText });
+
+    // window.location.href = mailto koennte bei fehlendem Mail-Programm die Seite neu
+    // laden. window.open() blockiert in diesem Fall nur still, ohne die aktuelle Seite
+    // zu verlassen.
+    window.open(mailto, '_blank', 'noopener');
   });
 
-  function fail(detail: string) {
-    submitBtn.disabled = false;
-    submitLabel.textContent = 'Anfrage senden';
-    status.textContent = '';
-    errorDetail.textContent = detail;
-    errorBox.hidden = false;
-  }
-
-  form.querySelector('[data-retry]')?.addEventListener('click', () => {
-    errorBox.hidden = true;
-    submitBtn.focus();
-  });
-
-  function showSuccess(data: FormData) {
+  function showSuccess(data: { anliegen: string; branche: string; email: string; mailText: string }) {
     form.hidden = true;
     root.querySelector<HTMLElement>('.progress')!.hidden = true;
     stepCount.hidden = true;
     successPane.hidden = false;
 
+    const mailTextArea = successPane.querySelector<HTMLTextAreaElement>('[data-mail-text]')!;
+    mailTextArea.value = data.mailText;
+    const copyStatus = successPane.querySelector<HTMLElement>('[data-copy-status]')!;
+    copyStatus.textContent = '';
+
     const summary = successPane.querySelector<HTMLElement>('[data-summary]')!;
     const rows: [string, string][] = [
-      ['Anliegen', String(data.get('anliegen') ?? '')],
-      ['Branche', String(data.get('branche') || 'Keine Angabe')],
-      ['Dateien', files.length ? `${files.length} Datei${files.length > 1 ? 'en' : ''}` : 'Keine'],
-      ['Antwort an', String(data.get('email') ?? '')],
+      ['Anliegen', data.anliegen],
+      ['Branche', data.branche || 'Keine Angabe'],
+      ['Antwort an', data.email],
     ];
     summary.innerHTML = '';
     for (const [dt, dd] of rows) {
@@ -456,6 +329,19 @@ import { inquiryForm, industries, company } from '@data/site';
     }
     successPane.querySelector<HTMLElement>('[data-success-heading]')!.focus();
   }
+
+  successPane.querySelector('[data-copy]')?.addEventListener('click', async () => {
+    const mailTextArea = successPane.querySelector<HTMLTextAreaElement>('[data-mail-text]')!;
+    const copyStatus = successPane.querySelector<HTMLElement>('[data-copy-status]')!;
+    mailTextArea.select();
+    mailTextArea.setSelectionRange(0, mailTextArea.value.length);
+    try {
+      await navigator.clipboard.writeText(mailTextArea.value);
+      copyStatus.textContent = 'In die Zwischenablage kopiert.';
+    } catch {
+      copyStatus.textContent = 'Kopieren fehlgeschlagen, der Text ist markiert: bitte mit Strg+C kopieren.';
+    }
+  });
 </script>
 
 <style>
@@ -539,56 +425,19 @@ import { inquiryForm, industries, company } from '@data/site';
     .field-row { grid-template-columns: 1fr 1fr; }
   }
 
-  .dropzone {
+  .notice-box {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    border: 1.5px dashed rgba(38, 142, 166, 0.5);
+    gap: 0.625rem;
+    align-items: flex-start;
+    border: 1px solid var(--border-card);
+    background: var(--paper);
     border-radius: 8px;
     padding: 0.875rem 1rem;
+    font-size: 0.875rem;
     color: var(--slate);
   }
-  .dropzone.dz-active { border-color: var(--petrol-deep); background: rgba(38, 142, 166, 0.06); }
-  .dropzone svg { width: 1.5rem; height: 1.5rem; color: var(--petrol); flex: none; }
-  .dz-browse {
-    background: none;
-    border: 0;
-    padding: 0;
-    font: inherit;
-    font-weight: 600;
-    color: var(--petrol-deep);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-    min-height: 2.75rem;
-  }
-  .dz-drop-hint { display: none; }
-  @media (min-width: 1024px) {
-    .dz-drop-hint { display: inline; margin-left: 0.3rem; }
-  }
-
-  .file-list { margin-top: 0.5rem; display: grid; gap: 0.375rem; }
-  .file-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    color: var(--ink);
-    background: var(--paper);
-    border-radius: 6px;
-    padding: 0.375rem 0.625rem;
-  }
-  .file-list button {
-    background: none;
-    border: 0;
-    color: var(--petrol-deep);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-decoration: underline;
-    cursor: pointer;
-    min-height: 2rem;
-  }
+  .notice-box svg { width: 1.25rem; height: 1.25rem; color: var(--petrol); flex: none; margin-top: 0.125rem; }
+  .notice-box a { color: var(--petrol-deep); font-weight: 600; }
 
   .step-nav {
     display: flex;
@@ -597,29 +446,38 @@ import { inquiryForm, industries, company } from '@data/site';
     margin-top: 1.25rem;
   }
 
+  .submit-hint {
+    font-size: 0.8125rem;
+    color: var(--slate);
+    margin-top: 0.75rem;
+  }
   .privacy-note {
     font-size: 0.8125rem;
     color: var(--slate);
-    margin-top: 1rem;
+    margin-top: 0.375rem;
   }
   .privacy-note a { color: var(--petrol-deep); }
-
-  .form-status { font-size: 0.9375rem; color: var(--slate); margin-top: 0.75rem; }
-
-  .form-error-box {
-    margin-top: 1rem;
-    border: 1px solid var(--error);
-    border-radius: 8px;
-    padding: 1rem;
-    font-size: 0.9375rem;
-  }
-  .form-error-box a { color: var(--petrol-deep); font-weight: 600; }
-  .form-error-box .btn { margin-top: 0.75rem; }
 
   .success { text-align: left; padding-top: 0.5rem; }
   .success svg { width: 3rem; height: 3rem; color: var(--petrol); }
   .success h3 { font-size: 1.375rem; margin-top: 0.75rem; }
   .success p { color: var(--slate); margin-top: 0.375rem; }
+
+  .mail-fallback { margin-top: 1.25rem; }
+  .mail-fallback-label { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 0.375rem; }
+  .mail-fallback-text {
+    width: 100%;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8125rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--border-card);
+    border-radius: 8px;
+    padding: 0.75rem;
+    resize: vertical;
+  }
+  .mail-fallback-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.625rem; flex-wrap: wrap; }
+  .copy-status { font-size: 0.8125rem; color: var(--slate); }
   .summary {
     margin-top: 1rem;
     display: grid;
