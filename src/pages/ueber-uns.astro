@@ -138,7 +138,12 @@ import { aboutPage, trustStrip, certificate, machinePark, machineryShowcase, seo
   .cert-heading { font-size: 1.5rem; margin-top: 0.5rem; }
   .cert-text { color: var(--slate); margin-top: 0.5rem; max-width: 60ch; }
 
-  .machinery-section { background: var(--surface); border-top: 1px solid rgba(38, 142, 166, 0.15); }
+  .machinery-section {
+    background: var(--surface);
+    border-top: 1px solid rgba(38, 142, 166, 0.15);
+    padding-bottom: 1.75rem;
+  }
+  @media (min-width: 768px) { .machinery-section { padding-bottom: 2.75rem; } }
   .machinery-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
   .machinery-card { overflow: hidden; }
   .machinery-media { aspect-ratio: 4 / 3; overflow: hidden; }
