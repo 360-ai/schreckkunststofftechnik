@@ -21,31 +21,43 @@ import { company, seo } from '@data/site';
 
   <section class="section">
     <div class="container">
-      <ul class="contact-grid">
-        <li class="card contact-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 5c0-1 .8-2 1.9-2h2.3c.9 0 1.6.6 1.9 1.4l.9 2.8c.2.8 0 1.6-.7 2.1l-1.2 1a13.5 13.5 0 0 0 5.6 5.6l1-1.2c.5-.7 1.3-.9 2.1-.7l2.8.9c.8.3 1.4 1 1.4 1.9v2.3c0 1.1-1 1.9-2 1.9C10.6 21 3 13.4 4 5Z"/></svg>
-          <h2>Telefon</h2>
-          <a href={company.phoneLink} class="contact-link">{company.phoneDisplay}</a>
-        </li>
-        <li class="card contact-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-          <h2>E-Mail</h2>
-          <a href={`mailto:${company.email}`} class="contact-link contact-mail">{company.email}</a>
-        </li>
-        <li class="card contact-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3h10v6H7z"/><path d="M7 21h10v-6H7z"/><path d="M5 9h14a1 1 0 0 1 1 1v5h-3M4 15H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1"/></svg>
-          <h2>Fax</h2>
-          <p class="contact-static">{company.faxDisplay}</p>
-        </li>
-        <li class="card contact-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          <h2>Adresse</h2>
-          <p class="contact-static">
-            {company.street}<br />
-            {company.zip} {company.city}
-          </p>
-        </li>
-      </ul>
+      <div class="contact-layout">
+        <figure class="card contact-photo reveal">
+          <img
+            src="/images/kontakt-buero.webp"
+            alt="Arbeitsplatz im Büro von SKT in Burgwald-Bottendorf"
+            width="1200"
+            height="900"
+            loading="lazy"
+          />
+        </figure>
+
+        <ul class="contact-grid">
+          <li class="card contact-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 5c0-1 .8-2 1.9-2h2.3c.9 0 1.6.6 1.9 1.4l.9 2.8c.2.8 0 1.6-.7 2.1l-1.2 1a13.5 13.5 0 0 0 5.6 5.6l1-1.2c.5-.7 1.3-.9 2.1-.7l2.8.9c.8.3 1.4 1 1.4 1.9v2.3c0 1.1-1 1.9-2 1.9C10.6 21 3 13.4 4 5Z"/></svg>
+            <h2>Telefon</h2>
+            <a href={company.phoneLink} class="contact-link">{company.phoneDisplay}</a>
+          </li>
+          <li class="card contact-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <h2>E-Mail</h2>
+            <a href={`mailto:${company.email}`} class="contact-link contact-mail">{company.email}</a>
+          </li>
+          <li class="card contact-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3h10v6H7z"/><path d="M7 21h10v-6H7z"/><path d="M5 9h14a1 1 0 0 1 1 1v5h-3M4 15H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1"/></svg>
+            <h2>Fax</h2>
+            <p class="contact-static">{company.faxDisplay}</p>
+          </li>
+          <li class="card contact-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 21s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <h2>Adresse</h2>
+            <p class="contact-static">
+              {company.street}<br />
+              {company.zip} {company.city}
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -79,11 +91,32 @@ import { company, seo } from '@data/site';
   .page-intro { color: var(--slate); margin-top: 0.875rem; max-width: 60ch; }
   .page-intro a { color: var(--petrol-deep); }
 
+  .contact-layout { display: grid; gap: 1.25rem; }
+  .contact-photo {
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .contact-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+
   .contact-grid { display: grid; gap: 1.25rem; }
-  .contact-card { padding: 1.5rem; }
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+  }
   .contact-card svg { width: 1.75rem; height: 1.75rem; color: var(--petrol); }
   .contact-card h2 { font-size: 1.0625rem; margin-top: 0.75rem; }
   .contact-link {
+    align-self: flex-start;
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
@@ -105,9 +138,16 @@ import { company, seo } from '@data/site';
 
   @media (min-width: 640px) {
     .contact-grid { grid-template-columns: 1fr 1fr; }
+    .contact-photo { aspect-ratio: 16 / 9; }
   }
   @media (min-width: 1024px) {
-    .contact-grid { grid-template-columns: repeat(4, 1fr); }
+    .contact-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      align-items: stretch;
+      gap: 1.5rem;
+    }
+    .contact-photo { aspect-ratio: 3 / 2; }
+    .contact-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 1.5rem; }
     .anfahrt-layout { grid-template-columns: 1fr 1fr; gap: 4rem; }
   }
 </style>

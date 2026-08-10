@@ -24,6 +24,7 @@ const JOBS = [
   ['Schulung.png', 'einweisung-ki.webp', 1200, 76],
   ['Wartung.png', 'reparatur-ki.webp', 1200, 76],
   ['montageservice.png', 'montageservice.webp', 1200, 76],
+  ['kontakt.jpeg', 'kontakt-buero.webp', 1200, 76],
   ['überuns1.png', 'maschinenpark-fraesen.webp', 1200, 76],
   ['überuns2.png', 'maschinenpark-spritzguss.webp', 1200, 76],
   ['überuns3.png', 'maschinenpark-erodieren.webp', 1200, 76],
